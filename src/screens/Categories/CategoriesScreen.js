@@ -14,7 +14,7 @@ export default function CategoriesScreen(props) {
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
-        flex: 1,
+        // flex: 1,
       },
       headerLeft: () => (
         <MenuImage

@@ -21,11 +21,13 @@ function MainNavigator() {
           fontWeight: "bold",
           textAlign: "center",
           alignSelf: "center",
-          flex: 1,
+          // flex: 1,
+          // alignItems: "center",
+          // justifyContent: "center",
         },
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="BarberShop" component={HomeScreen} />
       <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen name="Recipe" component={RecipeScreen} />
       <Stack.Screen name="RecipesList" component={RecipesListScreen} />
