@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   Text,
@@ -6,27 +6,25 @@ import {
   TouchableHighlight,
   Image,
   RefreshControl,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+  Button,
   Pressable,
 } from "react-native";
 import styles from "./styles";
 import { recipes } from "../../data/dataArrays";
 import MenuImage from "../../components/MenuImage/MenuImage";
-// import { getCategoryName } from "../../data/MockDataAPI";
-import { TextInput } from "react-native-gesture-handler";
-import {
-  getCategoryName,
-  getRecipesByRecipeName,
-  getRecipesByCategoryName,
-  getRecipesByIngredientName,
-} from "../../data/MockDataAPI";
+import { getCategoryName } from "../../data/MockDataAPI";
+import { TabView, SceneMap } from "react-native-tab-view";
 
 export default function HomeScreen(props) {
+  const width = Dimensions.get("window").width;
   const { navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
-  const [value, setValue] = useState("");
-  const [data, setData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("Popular");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
         <MenuImage
@@ -63,42 +61,176 @@ export default function HomeScreen(props) {
     }, 2000);
   };
 
-  // SEARCH
-  const handleSearch = (text) => {
-    setValue(text);
-    var recipeArray1 = getRecipesByRecipeName(text);
-    var recipeArray2 = getRecipesByCategoryName(text);
-    var recipeArray3 = getRecipesByIngredientName(text);
-    var aux = recipeArray1.concat(recipeArray2);
-    var recipeArray = [...new Set(aux)];
+  // CATEGORIES
+  const categories = [
+    { id: 1, name: "Saç Kəsimi" },
+    { id: 2, name: "Keratin" },
+    { id: 3, name: "Masaj Salonları" },
+    { id: 4, name: "Populyar Məkanlar" },
+    { id: 5, name: "Tövsiyə Edilənlər" },
+    { id: 6, name: "Ulduzlu Məkan" },
+  ];
 
-    if (text == "") {
-      setData([]);
-    } else {
-      setData(recipeArray);
-    }
+  const categoryChange = (categoryName) => {
+    console.log(categoryName);
+    setSelectedCategory(categoryName);
   };
 
-  return (
-    <View>
-      <View style={styles.searchContainer}>
+  const renderCategoryItem = ({ item }) => (
+    <TouchableOpacity
+      style={{
+        marginTop: 10,
+        marginRight: 10,
+        marginBottom: 20,
+        padding: 10,
+        backgroundColor: "black",
+        borderRadius: 5,
+      }}
+      onPress={() => {
+        categoryChange(item.name);
+      }}
+    >
+      <Text style={{ color: "white" }}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+
+  // recommended barbershop
+  const [data, setData] = useState([
+    {
+      id: 1,
+      imageURL:
+        "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
+      name: "The Gentleman",
+      logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
+      isSaatlari: [
+        { 1: "10:00 - 22:00" },
+        { 2: "10:00 - 22:00" },
+        { 3: "10:00 - 22:00" },
+        { 4: "10:00 - 22:00" },
+        { 5: "10:00 - 22:00" },
+        { 6: "12:00 - 18:00" },
+        { 6: "Baglidir" },
+      ],
+    },
+    {
+      id: 2,
+      imageURL:
+        "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
+      name: "The Gentleman",
+      logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
+      isSaatlari: [
+        { 1: "10:00 - 22:00" },
+        { 2: "10:00 - 22:00" },
+        { 3: "10:00 - 22:00" },
+        { 4: "10:00 - 22:00" },
+        { 5: "10:00 - 22:00" },
+        { 6: "12:00 - 18:00" },
+        { 6: "Baglidir" },
+      ],
+    },
+    {
+      id: 3,
+      imageURL:
+        "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
+      name: "The Gentleman",
+      logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
+      isSaatlari: [
+        "10:00 - 22:00",
+        "10:00 - 22:00",
+        "10:00 - 22:00",
+        "10:00 - 22:00",
+        "10:00 - 22:00",
+        "12:00 - 18:00",
+        "Baglidir",
+      ],
+    },
+  ]);
+
+  console.log(data[0].isSaatlari[0]);
+
+  const renderRecommendedItem = ({ item }) => (
+    <TouchableOpacity
+      style={{
+        marginTop: 10,
+        marginRight: 10,
+        // padding: 40,
+        backgroundColor: "grey",
+        borderRadius: 10,
+      }}
+      onPress={() => {
+        categoryChange(item.name);
+      }}
+    >
+      <Image
+        source={{ uri: item.imageURL }}
+        style={{
+          width: width - 100,
+          height: 170,
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+        }}
+      />
+      <View
+        style={{
+          padding: 10,
+          // paddingBottom: 80,
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
         <Image
-          style={styles.searchIcon}
-          source={require("../../../assets/icons/search.png")}
+          source={{ uri: item.logoURL }}
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 15,
+            backgroundColor: "black",
+          }}
         />
-        <TextInput
-          style={styles.searchInput}
-          onChangeText={handleSearch}
-          value={value}
-        />
-        <Pressable onPress={() => handleSearch("")}>
-          <Image
-            style={styles.searchIcon}
-            source={require("../../../assets/icons/close.png")}
-          />
-        </Pressable>
+        <Text style={{ color: "white" }}>
+          {item.name} <Text>10:00 - 20:00</Text>
+        </Text>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            paddingVertical: 12,
+            paddingHorizontal: 20,
+            borderRadius: 20,
+            elevation: 3,
+            backgroundColor: "white",
+          }}
+          // onPress={onPress}
+        >
+          <Text style={{ color: "black", fontWeight: 700 }}>Book Now</Text>
+        </TouchableOpacity>
       </View>
-      <FlatList
+    </TouchableOpacity>
+  );
+
+  return (
+    <View style={{ width: width, paddingRight: 10, paddingLeft: 10 }}>
+      {/* Categories */}
+      <ScrollView horizontal>
+        <FlatList
+          data={categories}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderCategoryItem}
+          horizontal
+        />
+      </ScrollView>
+      <Text>{selectedCategory}</Text>
+      <ScrollView horizontal>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderRecommendedItem}
+          horizontal
+        />
+      </ScrollView>
+
+      {/* <FlatList
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -113,7 +245,7 @@ export default function HomeScreen(props) {
         data={recipes}
         renderItem={renderRecipes}
         keyExtractor={(item) => `${item.recipeId}`}
-      />
+      /> */}
     </View>
   );
 }

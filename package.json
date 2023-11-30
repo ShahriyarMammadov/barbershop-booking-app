@@ -19,7 +19,8 @@
     "react-native-gesture-handler": "2.5.0",
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "^4.6.4",
-    "react-native-snap-carousel": "https://github.com/ram33z/react-native-snap-carousel"
+    "react-native-snap-carousel": "https://github.com/ram33z/react-native-snap-carousel",
+    "react-native-tab-view": "^3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
