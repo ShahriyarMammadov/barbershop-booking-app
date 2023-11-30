@@ -64,12 +64,46 @@ export default function HomeScreen(props) {
 
   // CATEGORIES
   const categories = [
-    { id: 1, name: "Saç Kəsimi" },
-    { id: 2, name: "Keratin" },
-    { id: 3, name: "Masaj Salonları" },
-    { id: 4, name: "Populyar Məkanlar" },
-    { id: 5, name: "Tövsiyə Edilənlər" },
-    { id: 6, name: "Ulduzlu Məkan" },
+    {
+      id: 1,
+      name: "Hamısı",
+      src: require("../../../assets/icons/massage.png"),
+    },
+    {
+      id: 2,
+      name: "Keratin",
+      src: require("../../../assets/icons/makeup.png"),
+    },
+    {
+      id: 3,
+      name: "Masaj Salonları",
+      src: require("../../../assets/icons/haircut.png"),
+    },
+    {
+      id: 4,
+      name: "Populyar Məkanlar",
+      src: require("../../../assets/icons/manicure.png"),
+    },
+    {
+      id: 5,
+      name: "Tövsiyə Edilənlər",
+      src: require("../../../assets/icons/massage.png"),
+    },
+    {
+      id: 6,
+      name: "Make Up",
+      src: require("../../../assets/icons/massage.png"),
+    },
+    {
+      id: 7,
+      name: "Manicure",
+      src: require("../../../assets/icons/massage.png"),
+    },
+    {
+      id: 8,
+      name: "Dırnaq",
+      src: require("../../../assets/icons/massage.png"),
+    },
   ];
 
   const categoryChange = (categoryName) => {
@@ -80,18 +114,40 @@ export default function HomeScreen(props) {
   const renderCategoryItem = ({ item }) => (
     <TouchableOpacity
       style={{
-        marginTop: 10,
-        marginRight: 10,
         marginBottom: 20,
         padding: 10,
-        backgroundColor: "black",
         borderRadius: 5,
       }}
       onPress={() => {
         categoryChange(item.name);
       }}
     >
-      <Text style={{ color: "white" }}>{item.name}</Text>
+      <View style={{ alignItems: "center" }}>
+        <View
+          style={{
+            padding: 20,
+            backgroundColor: "#FEF2E0",
+            borderRadius: 50,
+          }}
+        >
+          <Image
+            source={item.src}
+            style={{
+              width: 50,
+              height: 50,
+            }}
+          />
+        </View>
+        <Text
+          style={{
+            color: "black",
+            fontWeight: 700,
+            fontSize: 15,
+          }}
+        >
+          {item.name}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 
@@ -233,6 +289,7 @@ export default function HomeScreen(props) {
           style={{ width: 40, height: 40 }}
         />
       </Text>
+
       <ScrollView horizontal>
         <FlatList
           data={categories}
@@ -241,7 +298,9 @@ export default function HomeScreen(props) {
           horizontal
         />
       </ScrollView>
+
       <Text>{selectedCategory}</Text>
+
       <ScrollView horizontal>
         <FlatList
           data={data}
@@ -250,26 +309,53 @@ export default function HomeScreen(props) {
           horizontal
         />
       </ScrollView>
+
+      {/* HR */}
       <View
         style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          paddingTop: 15,
-          paddingBottom: 15,
+          borderBottomColor: "grey",
+          borderBottomWidth: 1,
+          marginTop: 20,
         }}
-      >
-        <Text>Nearby Your Location </Text>
-        <Text
+      />
+      {/* HR */}
+
+      <View>
+        <View
           style={{
-            color: "green",
-          }}
-          onPress={() => {
-            navigation.navigate("Search");
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingTop: 15,
+            paddingBottom: 15,
           }}
         >
-          See All
-        </Text>
+          <Text style={{ fontWeight: 700, fontSize: 18 }}>
+            Nearby Your Location
+          </Text>
+
+          <Text
+            style={{
+              color: "#FB9400",
+              fontWeight: 700,
+              fontSize: 18,
+            }}
+            onPress={() => {
+              navigation.navigate("Search");
+            }}
+          >
+            See All
+          </Text>
+        </View>
+
+        <ScrollView horizontal>
+          <FlatList
+            data={categories}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderCategoryItem}
+            horizontal
+          />
+        </ScrollView>
       </View>
 
       {/* <FlatList
