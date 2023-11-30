@@ -17,6 +17,7 @@ import { recipes } from "../../data/dataArrays";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import { getCategoryName } from "../../data/MockDataAPI";
 import { TabView, SceneMap } from "react-native-tab-view";
+import { Link } from "@react-navigation/native";
 
 export default function HomeScreen(props) {
   const width = Dimensions.get("window").width;
@@ -146,8 +147,6 @@ export default function HomeScreen(props) {
     },
   ]);
 
-  console.log(data[0].isSaatlari[0]);
-
   const renderRecommendedItem = ({ item }) => (
     <TouchableOpacity
       style={{
@@ -164,7 +163,7 @@ export default function HomeScreen(props) {
       <Image
         source={{ uri: item.imageURL }}
         style={{
-          width: width - 100,
+          width: width - 90,
           height: 170,
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
@@ -188,8 +187,16 @@ export default function HomeScreen(props) {
             backgroundColor: "black",
           }}
         />
-        <Text style={{ color: "white" }}>
-          {item.name} <Text>10:00 - 20:00</Text>
+        <Text
+          style={{
+            color: "white",
+            flex: 1,
+            flexDirection: "column",
+          }}
+        >
+          {item.name}
+          {"\n"}
+          <Text style={{ color: "white" }}>10:00 - 20:00</Text>
         </Text>
         <TouchableOpacity
           style={{
@@ -212,6 +219,20 @@ export default function HomeScreen(props) {
   return (
     <View style={{ width: width, paddingRight: 10, paddingLeft: 10 }}>
       {/* Categories */}
+      <Text
+        style={{
+          fontWeight: 700,
+          fontSize: 35,
+          paddingTop: 15,
+          paddingBottom: 15,
+        }}
+      >
+        Morning, Shahriyar{" "}
+        <Image
+          source={require("../../../assets/icons/hello.png")}
+          style={{ width: 40, height: 40 }}
+        />
+      </Text>
       <ScrollView horizontal>
         <FlatList
           data={categories}
@@ -229,6 +250,27 @@ export default function HomeScreen(props) {
           horizontal
         />
       </ScrollView>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingTop: 15,
+          paddingBottom: 15,
+        }}
+      >
+        <Text>Nearby Your Location </Text>
+        <Text
+          style={{
+            color: "green",
+          }}
+          onPress={() => {
+            navigation.navigate("Search");
+          }}
+        >
+          See All
+        </Text>
+      </View>
 
       {/* <FlatList
         refreshControl={

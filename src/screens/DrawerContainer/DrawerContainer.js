@@ -6,14 +6,15 @@ import MenuButton from "../../components/MenuButton/MenuButton";
 
 export default function DrawerContainer(props) {
   const { navigation } = props;
+  console.log(navigation.navigate);
   return (
     <View style={styles.content}>
       <View style={styles.container}>
         <MenuButton
-          title="BarberShop"
+          title="Qaychi.az"
           source={require("../../../assets/icons/home.png")}
           onPress={() => {
-            navigation.navigate("BarberShop");
+            navigation.navigate("Qaychi.az");
             navigation.closeDrawer();
           }}
         />
