@@ -5,6 +5,7 @@ export const dataCategories = [
     location: "816 Village Drive",
     starCount: 4.8,
     locationCount: "5 km",
+    wishlist: true,
     photo_url:
       "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
   },
@@ -14,6 +15,7 @@ export const dataCategories = [
     location: "Bine Sovxoz",
     starCount: 4.0,
     locationCount: "1.4 km",
+    wishlist: true,
     photo_url:
       "https://www.telegraph.co.uk/content/dam/Travel/2019/January/france-food.jpg?imwidth=1400",
   },

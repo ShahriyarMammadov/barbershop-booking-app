@@ -14,9 +14,9 @@ import {
 } from "react-native";
 import styles from "./styles";
 import { recipes, dataCategories } from "../../data/dataArrays";
-import MenuImage from "../../components/MenuImage/MenuImage";
+// import MenuImage from "../../components/MenuImage/MenuImage";
 import { getCategoryName } from "../../data/MockDataAPI";
-import { TabView, SceneMap } from "react-native-tab-view";
+// import { TabView, SceneMap } from "react-native-tab-view";
 import { Link } from "@react-navigation/native";
 
 export default function HomeScreen(props) {
@@ -28,13 +28,17 @@ export default function HomeScreen(props) {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <MenuImage
-          onPress={() => {
-            navigation.openDrawer();
-          }}
+        <Image
+          source={require("../../../assets/icon.png")}
+          style={{ width: 50, height: 50 }}
         />
       ),
-      headerRight: () => <View />,
+      headerRight: () => (
+        <Image
+          source={require("../../../assets/icons/notification.png")}
+          style={{ width: 30, height: 30, marginRight: 30 }}
+        />
+      ),
     });
   }, []);
 
@@ -479,12 +483,20 @@ export default function HomeScreen(props) {
                   </View>
                 </View>
               </View>
-              <View>
+              <Pressable
+                onPress={() => {
+                  console.log("salam");
+                }}
+              >
                 <Image
-                  source={require("../../../assets/icons/bookmark.png")}
+                  source={
+                    e?.wishlist
+                      ? require("../../../assets/icons/activeBookmark.png")
+                      : require("../../../assets/icons/bookmark.png")
+                  }
                   style={{ width: 25, height: 25 }}
                 />
-              </View>
+              </Pressable>
             </TouchableOpacity>
           );
         })}
@@ -500,9 +512,7 @@ export default function HomeScreen(props) {
             paddingBottom: 15,
           }}
         >
-          <Text style={{ fontWeight: 700, fontSize: 18 }}>
-            Most Popular
-          </Text>
+          <Text style={{ fontWeight: 700, fontSize: 18 }}>Most Popular</Text>
 
           <Text
             style={{
@@ -582,33 +592,43 @@ export default function HomeScreen(props) {
                   </View>
                 </View>
               </View>
-              <View>
+              <Pressable
+                onPress={() => {
+                  console.log("salam");
+                }}
+              >
                 <Image
-                  source={require("../../../assets/icons/bookmark.png")}
+                  source={
+                    e?.wishlist
+                      ? require("../../../assets/icons/activeBookmark.png")
+                      : require("../../../assets/icons/bookmark.png")
+                  }
                   style={{ width: 25, height: 25 }}
                 />
-              </View>
+              </Pressable>
             </TouchableOpacity>
           );
         })}
       </View>
-
-      {/* <FlatList
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            tintColor="#3F51B5"
-            title="Refreshing..."
-          />
-        }
-        vertical
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        data={recipes}
-        renderItem={renderRecipes}
-        keyExtractor={(item) => `${item.recipeId}`}
-      /> */}
     </ScrollView>
   );
+}
+
+{
+  /* <FlatList
+  refreshControl={
+    <RefreshControl
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      tintColor="#3F51B5"
+      title="Refreshing..."
+    />
+  }
+  vertical
+  showsVerticalScrollIndicator={false}
+  numColumns={2}
+  data={recipes}
+  renderItem={renderRecipes}
+  keyExtractor={(item) => `${item.recipeId}`}
+/> */
 }

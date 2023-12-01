@@ -10,6 +10,7 @@ import DrawerContainer from "../screens/DrawerContainer/DrawerContainer";
 import IngredientScreen from "../screens/Ingredient/IngredientScreen";
 import SearchScreen from "../screens/Search/SearchScreen";
 import IngredientsDetailsScreen from "../screens/IngredientsDetails/IngredientsDetailsScreen";
+import Footer from "../components/footer";
 
 const Stack = createStackNavigator();
 
@@ -60,7 +61,8 @@ function DrawerStack() {
 export default function AppContainer() {
   return (
     <NavigationContainer>
-      <DrawerStack />
+      <MainNavigator />
+      <Footer />
     </NavigationContainer>
   );
 }
