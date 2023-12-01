@@ -329,8 +329,6 @@ export default function HomeScreen(props) {
     </TouchableHighlight>
   );
 
-  console.log(dataCategories);
-
   return (
     <ScrollView
       style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
@@ -401,6 +399,109 @@ export default function HomeScreen(props) {
         >
           <Text style={{ fontWeight: 700, fontSize: 18 }}>
             Nearby Your Location
+          </Text>
+
+          <Text
+            style={{
+              color: "#FB9400",
+              fontWeight: 700,
+              fontSize: 18,
+            }}
+            onPress={() => {
+              navigation.navigate("Search");
+            }}
+          >
+            See All
+          </Text>
+        </View>
+
+        <ScrollView horizontal>
+          <FlatList
+            data={categories}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderNearbyYourLocation}
+            horizontal
+          />
+        </ScrollView>
+
+        {/* Saloon & BrberShop*/}
+        {dataCategories.map((e, i) => {
+          return (
+            <TouchableOpacity
+              key={i}
+              style={{
+                flexDirection: "row",
+                gap: 20,
+                justifyContent: "space-between",
+                marginVertical: 15,
+                marginRight: 20,
+              }}
+            >
+              <View
+                style={{ flexDirection: "row", gap: 15, alignItems: "center" }}
+              >
+                <View>
+                  <Image
+                    source={{ uri: e?.photo_url }}
+                    style={{ width: 80, height: 80, borderRadius: 10 }}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{ fontWeight: 700, fontSize: 16, paddingBottom: 8 }}
+                  >
+                    {e?.name}
+                  </Text>
+                  <Text style={{ color: "grey", paddingBottom: 10 }}>
+                    {e?.location}
+                  </Text>
+                  <View style={{ flexDirection: "row", gap: 15 }}>
+                    <View style={{ flexDirection: "row", gap: 3 }}>
+                      <Image
+                        source={require("../../../assets/icons/location.png")}
+                        style={{ width: 20, height: 20 }}
+                      />
+                      <Text>{e.locationCount}</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        gap: 8,
+                        alignItems: "center",
+                      }}
+                    >
+                      <Image
+                        source={require("../../../assets/icons/star.png")}
+                        style={{ width: 20, height: 20 }}
+                      />
+                      <Text style={{}}>{e?.starCount}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <Image
+                  source={require("../../../assets/icons/bookmark.png")}
+                  style={{ width: 25, height: 25 }}
+                />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+
+      <View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingTop: 15,
+            paddingBottom: 15,
+          }}
+        >
+          <Text style={{ fontWeight: 700, fontSize: 18 }}>
+            Most Popular
           </Text>
 
           <Text
