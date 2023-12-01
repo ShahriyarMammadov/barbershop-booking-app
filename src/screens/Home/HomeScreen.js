@@ -13,7 +13,7 @@ import {
   Pressable,
 } from "react-native";
 import styles from "./styles";
-import { recipes } from "../../data/dataArrays";
+import { recipes, dataCategories } from "../../data/dataArrays";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import { getCategoryName } from "../../data/MockDataAPI";
 import { TabView, SceneMap } from "react-native-tab-view";
@@ -76,17 +76,17 @@ export default function HomeScreen(props) {
     },
     {
       id: 3,
-      name: "Masaj Salonları",
+      name: "Masaj",
       src: require("../../../assets/icons/haircut.png"),
     },
     {
       id: 4,
-      name: "Populyar Məkanlar",
+      name: "Populyar",
       src: require("../../../assets/icons/manicure.png"),
     },
     {
       id: 5,
-      name: "Tövsiyə Edilənlər",
+      name: "Bezek",
       src: require("../../../assets/icons/massage.png"),
     },
     {
@@ -115,7 +115,7 @@ export default function HomeScreen(props) {
     <TouchableOpacity
       style={{
         marginBottom: 20,
-        padding: 10,
+        padding: 5,
         borderRadius: 5,
       }}
       onPress={() => {
@@ -125,7 +125,7 @@ export default function HomeScreen(props) {
       <View style={{ alignItems: "center" }}>
         <View
           style={{
-            padding: 20,
+            padding: 18,
             backgroundColor: "#FEF2E0",
             borderRadius: 50,
           }}
@@ -133,8 +133,8 @@ export default function HomeScreen(props) {
           <Image
             source={item.src}
             style={{
-              width: 50,
-              height: 50,
+              width: 40,
+              height: 40,
             }}
           />
         </View>
@@ -142,7 +142,7 @@ export default function HomeScreen(props) {
           style={{
             color: "black",
             fontWeight: 700,
-            fontSize: 15,
+            fontSize: 14,
           }}
         >
           {item.name}
@@ -272,8 +272,77 @@ export default function HomeScreen(props) {
     </TouchableOpacity>
   );
 
+  // NEARBY YOUR CATEGORY
+  const [activeClassId, setActiveClassId] = useState(1);
+
+  const activeClassAdd = (id) => {
+    setActiveClassId(id);
+  };
+
+  const renderNearbyYourLocation = ({ item }) => (
+    <TouchableHighlight
+      style={
+        item.id === activeClassId
+          ? {
+              paddingVertical: 8,
+              paddingHorizontal: 15,
+              backgroundColor: "#FDA62B",
+              marginRight: 10,
+              borderRadius: 16,
+              marginTop: 10,
+              marginBottom: 10,
+              borderColor: "#FDA62B",
+              borderStyle: "solid",
+              borderWidth: 1,
+            }
+          : {
+              paddingVertical: 8,
+              paddingHorizontal: 15,
+              marginRight: 10,
+              borderRadius: 16,
+              marginTop: 10,
+              marginBottom: 10,
+              borderColor: "#FDA62B",
+              borderStyle: "solid",
+              borderWidth: 1,
+            }
+      }
+      onPress={() => {
+        activeClassAdd(item.id);
+      }}
+    >
+      <Text
+        style={
+          item.id === activeClassId
+            ? {
+                fontWeight: 700,
+                color: "white",
+              }
+            : {
+                color: "#FDA62B",
+                fontWeight: 700,
+              }
+        }
+      >
+        {item.name}
+      </Text>
+    </TouchableHighlight>
+  );
+
+  console.log(dataCategories);
+
   return (
-    <View style={{ width: width, paddingRight: 10, paddingLeft: 10 }}>
+    <ScrollView
+      style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          tintColor="#3F51B5"
+          title="Refreshing..."
+        />
+      }
+    >
       {/* Categories */}
       <Text
         style={{
@@ -299,7 +368,7 @@ export default function HomeScreen(props) {
         />
       </ScrollView>
 
-      <Text>{selectedCategory}</Text>
+      <Text style={{ fontWeight: 700, fontSize: 18 }}>{selectedCategory}</Text>
 
       <ScrollView horizontal>
         <FlatList
@@ -352,10 +421,75 @@ export default function HomeScreen(props) {
           <FlatList
             data={categories}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={renderCategoryItem}
+            renderItem={renderNearbyYourLocation}
             horizontal
           />
         </ScrollView>
+
+        {/* Saloon & BrberShop*/}
+        {dataCategories.map((e, i) => {
+          return (
+            <TouchableOpacity
+              key={i}
+              style={{
+                flexDirection: "row",
+                gap: 20,
+                justifyContent: "space-between",
+                marginVertical: 15,
+                marginRight: 20,
+              }}
+            >
+              <View
+                style={{ flexDirection: "row", gap: 15, alignItems: "center" }}
+              >
+                <View>
+                  <Image
+                    source={{ uri: e?.photo_url }}
+                    style={{ width: 80, height: 80, borderRadius: 10 }}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{ fontWeight: 700, fontSize: 16, paddingBottom: 8 }}
+                  >
+                    {e?.name}
+                  </Text>
+                  <Text style={{ color: "grey", paddingBottom: 10 }}>
+                    {e?.location}
+                  </Text>
+                  <View style={{ flexDirection: "row", gap: 15 }}>
+                    <View style={{ flexDirection: "row", gap: 3 }}>
+                      <Image
+                        source={require("../../../assets/icons/location.png")}
+                        style={{ width: 20, height: 20 }}
+                      />
+                      <Text>{e.locationCount}</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        gap: 8,
+                        alignItems: "center",
+                      }}
+                    >
+                      <Image
+                        source={require("../../../assets/icons/star.png")}
+                        style={{ width: 20, height: 20 }}
+                      />
+                      <Text style={{}}>{e?.starCount}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <Image
+                  source={require("../../../assets/icons/bookmark.png")}
+                  style={{ width: 25, height: 25 }}
+                />
+              </View>
+            </TouchableOpacity>
+          );
+        })}
       </View>
 
       {/* <FlatList
@@ -374,6 +508,6 @@ export default function HomeScreen(props) {
         renderItem={renderRecipes}
         keyExtractor={(item) => `${item.recipeId}`}
       /> */}
-    </View>
+    </ScrollView>
   );
 }
