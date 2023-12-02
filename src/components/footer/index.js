@@ -16,13 +16,13 @@ export default function Footer() {
     setCurrentRoute(navigation?.getCurrentRoute()?.name);
   };
 
-  const navigateToSearch = () => {
-    navigation.navigate("Search");
+  const navigateToMyBooking = () => {
+    navigation.navigate("Profile");
     setCurrentRoute(navigation?.getCurrentRoute()?.name);
   };
 
-  const navigateToMyBooking = () => {
-    navigation.navigate("Search");
+  const navigateToProfile = () => {
+    navigation.navigate("Profile");
     setCurrentRoute(navigation?.getCurrentRoute()?.name);
   };
 
@@ -109,7 +109,7 @@ export default function Footer() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={navigateToSearch}
+        onPress={navigateToProfile}
         style={{ alignItems: "center" }}
       >
         <Image
@@ -118,7 +118,7 @@ export default function Footer() {
         />
         <Text
           style={
-            currentRoute == "Search"
+            currentRoute == "Profile"
               ? {
                   paddingTop: 4,
                   fontWeight: 700,

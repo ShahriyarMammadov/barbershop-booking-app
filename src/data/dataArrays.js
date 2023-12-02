@@ -719,3 +719,14 @@ export const ingredients = [
       "http://images.media-allrecipes.com/userphotos/960x960/3758635.jpg",
   },
 ];
+
+export const userData = {
+  fullName: "Shahriyar Mammadov",
+  email: "shahriyarmammadov16@gmail.com",
+  profileImageURL:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8kiSH5ZSAcVoj3tAQQDoP_ux0sSricMyUg&usqp=CAU",
+  birthday: "20/05/2005",
+  location: "Azerbaijan, Baku",
+  phoneNumber: 994503134473,
+  gender: "Male",
+};

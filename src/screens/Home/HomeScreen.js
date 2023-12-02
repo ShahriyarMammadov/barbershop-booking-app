@@ -13,7 +13,6 @@ import {
   Pressable,
 } from "react-native";
 import styles from "./styles";
-import { recipes, dataCategories } from "../../data/dataArrays";
 import { getCategoryName } from "../../data/MockDataAPI";
 import { Link } from "@react-navigation/native";
 import SaloonCardComponent from "../../components/SallonCard";
