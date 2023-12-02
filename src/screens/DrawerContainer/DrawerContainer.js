@@ -6,7 +6,7 @@ import MenuButton from "../../components/MenuButton/MenuButton";
 
 export default function DrawerContainer(props) {
   const { navigation } = props;
-  console.log(navigation.navigate);
+
   return (
     <View style={styles.content}>
       <View style={styles.container}>
