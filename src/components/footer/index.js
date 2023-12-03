@@ -53,7 +53,7 @@ export default function Footer() {
                   fontSize: 12,
                   color: "#FB9400",
                 }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12 }
+              : { paddingTop: 4, fontWeight: 700, fontSize: 12, color: "black" }
           }
         >
           Home
@@ -77,7 +77,7 @@ export default function Footer() {
                   fontSize: 12,
                   color: "#FB9400",
                 }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12 }
+              : { paddingTop: 4, fontWeight: 700, fontSize: 12, color: "black" }
           }
         >
           Explore
@@ -101,7 +101,7 @@ export default function Footer() {
                   fontSize: 12,
                   color: "#FB9400",
                 }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12 }
+              : { paddingTop: 4, fontWeight: 700, fontSize: 12, color: "black" }
           }
         >
           My Booking
@@ -125,7 +125,12 @@ export default function Footer() {
                   fontSize: 12,
                   color: "#FB9400",
                 }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12 }
+              : {
+                  paddingTop: 4,
+                  fontWeight: 700,
+                  fontSize: 12,
+                  color: "black",
+                }
           }
         >
           Profile

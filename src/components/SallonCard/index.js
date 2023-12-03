@@ -2,7 +2,7 @@ import React from "react";
 import { dataCategories } from "../../data/dataArrays";
 import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 
-export default function SaloonCardComponent() {
+export default function SaloonCardComponent({ navigation }) {
   return dataCategories.map((e, i) => {
     return (
       <TouchableOpacity
@@ -13,6 +13,9 @@ export default function SaloonCardComponent() {
           justifyContent: "space-between",
           marginVertical: 15,
           marginRight: 20,
+        }}
+        onPress={() => {
+          navigation.navigate("Detail", e);
         }}
       >
         <View style={{ flexDirection: "row", gap: 15, alignItems: "center" }}>

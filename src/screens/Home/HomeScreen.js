@@ -12,9 +12,6 @@ import {
   Button,
   Pressable,
 } from "react-native";
-import styles from "./styles";
-import { getCategoryName } from "../../data/MockDataAPI";
-import { Link } from "@react-navigation/native";
 import SaloonCardComponent from "../../components/SallonCard";
 
 export default function HomeScreen(props) {
@@ -34,28 +31,11 @@ export default function HomeScreen(props) {
       headerRight: () => (
         <Image
           source={require("../../../assets/icons/notification.png")}
-          style={{ width: 30, height: 30, marginRight: 30 }}
+          style={{ width: 25, height: 25, marginRight: 30 }}
         />
       ),
     });
   }, []);
-
-  const onPressRecipe = (item) => {
-    navigation.navigate("Recipe", { item });
-  };
-
-  const renderRecipes = ({ item }) => (
-    <TouchableHighlight
-      underlayColor="rgba(73,182,77,0.9)"
-      onPress={() => onPressRecipe(item)}
-    >
-      <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.photo_url }} />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
-      </View>
-    </TouchableHighlight>
-  );
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -109,7 +89,6 @@ export default function HomeScreen(props) {
   ];
 
   const categoryChange = (categoryName) => {
-    console.log(categoryName);
     setSelectedCategory(categoryName);
   };
 
@@ -160,6 +139,14 @@ export default function HomeScreen(props) {
       imageURL:
         "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
       name: "The Gentleman",
+      location: "816 Village Drive",
+      photosArray: [
+        "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
+        "https://armariumbackend-production.up.railway.app/images/coverImage-1701523428644-784160933.jpeg",
+        "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
+        "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
+        "https://armariumbackend-production.up.railway.app/images/coverImage-1701523399852-712415020.jpg",
+      ],
       logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
       isSaatlari: [
         { 1: "10:00 - 22:00" },
@@ -176,6 +163,14 @@ export default function HomeScreen(props) {
       imageURL:
         "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
       name: "The Gentleman",
+      location: "816 Village Drive",
+      photosArray: [
+        "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
+        "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+        "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
+        "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
+        "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      ],
       logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
       isSaatlari: [
         { 1: "10:00 - 22:00" },
@@ -192,6 +187,14 @@ export default function HomeScreen(props) {
       imageURL:
         "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
       name: "The Gentleman",
+      location: "816 Village Drive",
+      photosArray: [
+        "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
+        "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+        "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
+        "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
+        "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      ],
       logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
       isSaatlari: [
         "10:00 - 22:00",
@@ -216,6 +219,8 @@ export default function HomeScreen(props) {
       }}
       onPress={() => {
         categoryChange(item.name);
+        console.log(item);
+        navigation.navigate("Detail", item);
       }}
     >
       <Image
@@ -429,7 +434,7 @@ export default function HomeScreen(props) {
         </ScrollView>
 
         {/* Saloon & BrberShop*/}
-        <SaloonCardComponent />
+        <SaloonCardComponent navigation={navigation} />
       </View>
 
       <View>
@@ -468,7 +473,7 @@ export default function HomeScreen(props) {
         </ScrollView>
 
         {/* Saloon & BrberShop*/}
-        <SaloonCardComponent />
+        <SaloonCardComponent navigation={navigation} />
       </View>
     </ScrollView>
   );

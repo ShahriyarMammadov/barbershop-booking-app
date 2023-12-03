@@ -36,7 +36,7 @@ export default function ProfileScreen(props) {
       headerRight: () => (
         <Image
           source={require("../../../assets/icons/notification.png")}
-          style={{ width: 30, height: 30, marginRight: 30 }}
+          style={{ width: 25, height: 25, marginRight: 30 }}
         />
       ),
     });
