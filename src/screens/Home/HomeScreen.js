@@ -140,6 +140,13 @@ export default function HomeScreen(props) {
         "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
       name: "The Gentleman",
       location: "816 Village Drive",
+      socialMediaURL: [
+        { instagram: "https://www.instagram.com/" },
+        { website: "https://www.linkedin.com/" },
+        { whatsapp: "https://www.instagram.com/" },
+      ],
+      starCount: 4.8,
+      reviews: 3.279,
       photosArray: [
         "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
         "https://armariumbackend-production.up.railway.app/images/coverImage-1701523428644-784160933.jpeg",
@@ -164,6 +171,13 @@ export default function HomeScreen(props) {
         "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
       name: "The Gentleman",
       location: "816 Village Drive",
+      socialMediaURL: [
+        { instagram: "https://www.instagram.com/" },
+        { website: "https://www.instagram.com/" },
+        { whatsapp: "https://www.instagram.com/" },
+      ],
+      reviews: 3.279,
+      starCount: 4.8,
       photosArray: [
         "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
         "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
@@ -188,6 +202,13 @@ export default function HomeScreen(props) {
         "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
       name: "The Gentleman",
       location: "816 Village Drive",
+      socialMediaURL: [
+        { instagram: "https://www.instagram.com/" },
+        { website: "https://www.instagram.com/" },
+        { whatsapp: "https://www.instagram.com/" },
+      ],
+      starCount: 4.8,
+      reviews: 3.279,
       photosArray: [
         "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
         "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",

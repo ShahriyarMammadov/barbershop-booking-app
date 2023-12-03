@@ -4,6 +4,11 @@ export const dataCategories = [
     name: "Babowun masaj salonu",
     location: "816 Village Drive",
     starCount: 4.8,
+    socialMediaURL: [
+      { instagram: "https://www.instagram.com/" },
+      { website: "https://www.instagram.com/" },
+      { whatsapp: "https://www.instagram.com/" },
+    ],
     locationCount: "5 km",
     wishlist: true,
     photo_url:
@@ -22,6 +27,11 @@ export const dataCategories = [
     location: "Bine Sovxoz",
     starCount: 4.0,
     locationCount: "1.4 km",
+    socialMediaURL: [
+      { instagram: "https://www.instagram.com/" },
+      { website: "https://www.instagram.com/" },
+      { whatsapp: "https://www.instagram.com/" },
+    ],
     wishlist: true,
     photo_url:
       "https://www.telegraph.co.uk/content/dam/Travel/2019/January/france-food.jpg?imwidth=1400",
@@ -37,6 +47,11 @@ export const dataCategories = [
     id: 1,
     name: "Serently Salon",
     starCount: 5.0,
+    socialMediaURL: [
+      { instagram: "https://www.instagram.com/" },
+      { website: "https://www.instagram.com/" },
+      { whatsapp: "https://www.instagram.com/" },
+    ],
     locationCount: "1.4 km",
     location: "816 Village Drive",
     photo_url: "https://ak1.picdn.net/shutterstock/videos/19498861/thumb/1.jpg",
@@ -54,6 +69,11 @@ export const dataCategories = [
     location: "816 Village Drive",
     starCount: 2.0,
     locationCount: "1.4 km",
+    socialMediaURL: [
+      { instagram: "https://www.instagram.com/" },
+      { website: "https://www.instagram.com/" },
+      { whatsapp: "https://www.instagram.com/" },
+    ],
     photo_url:
       "https://images.unsplash.com/photo-1533777324565-a040eb52facd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
     photosArray: [
@@ -68,6 +88,11 @@ export const dataCategories = [
     id: 4,
     name: "Qaqa Berberxanasi",
     location: "816 Village Drive",
+    socialMediaURL: [
+      { instagram: "https://www.instagram.com/" },
+      { website: "https://www.instagram.com/" },
+      { whatsapp: "https://www.instagram.com/" },
+    ],
     starCount: 4.7,
     locationCount: "1.4 km",
     photo_url:
