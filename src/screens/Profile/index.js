@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Dimensions,
   FlatList,
   Image,
+  Pressable,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -13,6 +15,7 @@ import {
 import BackButton from "../../components/BackButton/BackButton";
 import { userData } from "../../data/dataArrays";
 import { getLocales } from "expo-localization";
+import * as ImagePicker from "expo-image-picker";
 
 export default function ProfileScreen(props) {
   const { navigation } = props;
@@ -111,7 +114,11 @@ export default function ProfileScreen(props) {
       // }}
     >
       <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
-        <Image source={item.iconURL} style={styles.iconImage} />
+        <Image
+          source={item.iconURL}
+          style={styles.iconImage}
+          onPress={pickImage}
+        />
         <Text
           style={
             item.name === "Logout"
@@ -134,9 +141,26 @@ export default function ProfileScreen(props) {
     </TouchableOpacity>
   );
 
+  // CHANGE PROFILE PHOTO
+  const [changeImage, setChangeImage] = useState(userData.profileImageURL);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setChangeImage(result.assets[0].uri);
+    }
+  };
+
   return (
     <ScrollView
       style={{ width: width }}
+      showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
@@ -147,15 +171,21 @@ export default function ProfileScreen(props) {
       }
     >
       <View style={{ width: width, alignItems: "center" }}>
-        <Image
-          source={{ uri: userData.profileImageURL }}
+        <Pressable
+          onPress={pickImage}
           style={{
-            width: 130,
-            height: 130,
-            borderRadius: 70,
             marginTop: 40,
           }}
-        />
+        >
+          <Image
+            source={{ uri: `${changeImage}` }}
+            style={{
+              width: 130,
+              height: 130,
+              borderRadius: 70,
+            }}
+          />
+        </Pressable>
         <Text style={{ paddingTop: 20, fontWeight: 700, fontSize: 20 }}>
           {userData?.fullName}
         </Text>

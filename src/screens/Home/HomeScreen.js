@@ -334,6 +334,7 @@ export default function HomeScreen(props) {
   return (
     <ScrollView
       style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
+      showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
@@ -359,7 +360,7 @@ export default function HomeScreen(props) {
         />
       </Text>
 
-      <ScrollView horizontal>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <FlatList
           data={categories}
           keyExtractor={(item) => item.id.toString()}
@@ -370,8 +371,9 @@ export default function HomeScreen(props) {
 
       <Text style={{ fontWeight: 700, fontSize: 18 }}>{selectedCategory}</Text>
 
-      <ScrollView horizontal>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderRecommendedItem}
@@ -417,7 +419,7 @@ export default function HomeScreen(props) {
           </Text>
         </View>
 
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <FlatList
             data={categories}
             keyExtractor={(item) => item.id.toString()}
@@ -456,7 +458,7 @@ export default function HomeScreen(props) {
           </Text>
         </View>
 
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <FlatList
             data={categories}
             keyExtractor={(item) => item.id.toString()}
