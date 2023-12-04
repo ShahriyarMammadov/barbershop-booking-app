@@ -6,7 +6,9 @@ import {
   ScrollView,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   View,
+  Linking,
 } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
@@ -125,14 +127,149 @@ export default function SaloonDetail(props) {
           <Text>({item?.reviews} reviews)</Text>
         </View>
       </View>
-      {/* {item?.socialMediaURL.map((e) => {
-        console.log(Object.keys(e));
-        return (
-          <Link href={e?.}>
-            <Text>{e?.instagram}</Text>
-          </Link>
-        );
-      })} */}
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ paddingHorizontal: 10, paddingVertical: 8 }}
+      >
+        {item.socialMediaURL.map((e, i) => {
+          return (
+            <TouchableOpacity
+              style={{
+                marginBottom: 20,
+                padding: 5,
+                borderRadius: 5,
+              }}
+              onPress={() => Linking.openURL(Object.values(e)[0])}
+            >
+              <View style={{ alignItems: "center" }}>
+                <View
+                  style={{
+                    padding: 18,
+                    backgroundColor: "#FEF2E0",
+                    borderRadius: 50,
+                  }}
+                >
+                  {Object.keys(e).map((element) => {
+                    return element === "Instagram" ? (
+                      <Image
+                        source={require("../../../assets/icons/instagram.png")}
+                        style={{
+                          width: 30,
+                          height: 30,
+                        }}
+                      />
+                    ) : element === "Website" ? (
+                      <Image
+                        source={require("../../../assets/icons/website.png")}
+                        style={{
+                          width: 30,
+                          height: 30,
+                        }}
+                      />
+                    ) : element === "Call" ? (
+                      <Image
+                        source={require("../../../assets/icons/call.png")}
+                        style={{
+                          width: 30,
+                          height: 30,
+                        }}
+                      />
+                    ) : element === "Location" ? (
+                      <Image
+                        source={require("../../../assets/icons/locationdot.png")}
+                        style={{
+                          width: 30,
+                          height: 30,
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        source={require("../../../assets/icons/call.png")}
+                        style={{
+                          width: 35,
+                          height: 35,
+                        }}
+                      />
+                    );
+                  })}
+                </View>
+                <Text
+                  style={{
+                    color: "black",
+                    fontWeight: 700,
+                    fontSize: 14,
+                  }}
+                >
+                  {Object.keys(e).map((e) => {
+                    return e;
+                  })}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+        <TouchableOpacity
+          style={{
+            marginBottom: 20,
+            padding: 5,
+            borderRadius: 5,
+            marginRight: 20,
+          }}
+        >
+          <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                padding: 18,
+                backgroundColor: "#FEF2E0",
+                borderRadius: 50,
+              }}
+            >
+              <Image
+                source={require("../../../assets/icons/share.png")}
+                style={{
+                  width: 30,
+                  height: 30,
+                }}
+              />
+            </View>
+            <Text
+              style={{
+                color: "black",
+                fontWeight: 700,
+                fontSize: 14,
+              }}
+            >
+              Share
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+
+      {/* OUR SPECIALIST */}
+      <View
+        style={{
+          paddingHorizontal: 10,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text style={{ fontWeight: 700, fontSize: 18 }}>Our Specialist</Text>
+        <Text
+          style={{
+            color: "#FB9400",
+            fontWeight: 700,
+            fontSize: 18,
+          }}
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        >
+          See All
+        </Text>
+      </View>
     </ScrollView>
   );
 }
