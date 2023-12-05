@@ -9,10 +9,13 @@ import {
   TouchableOpacity,
   View,
   Linking,
+  Share,
+  Pressable,
 } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
 import { Link } from "@react-navigation/native";
+import SpecialistCardComponent from "../../components/SpecialistCard";
 
 export default function SaloonDetail(props) {
   const { navigation, route } = props;
@@ -64,6 +67,29 @@ export default function SaloonDetail(props) {
     </TouchableHighlight>
   );
 
+  // SHARE
+  const handleShare = async () => {
+    try {
+      const shareOptions = {
+        message: `Check out ${item.name} on our app! ${item.socialMediaURL[0]?.instagram}`,
+      };
+
+      const result = await Share.share(shareOptions);
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log(`Success: ${result.activityType}`);
+        } else {
+          console.log("Error");
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log("Cancel");
+      }
+    } catch (error) {
+      console.error("Share Error:", error.message);
+    }
+  };
+
   return (
     <ScrollView style={{ minHeight: 250 }} showsVerticalScrollIndicator={false}>
       <Carousel
@@ -79,9 +105,9 @@ export default function SaloonDetail(props) {
         autoplay={true}
         autoplayDelay={500}
         autoplayInterval={3000}
-        onSnapToItem={(index) => setActiveSlide(index)}
+        // onSnapToItem={(index) => setActiveSlide(index)}
       />
-      <Pagination
+      {/* <Pagination
         dotsLength={item.photosArray.length}
         activeDotIndex={activeSlide}
         containerStyle={{
@@ -98,17 +124,38 @@ export default function SaloonDetail(props) {
         inactiveDotScale={0.6}
         carouselRef={slider1Ref.current}
         tappableDots={!!slider1Ref.current}
-      />
+      /> */}
       <View style={{ paddingHorizontal: 10 }}>
         <Text style={{ fontWeight: 700, fontSize: 35, paddingVertical: 15 }}>
           {item.name}
         </Text>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-          <Image
-            source={require("../../../assets/icons/location.png")}
-            style={{ width: 20, height: 20 }}
-          />
-          <Text>{item?.location}</Text>
+
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 10,
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View>
+            <Image
+              source={require("../../../assets/icons/location.png")}
+              style={{ width: 20, height: 20 }}
+            />
+            <Text>{item?.location}</Text>
+          </View>
+          <Pressable
+            style={{
+              padding: 10,
+              backgroundColor: "#FB9400",
+              borderRadius: 10,
+              fontSize: 14,
+            }}
+          >
+            <Text>Book Now</Text>
+          </Pressable>
         </View>
 
         <View
@@ -217,6 +264,7 @@ export default function SaloonDetail(props) {
             borderRadius: 5,
             marginRight: 20,
           }}
+          onPress={handleShare}
         >
           <View style={{ alignItems: "center" }}>
             <View
@@ -270,6 +318,8 @@ export default function SaloonDetail(props) {
           See All
         </Text>
       </View>
+
+      <SpecialistCardComponent data={item} />
     </ScrollView>
   );
 }

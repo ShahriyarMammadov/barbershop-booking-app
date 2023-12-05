@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -13,6 +13,7 @@ import IngredientsDetailsScreen from "../screens/IngredientsDetails/IngredientsD
 import Footer from "../components/footer";
 import ProfileScreen from "../screens/Profile";
 import SaloonDetail from "../screens/SaloonDetail";
+import WelcomeScreen from "../screens/welcome";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ function MainNavigator() {
         },
       }}
     >
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Qaychi.az" component={HomeScreen} />
       <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen name="Recipe" component={RecipeScreen} />
@@ -43,6 +45,7 @@ function MainNavigator() {
 }
 
 const Drawer = createDrawerNavigator();
+const isLoggedIn = false;
 
 function DrawerStack() {
   return (
@@ -65,8 +68,16 @@ function DrawerStack() {
 export default function AppContainer() {
   return (
     <NavigationContainer>
-      <MainNavigator />
-      <Footer />
+      {isLoggedIn ? (
+        <>
+          <DrawerStack />
+          <Footer />
+        </>
+      ) : (
+        <>
+          <MainNavigator />
+        </>
+      )}
     </NavigationContainer>
   );
 }
