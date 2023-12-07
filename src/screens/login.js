@@ -1,14 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Button,
-  Image,
-  ScrollView,
-  Text,
-  TouchableHighlight,
-  TouchableHighlightBase,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 
 export default function LoginScreen(props) {

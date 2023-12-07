@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   const navigateToMyBooking = () => {
-    navigation.navigate("Profile");
+    navigation.navigate("MyBooking");
     setCurrentRoute(navigation?.getCurrentRoute()?.name);
   };
 
@@ -94,7 +94,7 @@ export default function Footer() {
         />
         <Text
           style={
-            currentRoute == "Search"
+            currentRoute == "MyBooking"
               ? {
                   paddingTop: 4,
                   fontWeight: 700,

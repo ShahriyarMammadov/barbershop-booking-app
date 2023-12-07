@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Dimensions,
   FlatList,
   Image,
@@ -100,6 +99,10 @@ export default function ProfileScreen(props) {
     },
   ];
 
+  const categoryChange = (routeName) => {
+    return navigation.navigate(routeName);
+  };
+
   const renderSettingsItem = ({ item }) => (
     <TouchableOpacity
       style={{
@@ -109,9 +112,9 @@ export default function ProfileScreen(props) {
         justifyContent: "space-between",
         paddingVertical: 5,
       }}
-      // onPress={() => {
-      //   categoryChange(item.name);
-      // }}
+      onPress={() => {
+        categoryChange(item.name);
+      }}
     >
       <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
         <Image

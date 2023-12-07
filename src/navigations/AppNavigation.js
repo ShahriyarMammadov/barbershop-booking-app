@@ -16,10 +16,12 @@ import SaloonDetail from "../screens/SaloonDetail";
 import WelcomeScreen from "../screens/welcome";
 import LoginScreen from "../screens/login";
 import SignUpScreen from "../screens/signup";
+import MyBookingScreen from "../screens/myBooking";
+import EditProfile from "../screens/editProfile";
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 function WelcomeNavigator() {
   return (
@@ -52,6 +54,8 @@ function MainNavigator() {
       <Stack.Screen name="RecipesList" component={RecipesListScreen} />
       <Stack.Screen name="Ingredient" component={IngredientScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="MyBooking" component={MyBookingScreen} />
+      <Stack.Screen name="Edit Profile" component={EditProfile} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen
         name="IngredientsDetails"

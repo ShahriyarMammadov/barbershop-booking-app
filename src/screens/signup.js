@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import {
   Image,
-  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
@@ -31,12 +30,13 @@ export default function SignUpScreen(props) {
     <View style={{ marginTop: 150, paddingHorizontal: 10 }}>
       <Text style={{ fontSize: 35, fontWeight: 700 }}>Yeni Hesab Yaradın</Text>
 
-      <View style={{ marginTop: 40 }}>
+      <View style={{ marginTop: 60 }}>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
             padding: 10,
+            marginBottom: 20,
           }}
         >
           <Image
@@ -96,7 +96,7 @@ export default function SignUpScreen(props) {
           backgroundColor: "#FB9400",
           paddingVertical: 20,
           borderRadius: 30,
-          marginTop: 30,
+          marginTop: 50,
         }}
       >
         <Text
@@ -114,7 +114,7 @@ export default function SignUpScreen(props) {
       <Text
         style={{
           textAlign: "center",
-          paddingVertical: 30,
+          paddingVertical: 50,
           fontSize: 16,
           color: "grey",
         }}
@@ -123,18 +123,36 @@ export default function SignUpScreen(props) {
       </Text>
 
       <View style={{ flexDirection: "row", gap: 50, justifyContent: "center" }}>
-        <Pressable>
+        <TouchableOpacity
+          style={{
+            padding: 10,
+            paddingHorizontal: 25,
+            borderWidth: 1,
+            borderStyle: "solid",
+            borderColor: "rgba(128, 128, 128, 0.2)",
+            borderRadius: 10,
+          }}
+        >
           <Image
             source={require("../../assets/icons/facebook.png")}
             style={{ width: 35, height: 35 }}
           />
-        </Pressable>
-        <Pressable>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            padding: 10,
+            paddingHorizontal: 25,
+            borderWidth: 1,
+            borderStyle: "solid",
+            borderColor: "rgba(128, 128, 128, 0.2)",
+            borderRadius: 10,
+          }}
+        >
           <Image
             source={require("../../assets/icons/google.png")}
             style={{ width: 35, height: 35 }}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       <View
