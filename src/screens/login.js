@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Image, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 
 export default function LoginScreen(props) {
@@ -16,12 +23,68 @@ export default function LoginScreen(props) {
       ),
       title: "",
       headerShown: true,
+      headerTransparent: true,
     });
   }, []);
 
   return (
-    <View>
-      <Text> "sas"</Text>
-    </View>
+    <ScrollView style={{ paddingTop: 100, paddingHorizontal: 10 }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 25,
+          fontWeight: 700,
+        }}
+      >
+        Daxil Olun
+      </Text>
+
+      <View style={{ marginTop: 20 }}>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 10,
+            gap: 10,
+            paddingVertical: 20,
+            borderWidth: 1,
+            borderStyle: "solid",
+            borderColor: "rgba(0,0,0,0.1)",
+          }}
+        >
+          <Image
+            source={require("../../assets/icons/facebook.png")}
+            style={{ width: 25, height: 25 }}
+          />
+          <Text style={{ fontWeight: 700, fontSize: 16 }}>
+            Continue with Facebook
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 10,
+            gap: 10,
+            paddingVertical: 20,
+            borderWidth: 1,
+            borderStyle: "solid",
+            borderColor: "rgba(0,0,0,0.1)",
+            marginTop: 15,
+          }}
+        >
+          <Image
+            source={require("../../assets/icons/google.png")}
+            style={{ width: 25, height: 25 }}
+          />
+          <Text style={{ fontWeight: 700, fontSize: 16 }}>
+            Continue with Google
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 }

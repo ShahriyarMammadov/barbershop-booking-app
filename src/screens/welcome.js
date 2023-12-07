@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   TouchableHighlight,
+  TouchableOpacity,
 } from "react-native";
 
 const WelcomeScreen = (props) => {
@@ -34,7 +35,7 @@ const WelcomeScreen = (props) => {
           {"\n"}
           Tətbiqinə xoş Gəlmişsiniz.
         </Text>
-        <TouchableHighlight
+        <TouchableOpacity
           style={{ alignItems: "center" }}
           onPress={() => {
             navigation.navigate("Login");
@@ -53,7 +54,7 @@ const WelcomeScreen = (props) => {
           >
             Indi Başla
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
         <Text
           style={{
             paddingBottom: 20,
