@@ -15,6 +15,7 @@ import ProfileScreen from "../screens/Profile";
 import SaloonDetail from "../screens/SaloonDetail";
 import WelcomeScreen from "../screens/welcome";
 import LoginScreen from "../screens/login";
+import SignUpScreen from "../screens/signup";
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -29,6 +30,7 @@ function WelcomeNavigator() {
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="signup" component={SignUpScreen} />
     </Stack.Navigator>
   );
 }
