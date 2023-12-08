@@ -12,17 +12,20 @@ export default function NotificationScreen() {
   const notificationArr = [
     {
       date: "08.12.2023",
-      dataHeader: "Payment Succesfully",
+      id: 1,
+      dataHeader: "Payment Successfully",
       text: "You have made a salon payment",
     },
     {
       date: "06.12.2023",
-      dataHeader: "Payment Succesfully",
+      dataHeader: "Account Setup Successfull",
+      id: 2,
       text: "You have made a salon payment",
     },
     {
       date: "01.12.2023",
-      dataHeader: "New Service Available",
+      dataHeader: "New Services Available",
+      id: 3,
       text: "You have made a salon payment",
     },
   ];
@@ -31,15 +34,44 @@ export default function NotificationScreen() {
     <TouchableOpacity
       underlayColor="rgba(73,182,77,0.9)"
       //   onPress={() => onPressCategory(item)}
+      //   style={{ marginTop: 15 }}
     >
-      <View style={{}}>
+      <View>
         <View style={{ marginVertical: 20 }}>
-          <Text style={{ fontWeight: 700, fontSize: 20 }}>{item.date}</Text>
+          <Text
+            style={{
+              fontWeight: 700,
+              fontSize: 20,
+              paddingVertical: 10,
+            }}
+          >
+            {item.date}
+          </Text>
         </View>
-        <View style={{ flexDirection: "row", gap: 15, alignItems: "center" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            gap: 20,
+            alignItems: "center",
+            backgroundColor: "white",
+            padding: 10,
+            borderRadius: 10,
+          }}
+        >
           <Image
-            source={require("../../../assets/icons/paymentNotification.png")}
-            style={{ width: 60, height: 60 }}
+            source={
+              item.dataHeader === "Payment Successfully"
+                ? require("../../../assets/icons/paymentNotification.png")
+                : item.dataHeader === "New Services Available"
+                ? require("../../../assets/icons/update.png")
+                : item.dataHeader === "Account Setup Successfull"
+                ? require("../../../assets/icons/accountCreate.png")
+                : require("../../../assets/icons/paymentNotification.png")
+            }
+            style={{
+              width: 70,
+              height: 70,
+            }}
           />
           <View>
             <Text style={{ fontWeight: 700, fontSize: 16 }}>
@@ -53,12 +85,12 @@ export default function NotificationScreen() {
   );
 
   return (
-    <ScrollView style={{ paddingHorizontal: 10 }}>
+    <View style={{ paddingHorizontal: 10 }}>
       <FlatList
         data={notificationArr}
         renderItem={renderItem}
         keyExtractor={(item) => `${item.id}`}
       />
-    </ScrollView>
+    </View>
   );
 }
