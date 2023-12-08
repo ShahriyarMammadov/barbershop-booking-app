@@ -18,6 +18,7 @@ import LoginScreen from "../screens/login";
 import SignUpScreen from "../screens/signup";
 import MyBookingScreen from "../screens/myBooking";
 import EditProfile from "../screens/editProfile";
+import NotificationScreen from "../screens/Notification";
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -53,6 +54,7 @@ function MainNavigator() {
       <Stack.Screen name="Recipe" component={RecipeScreen} />
       <Stack.Screen name="RecipesList" component={RecipesListScreen} />
       <Stack.Screen name="Ingredient" component={IngredientScreen} />
+      <Stack.Screen name="Notification" component={NotificationScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="MyBooking" component={MyBookingScreen} />
       <Stack.Screen name="Edit Profile" component={EditProfile} />
