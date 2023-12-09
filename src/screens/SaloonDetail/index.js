@@ -17,13 +17,13 @@ import {
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
 import { Link } from "@react-navigation/native";
-import SpecialistCardComponent from "../../components/SpecialistCard";
 
 export default function SaloonDetail(props) {
   const { navigation, route } = props;
   const { width: viewportWidth } = Dimensions.get("window");
   const item = route.params;
   const [activeSlide, setActiveSlide] = useState(0);
+  const [sliceCount, setSliceCount] = useState(250);
   const slider1Ref = useRef();
 
   const categories = [
@@ -185,6 +185,8 @@ export default function SaloonDetail(props) {
     </TouchableHighlight>
   );
 
+  console.log(item);
+
   return (
     <ScrollView style={{ minHeight: 250 }} showsVerticalScrollIndicator={false}>
       <Carousel
@@ -202,24 +204,6 @@ export default function SaloonDetail(props) {
         autoplayInterval={3000}
         // onSnapToItem={(index) => setActiveSlide(index)}
       />
-      {/* <Pagination
-        dotsLength={item.photosArray.length}
-        activeDotIndex={activeSlide}
-        containerStyle={{
-          flex: 1,
-          position: "absolute",
-          alignSelf: "center",
-          paddingVertical: 8,
-          marginTop: 450,
-        }}
-        dotColor="red"
-        dotStyle={{ width: 8, height: 8, borderRadius: 4, marginHorizontal: 0 }}
-        inactiveDotColor="white"
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
-        carouselRef={slider1Ref.current}
-        tappableDots={!!slider1Ref.current}
-      /> */}
       <View style={{ paddingHorizontal: 10 }}>
         <Text style={{ fontWeight: 700, fontSize: 35, paddingVertical: 15 }}>
           {item.name}
@@ -418,7 +402,47 @@ export default function SaloonDetail(props) {
         horizontal
       />
 
-      {/* <SpecialistCardComponent data={item} /> */}
+      {/* TAB */}
+      {activeClassId === 1 ? (
+        <View style={{ paddingVertical: 10, paddingHorizontal: 10 }}>
+          <Text
+            style={{
+              textAlign: "justify",
+            }}
+          >
+            {item?.about?.slice(0, sliceCount)}
+            {item?.about?.length > sliceCount && (
+              <Text
+                style={{ color: "#FB9400", fontWeight: 700 }}
+                onPress={() => {
+                  setSliceCount((prev) => prev + 1000);
+                }}
+              >
+                . Read more...
+              </Text>
+            )}
+          </Text>
+          {/* Working Hours */}
+          <Text style={{ paddingVertical: 20, fontWeight: 700, fontSize: 16 }}>
+            İş Saatları
+          </Text>
+
+          <View>
+            <Text>Həftə İçi: {item?.workingHours?.hefteIci}</Text>
+            <Text>Həftə Sonu: {item?.workingHours?.SenbeBazar}</Text>
+          </View>
+        </View>
+      ) : activeClassId === 2 ? (
+        <Text>{activeClassId}</Text>
+      ) : activeClassId === 3 ? (
+        <Text>{activeClassId}</Text>
+      ) : activeClassId === 4 ? (
+        <Text>{activeClassId}</Text>
+      ) : activeClassId === 5 ? (
+        <Text>{activeClassId}</Text>
+      ) : (
+        <Text>{activeClassId}</Text>
+      )}
     </ScrollView>
   );
 }
@@ -431,3 +455,24 @@ export default function SaloonDetail(props) {
 //     title="Refreshing..."
 //   />
 // }
+
+{
+  /* <Pagination
+        dotsLength={item.photosArray.length}
+        activeDotIndex={activeSlide}
+        containerStyle={{
+          flex: 1,
+          position: "absolute",
+          alignSelf: "center",
+          paddingVertical: 8,
+          marginTop: 450,
+        }}
+        dotColor="red"
+        dotStyle={{ width: 8, height: 8, borderRadius: 4, marginHorizontal: 0 }}
+        inactiveDotColor="white"
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+        carouselRef={slider1Ref.current}
+        tappableDots={!!slider1Ref.current}
+      /> */
+}
