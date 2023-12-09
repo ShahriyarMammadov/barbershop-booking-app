@@ -21,6 +21,38 @@ export const dataCategories = [
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
     ],
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
+    ],
   },
   {
     id: 3,
@@ -44,6 +76,38 @@ export const dataCategories = [
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
     ],
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
+    ],
   },
   {
     id: 1,
@@ -64,6 +128,38 @@ export const dataCategories = [
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+    ],
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
     ],
   },
   {
@@ -87,6 +183,38 @@ export const dataCategories = [
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
     ],
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
+    ],
   },
   {
     id: 4,
@@ -108,6 +236,38 @@ export const dataCategories = [
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+    ],
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
     ],
   },
 ];

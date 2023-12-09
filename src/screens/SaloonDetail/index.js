@@ -11,6 +11,8 @@ import {
   Linking,
   Share,
   Pressable,
+  ImageBackground,
+  SectionList,
 } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
@@ -21,9 +23,31 @@ export default function SaloonDetail(props) {
   const { navigation, route } = props;
   const { width: viewportWidth } = Dimensions.get("window");
   const item = route.params;
-
   const [activeSlide, setActiveSlide] = useState(0);
   const slider1Ref = useRef();
+
+  const categories = [
+    {
+      id: 1,
+      name: "Haqqımızda",
+    },
+    {
+      id: 2,
+      name: "Xidmətlər",
+    },
+    {
+      id: 3,
+      name: "Paketlər",
+    },
+    {
+      id: 4,
+      name: "Qalereya",
+    },
+    {
+      id: 5,
+      name: "Rəylər",
+    },
+  ];
 
   useEffect(() => {
     navigation.setOptions({
@@ -46,10 +70,6 @@ export default function SaloonDetail(props) {
       //   backgroundColor: "red",
       // },
     });
-  }, []);
-
-  useEffect(() => {
-    console.log("salam");
   }, []);
 
   const renderImage = ({ item }) => (
@@ -89,6 +109,81 @@ export default function SaloonDetail(props) {
       console.error("Share Error:", error.message);
     }
   };
+
+  const renderSpecialist = ({ item }) => (
+    <TouchableOpacity
+      style={{ paddingHorizontal: 12, marginVertical: 15 }}
+      onPress={() => {}}
+    >
+      <View style={{ alignItems: "center" }}>
+        <Image
+          source={{ uri: item.profilePhoto }}
+          style={{
+            width: 100,
+            height: 100,
+            borderRadius: 20,
+          }}
+        />
+        <Text style={{ fontWeight: 700, paddingTop: 5 }}>{item.name}</Text>
+        <Text style={{ color: "grey" }}>{item.job}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  // CATEGORY
+  const [activeClassId, setActiveClassId] = useState(1);
+
+  const activeClassAdd = (id) => {
+    setActiveClassId(id);
+  };
+
+  const renderCategoryItem = ({ item }) => (
+    <TouchableHighlight
+      style={
+        item.id === activeClassId
+          ? {
+              paddingVertical: 8,
+              paddingHorizontal: 15,
+              backgroundColor: "#FDA62B",
+              borderRadius: 16,
+              marginVertical: 10,
+              borderColor: "#FDA62B",
+              borderStyle: "solid",
+              borderWidth: 1,
+              marginHorizontal: 10,
+            }
+          : {
+              paddingVertical: 8,
+              paddingHorizontal: 15,
+              borderRadius: 16,
+              marginVertical: 10,
+              borderColor: "#FDA62B",
+              borderStyle: "solid",
+              borderWidth: 1,
+              marginHorizontal: 10,
+            }
+      }
+      onPress={() => {
+        activeClassAdd(item.id);
+      }}
+    >
+      <Text
+        style={
+          item.id === activeClassId
+            ? {
+                fontWeight: 700,
+                color: "white",
+              }
+            : {
+                color: "#FDA62B",
+                fontWeight: 700,
+              }
+        }
+      >
+        {item.name}
+      </Text>
+    </TouchableHighlight>
+  );
 
   return (
     <ScrollView style={{ minHeight: 250 }} showsVerticalScrollIndicator={false}>
@@ -136,26 +231,13 @@ export default function SaloonDetail(props) {
             alignItems: "center",
             gap: 10,
             alignItems: "center",
-            justifyContent: "space-between",
           }}
         >
-          <View>
-            <Image
-              source={require("../../../assets/icons/location.png")}
-              style={{ width: 20, height: 20 }}
-            />
-            <Text>{item?.location}</Text>
-          </View>
-          <Pressable
-            style={{
-              padding: 10,
-              backgroundColor: "#FB9400",
-              borderRadius: 10,
-              fontSize: 14,
-            }}
-          >
-            <Text>Book Now</Text>
-          </Pressable>
+          <Image
+            source={require("../../../assets/icons/location.png")}
+            style={{ width: 20, height: 20 }}
+          />
+          <Text>{item?.location}</Text>
         </View>
 
         <View
@@ -183,6 +265,7 @@ export default function SaloonDetail(props) {
         {item.socialMediaURL.map((e, i) => {
           return (
             <TouchableOpacity
+              key={i}
               style={{
                 marginBottom: 20,
                 padding: 5,
@@ -319,7 +402,23 @@ export default function SaloonDetail(props) {
         </Text>
       </View>
 
-      <SpecialistCardComponent data={item} />
+      <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={item?.specialist}
+        renderItem={renderSpecialist}
+        keyExtractor={(item) => item.id}
+      />
+
+      <FlatList
+        data={categories}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderCategoryItem}
+        horizontal
+      />
+
+      {/* <SpecialistCardComponent data={item} /> */}
     </ScrollView>
   );
 }

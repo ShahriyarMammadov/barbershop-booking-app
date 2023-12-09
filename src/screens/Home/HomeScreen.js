@@ -13,6 +13,7 @@ import {
   Pressable,
 } from "react-native";
 import SaloonCardComponent from "../../components/SallonCard";
+import { dataCategories } from "../../data/dataArrays";
 
 export default function HomeScreen(props) {
   const width = Dimensions.get("window").width;
@@ -133,129 +134,34 @@ export default function HomeScreen(props) {
   );
 
   // recommended barbershop
-  const [data, setData] = useState([
-    {
-      id: 1,
-      imageURL:
-        "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
-      name: "The Gentleman",
-      location: "816 Village Drive",
-      socialMediaURL: [
-        { Instagram: "https://www.instagram.com/" },
-        { Website: "https://www.linkedin.com/" },
-        { Call: 4503134473 },
-        { Location: "https://www.instagram.com/" },
-      ],
-      starCount: 4.8,
-      reviews: 3.279,
-      photosArray: [
-        "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-        "https://armariumbackend-production.up.railway.app/images/coverImage-1701523428644-784160933.jpeg",
-        "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
-        "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-        "https://armariumbackend-production.up.railway.app/images/coverImage-1701523399852-712415020.jpg",
-      ],
-      logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
-      isSaatlari: [
-        { 1: "10:00 - 22:00" },
-        { 2: "10:00 - 22:00" },
-        { 3: "10:00 - 22:00" },
-        { 4: "10:00 - 22:00" },
-        { 5: "10:00 - 22:00" },
-        { 6: "12:00 - 18:00" },
-        { 6: "Baglidir" },
-      ],
-    },
-    {
-      id: 2,
-      imageURL:
-        "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
-      name: "The Gentleman",
-      location: "816 Village Drive",
-      socialMediaURL: [
-        { Instagram: "https://www.instagram.com/" },
-        { Website: "https://www.linkedin.com/" },
-        { Call: 4503134473 },
-        { Location: "https://www.instagram.com/" },
-      ],
-      reviews: 3.279,
-      starCount: 4.8,
-      photosArray: [
-        "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-        "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
-        "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
-        "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-        "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
-      ],
-      logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
-      isSaatlari: [
-        { 1: "10:00 - 22:00" },
-        { 2: "10:00 - 22:00" },
-        { 3: "10:00 - 22:00" },
-        { 4: "10:00 - 22:00" },
-        { 5: "10:00 - 22:00" },
-        { 6: "12:00 - 18:00" },
-        { 6: "Baglidir" },
-      ],
-    },
-    {
-      id: 3,
-      imageURL:
-        "https://armariumbackend-production.up.railway.app/images/coverImage-1700315043099-9817746.jpg",
-      name: "The Gentleman",
-      location: "816 Village Drive",
-      socialMediaURL: [
-        { Instagram: "https://www.instagram.com/" },
-        { Website: "https://www.linkedin.com/" },
-        { Call: 4503134473 },
-        { Location: "https://www.instagram.com/" },
-      ],
-      starCount: 4.8,
-      reviews: 3.279,
-      photosArray: [
-        "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-        "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
-        "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
-        "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-        "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
-      ],
-      logoURL: "https://armarium.az/assets/about2-876501f2.jpg",
-      isSaatlari: [
-        "10:00 - 22:00",
-        "10:00 - 22:00",
-        "10:00 - 22:00",
-        "10:00 - 22:00",
-        "10:00 - 22:00",
-        "12:00 - 18:00",
-        "Baglidir",
-      ],
-    },
-  ]);
+  const [data, setData] = useState(dataCategories);
 
   const renderRecommendedItem = ({ item }) => (
     <TouchableOpacity
       style={{
         marginTop: 10,
         marginRight: 10,
-        // padding: 40,
         backgroundColor: "grey",
+        width: width - 40,
         borderRadius: 10,
+        overflow: "hidden",
       }}
       onPress={() => {
         categoryChange(item.name);
-        console.log(item);
         navigation.navigate("Detail", item);
       }}
     >
-      <Image
-        source={{ uri: item.imageURL }}
-        style={{
-          width: width - 90,
-          height: 170,
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
-        }}
-      />
+      <View style={{}}>
+        <Image
+          source={{ uri: item.photo_url }}
+          style={{
+            width: 353,
+            height: 170,
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+          }}
+        />
+      </View>
       <View
         style={{
           padding: 10,
@@ -266,7 +172,7 @@ export default function HomeScreen(props) {
         }}
       >
         <Image
-          source={{ uri: item.logoURL }}
+          source={{ uri: item.photo_url }}
           style={{
             width: 50,
             height: 50,
