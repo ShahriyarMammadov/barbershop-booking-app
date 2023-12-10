@@ -13,17 +13,16 @@ import {
 } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
-import MapView, { Marker } from "react-native-maps";
+import AboutTab from "../../components/TabComponent/AboutTab";
+import Servicestab from "../../components/TabComponent/Services";
+import PackageTab from "../../components/TabComponent/Package";
 
 export default function SaloonDetail(props) {
   const { navigation, route } = props;
   const { width: viewportWidth } = Dimensions.get("window");
   const item = route.params;
   const [activeSlide, setActiveSlide] = useState(0);
-  const [sliceCount, setSliceCount] = useState(250);
   const slider1Ref = useRef();
-
-  console.log(route.getCurrentRoute())
 
   const categories = [
     {
@@ -210,31 +209,53 @@ export default function SaloonDetail(props) {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            gap: 10,
-            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          <Image
-            source={require("../../../assets/icons/location.png")}
-            style={{ width: 20, height: 20 }}
-          />
-          <Text>{item?.location}</Text>
-        </View>
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={require("../../../assets/icons/location.png")}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text>{item?.location}</Text>
+            </View>
 
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 10,
-            paddingVertical: 10,
-          }}
-        >
-          <Image
-            source={require("../../../assets/icons/star.png")}
-            style={{ width: 20, height: 20 }}
-          />
-          <Text>{item?.starCount}</Text>
-          <Text>({item?.reviews} reviews)</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                paddingVertical: 10,
+              }}
+            >
+              <Image
+                source={require("../../../assets/icons/star.png")}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text>{item?.starCount}</Text>
+              <Text>({item?.reviews} reviews)</Text>
+            </View>
+          </View>
+
+          <View>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#FB9400",
+                paddingVertical: 15,
+                paddingHorizontal: 35,
+              }}
+            >
+              <Text style={{ fontSize: 16, fontWeight: 700 }}>Book Now</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
 
@@ -406,151 +427,11 @@ export default function SaloonDetail(props) {
 
       {/* TAB */}
       {activeClassId === 1 ? (
-        <View style={{ paddingVertical: 10 }}>
-          <Text
-            style={{
-              textAlign: "justify",
-              paddingHorizontal: 10,
-            }}
-          >
-            {item?.about?.slice(0, sliceCount)}
-            {item?.about?.length > sliceCount && (
-              <Text
-                style={{ color: "#FB9400", fontWeight: 700 }}
-                onPress={() => {
-                  setSliceCount((prev) => prev + 1000);
-                }}
-              >
-                . Read more...
-              </Text>
-            )}
-          </Text>
-          {/* Working Hours */}
-          <Text
-            style={{
-              paddingVertical: 20,
-              fontWeight: 700,
-              fontSize: 18,
-              paddingHorizontal: 10,
-            }}
-          >
-            İş Saatları
-          </Text>
-
-          <View style={{ paddingHorizontal: 10 }}>
-            <Text
-              style={{
-                color: "grey",
-              }}
-            >
-              Həftə İçi {"        "}:{"     "}
-              <Text style={{ fontWeight: 700 }}>
-                {item?.workingHours?.hefteIci}
-              </Text>
-            </Text>
-            <Text style={{ color: "grey" }}>
-              Həftə Sonu {"   "}:{"     "}
-              <Text style={{ fontWeight: 700 }}>
-                {item?.workingHours?.SenbeBazar}
-              </Text>
-            </Text>
-          </View>
-
-          {/* Contact US */}
-          <Text
-            style={{
-              paddingVertical: 20,
-              fontWeight: 700,
-              fontSize: 18,
-              paddingHorizontal: 10,
-            }}
-          >
-            Əlaqə
-          </Text>
-
-          <Text
-            onPress={() => {
-              Linking.openURL(`tel:${item?.phoneNumber}`);
-            }}
-            style={{
-              color: "#FB9400",
-              width: 200,
-              fontWeight: 700,
-              fontSize: 18,
-              paddingHorizontal: 10,
-            }}
-          >
-            {item?.phoneNumber?.toString()}
-          </Text>
-
-          {/* OUR ADDRESS */}
-          <Text
-            style={{
-              paddingVertical: 20,
-              fontWeight: 700,
-              fontSize: 18,
-              paddingHorizontal: 10,
-            }}
-          >
-            Ünvan
-          </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 10,
-              paddingHorizontal: 10,
-            }}
-          >
-            <Image
-              source={require("../../../assets/icons/location.png")}
-              style={{ width: 25, height: 25 }}
-            />
-            <Text
-              style={{ color: "grey" }}
-              onPress={() =>
-                Linking.openURL(`google.navigation:q=${item?.location}`)
-              }
-            >
-              {item?.location}
-            </Text>
-          </View>
-
-          <View style={{ paddingTop: 20 }}>
-            <MapView
-              style={{ width: "100%", height: 350 }}
-              initialRegion={{
-                latitude: item?.lat,
-                longitude: item?.lon,
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01,
-              }}
-              mapType="satellite"
-            >
-              <Marker
-                coordinate={{ latitude: item?.lat, longitude: item?.lon }}
-                title={item?.name}
-              />
-            </MapView>
-          </View>
-        </View>
+        <AboutTab item={item} />
       ) : activeClassId === 2 ? (
-        <View style={{ paddingVertical: 10, paddingHorizontal: 10 }}>
-          {item?.services?.map((e, i) => {
-            return (
-              <View>
-                <Image
-                  source={{ uri: e?.imageURL }}
-                  style={{ width: 40, height: 40 }}
-                />
-                <Text>{e.service}</Text>
-              </View>
-            );
-          })}
-        </View>
+        <Servicestab item={item} />
       ) : activeClassId === 3 ? (
-        <Text>{activeClassId}</Text>
+        <PackageTab item={item} />
       ) : activeClassId === 4 ? (
         <Text>{activeClassId}</Text>
       ) : activeClassId === 5 ? (
