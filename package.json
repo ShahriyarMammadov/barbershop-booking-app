@@ -21,6 +21,7 @@
     "react-native": "0.71.8",
     "react-native-fbsdk": "^3.0.0",
     "react-native-gesture-handler": "2.5.0",
+    "react-native-maps": "^1.8.3",
     "react-native-modal-dropdown": "^1.0.2",
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "^4.6.4",

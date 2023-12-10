@@ -3,6 +3,8 @@ export const dataCategories = [
     id: 0,
     name: "Babowun masaj salonu",
     location: "816 Village Drive",
+    lat: 40.414528,
+    lon: 50.117611,
     starCount: 4.8,
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
@@ -57,6 +59,7 @@ export const dataCategories = [
       hefteIci: "08:00 AM - 21:00 PM",
       SenbeBazar: "Bağlıdır",
     },
+    phoneNumber: 994503134473,
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
     services: [
@@ -138,6 +141,8 @@ export const dataCategories = [
     location: "Bine Sovxoz",
     starCount: 4.0,
     locationCount: "1.4 km",
+    lat: 40.414528,
+    lon: 50.117611,
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
       { Website: "https://www.linkedin.com/" },
@@ -145,6 +150,7 @@ export const dataCategories = [
       { Location: "https://www.instagram.com/" },
     ],
     wishlist: true,
+    phoneNumber: 994503134473,
     photo_url:
       "https://www.telegraph.co.uk/content/dam/Travel/2019/January/france-food.jpg?imwidth=1400",
     photosArray: [
@@ -269,6 +275,7 @@ export const dataCategories = [
     id: 1,
     name: "Serently Salon",
     starCount: 5.0,
+    phoneNumber: 994503134473,
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
       { Website: "https://www.linkedin.com/" },
@@ -277,6 +284,8 @@ export const dataCategories = [
     ],
     locationCount: "1.4 km",
     location: "816 Village Drive",
+    lat: 40.414528,
+    lon: 50.117611,
     photo_url: "https://ak1.picdn.net/shutterstock/videos/19498861/thumb/1.jpg",
     photosArray: [
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
@@ -400,8 +409,11 @@ export const dataCategories = [
     id: 2,
     name: "The Razor's Edge",
     location: "816 Village Drive",
+    phoneNumber: 994503134473,
     starCount: 2.0,
     locationCount: "1.4 km",
+    lat: 40.414528,
+    lon: 50.117611,
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
       { Website: "https://www.linkedin.com/" },
@@ -532,6 +544,7 @@ export const dataCategories = [
     id: 4,
     name: "Qaqa Berberxanasi",
     location: "816 Village Drive",
+    phoneNumber: 994503134473,
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
       { Website: "https://www.shahriyarmammadov.com/" },
@@ -540,6 +553,8 @@ export const dataCategories = [
     ],
     starCount: 4.7,
     locationCount: "1.4 km",
+    lat: 40.414528,
+    lon: 50.117611,
     photo_url:
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/still-life-of-three-fresh-smoothies-in-front-of-royalty-free-image-561093647-1544042068.jpg?crop=0.715xw:0.534xh;0.0945xw,0.451xh&resize=768:*",
     photosArray: [

@@ -10,13 +10,10 @@ import {
   View,
   Linking,
   Share,
-  Pressable,
-  ImageBackground,
-  SectionList,
 } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
-import { Link } from "@react-navigation/native";
+import MapView, { Marker } from "react-native-maps";
 
 export default function SaloonDetail(props) {
   const { navigation, route } = props;
@@ -25,6 +22,8 @@ export default function SaloonDetail(props) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [sliceCount, setSliceCount] = useState(250);
   const slider1Ref = useRef();
+
+  console.log(route.getCurrentRoute())
 
   const categories = [
     {
@@ -185,8 +184,6 @@ export default function SaloonDetail(props) {
     </TouchableHighlight>
   );
 
-  console.log(item);
-
   return (
     <ScrollView style={{ minHeight: 250 }} showsVerticalScrollIndicator={false}>
       <Carousel
@@ -292,6 +289,11 @@ export default function SaloonDetail(props) {
                       />
                     ) : element === "Location" ? (
                       <Image
+                        onPress={() =>
+                          Linking.openURL(
+                            `google.navigation:q=${item?.location}`
+                          )
+                        }
                         source={require("../../../assets/icons/locationdot.png")}
                         style={{
                           width: 30,
@@ -404,10 +406,11 @@ export default function SaloonDetail(props) {
 
       {/* TAB */}
       {activeClassId === 1 ? (
-        <View style={{ paddingVertical: 10, paddingHorizontal: 10 }}>
+        <View style={{ paddingVertical: 10 }}>
           <Text
             style={{
               textAlign: "justify",
+              paddingHorizontal: 10,
             }}
           >
             {item?.about?.slice(0, sliceCount)}
@@ -423,17 +426,129 @@ export default function SaloonDetail(props) {
             )}
           </Text>
           {/* Working Hours */}
-          <Text style={{ paddingVertical: 20, fontWeight: 700, fontSize: 16 }}>
+          <Text
+            style={{
+              paddingVertical: 20,
+              fontWeight: 700,
+              fontSize: 18,
+              paddingHorizontal: 10,
+            }}
+          >
             İş Saatları
           </Text>
 
-          <View>
-            <Text>Həftə İçi: {item?.workingHours?.hefteIci}</Text>
-            <Text>Həftə Sonu: {item?.workingHours?.SenbeBazar}</Text>
+          <View style={{ paddingHorizontal: 10 }}>
+            <Text
+              style={{
+                color: "grey",
+              }}
+            >
+              Həftə İçi {"        "}:{"     "}
+              <Text style={{ fontWeight: 700 }}>
+                {item?.workingHours?.hefteIci}
+              </Text>
+            </Text>
+            <Text style={{ color: "grey" }}>
+              Həftə Sonu {"   "}:{"     "}
+              <Text style={{ fontWeight: 700 }}>
+                {item?.workingHours?.SenbeBazar}
+              </Text>
+            </Text>
+          </View>
+
+          {/* Contact US */}
+          <Text
+            style={{
+              paddingVertical: 20,
+              fontWeight: 700,
+              fontSize: 18,
+              paddingHorizontal: 10,
+            }}
+          >
+            Əlaqə
+          </Text>
+
+          <Text
+            onPress={() => {
+              Linking.openURL(`tel:${item?.phoneNumber}`);
+            }}
+            style={{
+              color: "#FB9400",
+              width: 200,
+              fontWeight: 700,
+              fontSize: 18,
+              paddingHorizontal: 10,
+            }}
+          >
+            {item?.phoneNumber?.toString()}
+          </Text>
+
+          {/* OUR ADDRESS */}
+          <Text
+            style={{
+              paddingVertical: 20,
+              fontWeight: 700,
+              fontSize: 18,
+              paddingHorizontal: 10,
+            }}
+          >
+            Ünvan
+          </Text>
+
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 10,
+              paddingHorizontal: 10,
+            }}
+          >
+            <Image
+              source={require("../../../assets/icons/location.png")}
+              style={{ width: 25, height: 25 }}
+            />
+            <Text
+              style={{ color: "grey" }}
+              onPress={() =>
+                Linking.openURL(`google.navigation:q=${item?.location}`)
+              }
+            >
+              {item?.location}
+            </Text>
+          </View>
+
+          <View style={{ paddingTop: 20 }}>
+            <MapView
+              style={{ width: "100%", height: 350 }}
+              initialRegion={{
+                latitude: item?.lat,
+                longitude: item?.lon,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+              }}
+              mapType="satellite"
+            >
+              <Marker
+                coordinate={{ latitude: item?.lat, longitude: item?.lon }}
+                title={item?.name}
+              />
+            </MapView>
           </View>
         </View>
       ) : activeClassId === 2 ? (
-        <Text>{activeClassId}</Text>
+        <View style={{ paddingVertical: 10, paddingHorizontal: 10 }}>
+          {item?.services?.map((e, i) => {
+            return (
+              <View>
+                <Image
+                  source={{ uri: e?.imageURL }}
+                  style={{ width: 40, height: 40 }}
+                />
+                <Text>{e.service}</Text>
+              </View>
+            );
+          })}
+        </View>
       ) : activeClassId === 3 ? (
         <Text>{activeClassId}</Text>
       ) : activeClassId === 4 ? (

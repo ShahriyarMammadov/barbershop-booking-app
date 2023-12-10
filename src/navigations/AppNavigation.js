@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "../screens/Home/HomeScreen";
 import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import RecipeScreen from "../screens/Recipe/RecipeScreen";
 import RecipesListScreen from "../screens/RecipesList/RecipesListScreen";
-import DrawerContainer from "../screens/DrawerContainer/DrawerContainer";
 import IngredientScreen from "../screens/Ingredient/IngredientScreen";
 import SearchScreen from "../screens/Search/SearchScreen";
 import IngredientsDetailsScreen from "../screens/IngredientsDetails/IngredientsDetailsScreen";
@@ -21,7 +19,6 @@ import EditProfile from "../screens/editProfile";
 import NotificationScreen from "../screens/Notification";
 
 const Stack = createStackNavigator();
-// const Drawer = createDrawerNavigator();
 const isLoggedIn = true;
 
 function WelcomeNavigator() {
@@ -71,7 +68,6 @@ function MainNavigator() {
 export default function AppContainer() {
   return (
     <NavigationContainer>
-      {/* <DrawerStack /> */}
       {isLoggedIn ? (
         <>
           <MainNavigator />
