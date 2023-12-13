@@ -17,6 +17,7 @@ import AboutTab from "../../components/TabComponent/AboutTab";
 import Servicestab from "../../components/TabComponent/Services";
 import PackageTab from "../../components/TabComponent/Package";
 import GalleryTab from "../../components/TabComponent/GalleryTab";
+import CommentTab from "../../components/TabComponent/CommentTab";
 
 export default function SaloonDetail(props) {
   const { navigation, route } = props;
@@ -437,7 +438,7 @@ export default function SaloonDetail(props) {
       ) : activeClassId === 4 ? (
         <GalleryTab item={item?.galleries} />
       ) : activeClassId === 5 ? (
-        <Text>{activeClassId}</Text>
+        <CommentTab item={item?.comments} starCount={item?.starCount} />
       ) : (
         <Text>{activeClassId}</Text>
       )}

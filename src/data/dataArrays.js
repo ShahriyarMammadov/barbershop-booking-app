@@ -53,10 +53,10 @@ export const dataCategories = [
       "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
     photosArray: [
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+      "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-      "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
     specialist: [
       {
@@ -95,6 +95,68 @@ export const dataCategories = [
       SenbeBazar: "Bağlıdır",
     },
     phoneNumber: 994503134473,
+    comments: [
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+    ],
     package: [
       {
         name: "Saç + Ukladka",
@@ -194,6 +256,68 @@ export const dataCategories = [
     location: "Bine Sovxoz",
     starCount: 4.0,
     locationCount: "1.4 km",
+    comments: [
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+    ],
     galleries: [
       {
         uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
@@ -261,10 +385,10 @@ export const dataCategories = [
       "https://www.telegraph.co.uk/content/dam/Travel/2019/January/france-food.jpg?imwidth=1400",
     photosArray: [
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+      "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-      "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
     specialist: [
       {
@@ -380,6 +504,68 @@ export const dataCategories = [
   {
     id: 1,
     name: "Serently Salon",
+    comments: [
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+    ],
     starCount: 5.0,
     phoneNumber: 994503134473,
     galleries: [
@@ -448,10 +634,10 @@ export const dataCategories = [
     photo_url: "https://ak1.picdn.net/shutterstock/videos/19498861/thumb/1.jpg",
     photosArray: [
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+      "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-      "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
     specialist: [
       {
@@ -568,6 +754,68 @@ export const dataCategories = [
     id: 2,
     name: "The Razor's Edge",
     location: "816 Village Drive",
+    comments: [
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+    ],
     phoneNumber: 994503134473,
     galleries: [
       {
@@ -636,10 +884,10 @@ export const dataCategories = [
       "https://images.unsplash.com/photo-1533777324565-a040eb52facd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
     photosArray: [
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+      "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-      "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
     specialist: [
       {
@@ -756,6 +1004,68 @@ export const dataCategories = [
     id: 4,
     name: "Qaqa Berberxanasi",
     location: "816 Village Drive",
+    comments: [
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+      {
+        image_URL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprjP-BMSaPG1L-_gGNVEVpP9pqXbmkUJk2g&usqp=CAU",
+        name: "Marielle Wigington",
+        starCount: 5,
+        date: "12/12/2023",
+        comment:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+        likeCount: 785,
+      },
+    ],
     galleries: [
       {
         uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
@@ -824,10 +1134,10 @@ export const dataCategories = [
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/still-life-of-three-fresh-smoothies-in-front-of-royalty-free-image-561093647-1544042068.jpg?crop=0.715xw:0.534xh;0.0945xw,0.451xh&resize=768:*",
     photosArray: [
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
-      "https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg",
+      "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://advancelocal-adapter-image-uploads.s3.amazonaws.com/image.al.com/home/bama-media/width600/img/news_impact/photo/burger-fijpg-57e7e5907630c2ad.jpg",
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
-      "https://aht.seriouseats.com/images/2012/02/20120221-193971-fast-food-fries-Burger-King-fries-2.jpg",
+      "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
     specialist: [
       {
