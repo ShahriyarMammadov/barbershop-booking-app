@@ -16,6 +16,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import AboutTab from "../../components/TabComponent/AboutTab";
 import Servicestab from "../../components/TabComponent/Services";
 import PackageTab from "../../components/TabComponent/Package";
+import GalleryTab from "../../components/TabComponent/GalleryTab";
 
 export default function SaloonDetail(props) {
   const { navigation, route } = props;
@@ -251,6 +252,7 @@ export default function SaloonDetail(props) {
                 backgroundColor: "#FB9400",
                 paddingVertical: 15,
                 paddingHorizontal: 35,
+                borderRadius: 15,
               }}
             >
               <Text style={{ fontSize: 16, fontWeight: 700 }}>Book Now</Text>
@@ -429,11 +431,11 @@ export default function SaloonDetail(props) {
       {activeClassId === 1 ? (
         <AboutTab item={item} />
       ) : activeClassId === 2 ? (
-        <Servicestab item={item} />
+        <Servicestab item={item?.services} />
       ) : activeClassId === 3 ? (
-        <PackageTab item={item} />
+        <PackageTab item={item?.package} />
       ) : activeClassId === 4 ? (
-        <Text>{activeClassId}</Text>
+        <GalleryTab item={item?.galleries} />
       ) : activeClassId === 5 ? (
         <Text>{activeClassId}</Text>
       ) : (

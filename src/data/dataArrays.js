@@ -14,6 +14,41 @@ export const dataCategories = [
     ],
     locationCount: "5 km",
     wishlist: true,
+    galleries: [
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+    ],
     photo_url:
       "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
     photosArray: [
@@ -60,6 +95,24 @@ export const dataCategories = [
       SenbeBazar: "Bağlıdır",
     },
     phoneNumber: 994503134473,
+    package: [
+      {
+        name: "Saç + Ukladka",
+        price: 125,
+      },
+      {
+        name: "Saç + Üz",
+        price: 8,
+      },
+      {
+        name: "Masaj + Lazer",
+        price: 100,
+      },
+      {
+        name: "Dırnaq + keratin",
+        price: 60,
+      },
+    ],
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
     services: [
@@ -141,6 +194,59 @@ export const dataCategories = [
     location: "Bine Sovxoz",
     starCount: 4.0,
     locationCount: "1.4 km",
+    galleries: [
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+    ],
+    package: [
+      {
+        name: "Saç + Ukladka",
+        price: 125,
+      },
+      {
+        name: "Saç + Üz",
+        price: 8,
+      },
+      {
+        name: "Masaj + Lazer",
+        price: 100,
+      },
+      {
+        name: "Dırnaq + keratin",
+        price: 60,
+      },
+    ],
     lat: 40.414528,
     lon: 50.117611,
     socialMediaURL: [
@@ -276,6 +382,59 @@ export const dataCategories = [
     name: "Serently Salon",
     starCount: 5.0,
     phoneNumber: 994503134473,
+    galleries: [
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+    ],
+    package: [
+      {
+        name: "Saç + Ukladka",
+        price: 125,
+      },
+      {
+        name: "Saç + Üz",
+        price: 8,
+      },
+      {
+        name: "Masaj + Lazer",
+        price: 100,
+      },
+      {
+        name: "Dırnaq + keratin",
+        price: 60,
+      },
+    ],
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
       { Website: "https://www.linkedin.com/" },
@@ -410,6 +569,59 @@ export const dataCategories = [
     name: "The Razor's Edge",
     location: "816 Village Drive",
     phoneNumber: 994503134473,
+    galleries: [
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+    ],
+    package: [
+      {
+        name: "Saç + Ukladka",
+        price: 125,
+      },
+      {
+        name: "Saç + Üz",
+        price: 8,
+      },
+      {
+        name: "Masaj + Lazer",
+        price: 100,
+      },
+      {
+        name: "Dırnaq + keratin",
+        price: 60,
+      },
+    ],
     starCount: 2.0,
     locationCount: "1.4 km",
     lat: 40.414528,
@@ -544,6 +756,59 @@ export const dataCategories = [
     id: 4,
     name: "Qaqa Berberxanasi",
     location: "816 Village Drive",
+    galleries: [
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+      {
+        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
+      },
+    ],
+    package: [
+      {
+        name: "Saç + Ukladka",
+        price: 125,
+      },
+      {
+        name: "Saç + Üz",
+        price: 8,
+      },
+      {
+        name: "Masaj + Lazer",
+        price: 100,
+      },
+      {
+        name: "Dırnaq + keratin",
+        price: 60,
+      },
+    ],
     phoneNumber: 994503134473,
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },

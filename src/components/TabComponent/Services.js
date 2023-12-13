@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  Dimensions,
-  Image,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Servicestab({ item }) {
   return (
     <View style={{ paddingVertical: 10, paddingHorizontal: 10 }}>
-      {item?.services?.map((e, i) => {
+      {item?.map((e, i) => {
         return (
           <View
             key={i}
