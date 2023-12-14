@@ -2,10 +2,10 @@ import React from "react";
 import { Dimensions, Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Servicestab({ item }) {
+export default function Servicestab({ item, navigation }) {
   return (
     <View style={{ paddingVertical: 10, paddingHorizontal: 10 }}>
-      {item?.map((e, i) => {
+      {item?.services?.map((e, i) => {
         return (
           <View
             key={i}
@@ -50,7 +50,14 @@ export default function Servicestab({ item }) {
                     paddingHorizontal: 20,
                   }}
                 >
-                  <Text style={{ fontWeight: 700 }}>Book Now</Text>
+                  <Text
+                    style={{ fontWeight: 700 }}
+                    onPress={() => {
+                      navigation.navigate("BookNow", item);
+                    }}
+                  >
+                    Book Now
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>

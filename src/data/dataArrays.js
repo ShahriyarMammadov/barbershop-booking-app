@@ -6,6 +6,7 @@ export const dataCategories = [
     lat: 40.414528,
     lon: 50.117611,
     starCount: 4.8,
+    openHours: ["09:00", "10:00", "11:00", "12:00", "15:00", "16:00", "17:00"],
     socialMediaURL: [
       { Instagram: "https://www.instagram.com/" },
       { Website: "https://www.linkedin.com/" },
@@ -255,6 +256,7 @@ export const dataCategories = [
     name: "Hair Force",
     location: "Bine Sovxoz",
     starCount: 4.0,
+    openHours: ["09:00", "10:00", "11:00", "12:00", "15:00", "16:00", "17:00"],
     locationCount: "1.4 km",
     comments: [
       {
@@ -568,6 +570,7 @@ export const dataCategories = [
     ],
     starCount: 5.0,
     phoneNumber: 994503134473,
+    openHours: ["09:00", "10:00", "11:00", "12:00", "15:00", "16:00", "17:00"],
     galleries: [
       {
         uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunEAI7I4nY4q_Xscky6z4dLIXazt0MdX0gw&usqp=CAU",
@@ -754,6 +757,7 @@ export const dataCategories = [
     id: 2,
     name: "The Razor's Edge",
     location: "816 Village Drive",
+    openHours: ["09:00", "10:00", "11:00", "12:00", "15:00", "16:00", "17:00"],
     comments: [
       {
         image_URL:
@@ -1004,6 +1008,7 @@ export const dataCategories = [
     id: 4,
     name: "Qaqa Berberxanasi",
     location: "816 Village Drive",
+    openHours: ["09:00", "10:00", "11:00", "12:00", "15:00", "16:00", "17:00"],
     comments: [
       {
         image_URL:

@@ -203,7 +203,14 @@ export default function HomeScreen(props) {
           }}
           // onPress={onPress}
         >
-          <Text style={{ color: "black", fontWeight: 700 }}>Book Now</Text>
+          <Text
+            style={{ color: "black", fontWeight: 700 }}
+            onPress={() => {
+              navigation.navigate("BookNow", item);
+            }}
+          >
+            Book Now
+          </Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>

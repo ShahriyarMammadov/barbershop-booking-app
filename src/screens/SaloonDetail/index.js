@@ -256,7 +256,14 @@ export default function SaloonDetail(props) {
                 borderRadius: 15,
               }}
             >
-              <Text style={{ fontSize: 16, fontWeight: 700 }}>Book Now</Text>
+              <Text
+                style={{ fontSize: 16, fontWeight: 700 }}
+                onPress={() => {
+                  navigation.navigate("BookNow", item);
+                }}
+              >
+                Book Now
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -432,7 +439,7 @@ export default function SaloonDetail(props) {
       {activeClassId === 1 ? (
         <AboutTab item={item} />
       ) : activeClassId === 2 ? (
-        <Servicestab item={item?.services} />
+        <Servicestab item={item} navigation={navigation} />
       ) : activeClassId === 3 ? (
         <PackageTab item={item?.package} />
       ) : activeClassId === 4 ? (

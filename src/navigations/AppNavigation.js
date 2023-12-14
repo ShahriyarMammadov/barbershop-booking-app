@@ -17,6 +17,7 @@ import SignUpScreen from "../screens/signup";
 import MyBookingScreen from "../screens/myBooking";
 import EditProfile from "../screens/editProfile";
 import NotificationScreen from "../screens/Notification";
+import BookNowScreen from "../screens/bookNow";
 
 const Stack = createStackNavigator();
 const isLoggedIn = true;
@@ -61,6 +62,7 @@ function MainNavigator() {
         component={IngredientsDetailsScreen}
       />
       <Stack.Screen name="Detail" component={SaloonDetail} />
+      <Stack.Screen name="BookNow" component={BookNowScreen} />
     </Stack.Navigator>
   );
 }
