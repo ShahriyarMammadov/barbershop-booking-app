@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "../screens/Home/HomeScreen";
@@ -20,7 +20,8 @@ import NotificationScreen from "../screens/Notification";
 import BookNowScreen from "../screens/bookNow";
 
 const Stack = createStackNavigator();
-const isLoggedIn = true;
+
+isLoggedIn = true;
 
 function WelcomeNavigator() {
   return (

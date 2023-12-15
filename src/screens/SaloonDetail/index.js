@@ -255,15 +255,11 @@ export default function SaloonDetail(props) {
                 paddingHorizontal: 35,
                 borderRadius: 15,
               }}
+              onPress={() => {
+                navigation.navigate("BookNow", item);
+              }}
             >
-              <Text
-                style={{ fontSize: 16, fontWeight: 700 }}
-                onPress={() => {
-                  navigation.navigate("BookNow", item);
-                }}
-              >
-                Book Now
-              </Text>
+              <Text style={{ fontSize: 16, fontWeight: 700 }}>Book Now</Text>
             </TouchableOpacity>
           </View>
         </View>

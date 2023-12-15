@@ -15,6 +15,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import { userData } from "../../data/dataArrays";
 import { getLocales } from "expo-localization";
 import * as ImagePicker from "expo-image-picker";
+// import { isLoggedIn } from "../../navigations/AppNavigation";
 
 export default function ProfileScreen(props) {
   const { navigation } = props;
@@ -116,7 +117,12 @@ export default function ProfileScreen(props) {
         categoryChange(item.name);
       }}
     >
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
+      <TouchableOpacity
+        style={{ flexDirection: "row", alignItems: "center", gap: 15 }}
+        // onPress={() => {
+        //   isLoggedIn(false);
+        // }}
+      >
         <Image
           source={item.iconURL}
           style={styles.iconImage}
@@ -131,7 +137,7 @@ export default function ProfileScreen(props) {
         >
           {item?.name}
         </Text>
-      </View>
+      </TouchableOpacity>
       {!item?.value ? (
         <Image source={item?.rightIcon} style={{ width: 15, height: 15 }} />
       ) : (

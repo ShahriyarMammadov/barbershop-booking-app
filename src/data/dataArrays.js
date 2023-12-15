@@ -249,6 +249,20 @@ export const dataCategories = [
         imageURL:
           "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
     ],
   },
   {
@@ -482,6 +496,20 @@ export const dataCategories = [
         service: "Saç Rənglənməsi",
         text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
         price: 20,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
         imageURL:
           "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
@@ -749,6 +777,20 @@ export const dataCategories = [
         imageURL:
           "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
     ],
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
@@ -893,36 +935,90 @@ export const dataCategories = [
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
-    specialist: [
+    services: [
       {
-        name: "Ramil",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
       {
-        name: "Isa Heydaroglu",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "Make Up",
+        text: "Biz Make UP ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 120,
+        imageURL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzYrcwFla-IUHg5sU7_v7A2Wi4uH0jr1GqdQ&usqp=CAU",
       },
       {
-        name: "AgaNatig",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "Dırnaq Düzəlişi",
+        text: "Biz Dırnaq ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 12,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
       {
-        name: "Babow",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "GƏlinlik Hazırlanması",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 200,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
       {
-        name: "Shahriyar",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+        service: "Saç Ukladkası",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 15,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Masaj Xİdmətləri",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 120,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Kralevski Masaj",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4000,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Rənglənməsi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 20,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
     ],
     workingHours: {
@@ -1144,36 +1240,90 @@ export const dataCategories = [
       "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492718105/articles/2013/09/24/burger-king-s-new-french-fries-took-ten-years-to-develop/130923-gross-burger-tease_izz59e",
       "https://www.texanerin.com/content/uploads/2019/06/nobake-chocolate-cookies-1-650x975.jpg",
     ],
-    specialist: [
+    services: [
       {
-        name: "Ramil",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
       {
-        name: "Isa Heydaroglu",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "Make Up",
+        text: "Biz Make UP ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 120,
+        imageURL:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzYrcwFla-IUHg5sU7_v7A2Wi4uH0jr1GqdQ&usqp=CAU",
       },
       {
-        name: "AgaNatig",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "Dırnaq Düzəlişi",
+        text: "Biz Dırnaq ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 12,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
       {
-        name: "Babow",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+        service: "GƏlinlik Hazırlanması",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 200,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
       {
-        name: "Shahriyar",
-        job: "Barber",
-        profilePhoto:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+        service: "Saç Ukladkası",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 15,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Masaj Xİdmətləri",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 120,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Kralevski Masaj",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4000,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Rənglənməsi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 20,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
+      },
+      {
+        service: "Saç Kəsimi",
+        text: "Biz sac ustasi olaraq 2015-ci ilden fealiyyet gosteririk",
+        price: 4,
+        imageURL:
+          "https://cdn.shopify.com/s/files/1/1525/8012/files/image2_480x480.jpg?v=1650501733",
       },
     ],
     workingHours: {
