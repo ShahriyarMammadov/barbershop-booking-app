@@ -15,7 +15,6 @@ import BackButton from "../../components/BackButton/BackButton";
 import { userData } from "../../data/dataArrays";
 import { getLocales } from "expo-localization";
 import * as ImagePicker from "expo-image-picker";
-// import { isLoggedIn } from "../../navigations/AppNavigation";
 
 export default function ProfileScreen(props) {
   const { navigation } = props;

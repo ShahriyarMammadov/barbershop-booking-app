@@ -918,6 +918,38 @@ export const dataCategories = [
     ],
     starCount: 2.0,
     locationCount: "1.4 km",
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
+    ],
     lat: 40.414528,
     lon: 50.117611,
     socialMediaURL: [
@@ -1231,6 +1263,38 @@ export const dataCategories = [
     locationCount: "1.4 km",
     lat: 40.414528,
     lon: 50.117611,
+    specialist: [
+      {
+        name: "Ramil",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Isa Heydaroglu",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "AgaNatig",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Babow",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzz0nwW80C5NM4wXwDvTpqYyV4RBG2h9Wfw&usqp=CAU",
+      },
+      {
+        name: "Shahriyar",
+        job: "Barber",
+        profilePhoto:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&usqp=CAU",
+      },
+    ],
     photo_url:
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/still-life-of-three-fresh-smoothies-in-front-of-royalty-free-image-561093647-1544042068.jpg?crop=0.715xw:0.534xh;0.0945xw,0.451xh&resize=768:*",
     photosArray: [
