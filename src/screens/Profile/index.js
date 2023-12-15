@@ -116,12 +116,7 @@ export default function ProfileScreen(props) {
         categoryChange(item.name);
       }}
     >
-      <TouchableOpacity
-        style={{ flexDirection: "row", alignItems: "center", gap: 15 }}
-        // onPress={() => {
-        //   isLoggedIn(false);
-        // }}
-      >
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
         <Image
           source={item.iconURL}
           style={styles.iconImage}
@@ -136,7 +131,7 @@ export default function ProfileScreen(props) {
         >
           {item?.name}
         </Text>
-      </TouchableOpacity>
+      </View>
       {!item?.value ? (
         <Image source={item?.rightIcon} style={{ width: 15, height: 15 }} />
       ) : (

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "../screens/Home/HomeScreen";
-import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import RecipeScreen from "../screens/Recipe/RecipeScreen";
 import RecipesListScreen from "../screens/RecipesList/RecipesListScreen";
 import IngredientScreen from "../screens/Ingredient/IngredientScreen";
@@ -18,6 +17,7 @@ import MyBookingScreen from "../screens/myBooking";
 import EditProfile from "../screens/editProfile";
 import NotificationScreen from "../screens/Notification";
 import BookNowScreen from "../screens/bookNow";
+import ExploreScreen from "../screens/explore";
 
 const Stack = createStackNavigator();
 
@@ -49,7 +49,7 @@ function MainNavigator() {
     >
       {/* <Stack.Screen name="Welcome" component={WelcomeScreen} /> */}
       <Stack.Screen name="Qaychi.az" component={HomeScreen} />
-      <Stack.Screen name="Categories" component={CategoriesScreen} />
+      <Stack.Screen name="Explore" component={ExploreScreen} />
       <Stack.Screen name="Recipe" component={RecipeScreen} />
       <Stack.Screen name="RecipesList" component={RecipesListScreen} />
       <Stack.Screen name="Ingredient" component={IngredientScreen} />

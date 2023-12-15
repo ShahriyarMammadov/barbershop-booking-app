@@ -12,7 +12,7 @@ export default function Footer() {
   };
 
   const navigateToCategories = () => {
-    navigation.navigate("Categories");
+    navigation.navigate("Explore");
     setCurrentRoute(navigation?.getCurrentRoute()?.name);
   };
 
@@ -70,7 +70,7 @@ export default function Footer() {
         />
         <Text
           style={
-            currentRoute == "Categories"
+            currentRoute == "Explore"
               ? {
                   paddingTop: 4,
                   fontWeight: 700,
