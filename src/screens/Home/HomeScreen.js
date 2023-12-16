@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
-  Button,
   Pressable,
 } from "react-native";
 import SaloonCardComponent from "../../components/SallonCard";
@@ -30,10 +29,16 @@ export default function HomeScreen(props) {
         />
       ),
       headerRight: () => (
-        <Image
-          source={require("../../../assets/icons/notification.png")}
-          style={{ width: 25, height: 25, marginRight: 30 }}
-        />
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Notification");
+          }}
+        >
+          <Image
+            source={require("../../../assets/icons/notification.png")}
+            style={{ width: 25, height: 25, marginRight: 30 }}
+          />
+        </Pressable>
       ),
     });
   }, []);

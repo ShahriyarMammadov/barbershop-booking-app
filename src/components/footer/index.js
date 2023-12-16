@@ -42,19 +42,18 @@ export default function Footer() {
       >
         <Image
           source={require("../../../assets/icons/home.png")}
-          style={{ width: 25, height: 25 }}
+          style={{
+            width: 25,
+            height: 25,
+          }}
         />
         <Text
-          style={
-            currentRoute == "Qaychi.az"
-              ? {
-                  paddingTop: 4,
-                  fontWeight: 700,
-                  fontSize: 12,
-                  color: "#FB9400",
-                }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12, color: "black" }
-          }
+          style={{
+            paddingTop: 4,
+            fontWeight: 700,
+            fontSize: 12,
+            color: currentRoute == "Qaychi.az" ? "#FB9400" : "black",
+          }}
         >
           Home
         </Text>
@@ -69,16 +68,12 @@ export default function Footer() {
           style={{ width: 25, height: 25 }}
         />
         <Text
-          style={
-            currentRoute == "Explore"
-              ? {
-                  paddingTop: 4,
-                  fontWeight: 700,
-                  fontSize: 12,
-                  color: "#FB9400",
-                }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12, color: "black" }
-          }
+          style={{
+            paddingTop: 4,
+            fontWeight: 700,
+            fontSize: 12,
+            color: currentRoute == "Explore" ? "#FB9400" : "black",
+          }}
         >
           Explore
         </Text>
@@ -93,16 +88,12 @@ export default function Footer() {
           style={{ width: 25, height: 25 }}
         />
         <Text
-          style={
-            currentRoute == "MyBooking"
-              ? {
-                  paddingTop: 4,
-                  fontWeight: 700,
-                  fontSize: 12,
-                  color: "#FB9400",
-                }
-              : { paddingTop: 4, fontWeight: 700, fontSize: 12, color: "black" }
-          }
+          style={{
+            paddingTop: 4,
+            fontWeight: 700,
+            fontSize: 12,
+            color: currentRoute == "MyBooking" ? "#FB9400" : "black",
+          }}
         >
           My Booking
         </Text>
@@ -117,21 +108,12 @@ export default function Footer() {
           style={{ width: 25, height: 25 }}
         />
         <Text
-          style={
-            currentRoute == "Profile"
-              ? {
-                  paddingTop: 4,
-                  fontWeight: 700,
-                  fontSize: 12,
-                  color: "#FB9400",
-                }
-              : {
-                  paddingTop: 4,
-                  fontWeight: 700,
-                  fontSize: 12,
-                  color: "black",
-                }
-          }
+          style={{
+            paddingTop: 4,
+            fontWeight: 700,
+            fontSize: 12,
+            color: currentRoute == "Profile" ? "#FB9400" : "black",
+          }}
         >
           Profile
         </Text>
