@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
   FlatList,
   Image,
+  Modal,
   RefreshControl,
   ScrollView,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
+import { userData } from "../data/dataArrays";
 
 export default function BookNowScreen(props) {
   const [selected, setSelected] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  const [success, setSuccess] = useState(false);
   const { navigation, route } = props;
   const item = route.params;
 
@@ -79,8 +84,6 @@ export default function BookNowScreen(props) {
   };
 
   LocaleConfig.defaultLocale = "az";
-
-  console.log(selected);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -260,6 +263,13 @@ export default function BookNowScreen(props) {
     );
   };
 
+  // MODAL
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <ScrollView
       style={{ marginVertical: 10, paddingHorizontal: 10 }}
@@ -386,7 +396,21 @@ export default function BookNowScreen(props) {
           borderRadius: 50,
           marginBottom: 15,
         }}
-        onPress={() => {}}
+        onPress={() => {
+          if (selectedSpecialist.length === 0 || selectedService.length === 0) {
+            Alert.alert("Xəta", "Zəhmət olmasa Xanaları Düzgün seçin", [
+              {
+                text: "OK",
+                onPress: () => {
+                  console.log("cancel");
+                },
+                style: "cancel",
+              },
+            ]);
+          } else {
+            setModalVisible(true);
+          }
+        }}
       >
         <Text
           style={{
@@ -399,6 +423,118 @@ export default function BookNowScreen(props) {
           Rezerv Et
         </Text>
       </TouchableOpacity>
+
+      {/* MODAL */}
+      <Modal
+        animationType="slide"
+        swipeDirection="down"
+        onSwipeComplete={closeModal}
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={closeModal}
+      >
+        {success ? (
+          <View>
+            <Image
+              source={require("../../assets/icons/success.png")}
+              style={{ width: 100, height: 100 }}
+            />
+          </View>
+        ) : (
+          <TouchableWithoutFeedback>
+            <>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: 15,
+                  paddingVertical: 80,
+                }}
+              >
+                <View>
+                  <Text style={{ paddingVertical: 20, color: "grey" }}>
+                    Bərbərxana / Salon:{" "}
+                  </Text>
+                  <Text style={{ color: "grey" }}>Ünvan: </Text>
+                  <Text style={{ paddingVertical: 20, color: "grey" }}>
+                    Adınız:{" "}
+                  </Text>
+                  <Text style={{ color: "grey" }}>Əlaqə Nömrəniz: </Text>
+                  <Text style={{ paddingVertical: 20, color: "grey" }}>
+                    Tarix:{" "}
+                  </Text>
+                  <Text style={{ color: "grey" }}>Rezerv ediləcək Saat: </Text>
+                  <Text style={{ paddingVertical: 20, color: "grey" }}>
+                    Mütəxəssis:{" "}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={{ paddingVertical: 20, fontWeight: 700 }}>
+                    {item?.name}
+                  </Text>
+                  <Text style={{ fontWeight: 700 }}>{item?.location}</Text>
+                  <Text style={{ paddingVertical: 20, fontWeight: 700 }}>
+                    {userData?.fullName}
+                  </Text>
+                  <Text style={{ fontWeight: 700 }}>
+                    +{userData?.phoneNumber}
+                  </Text>
+                  <Text style={{ paddingVertical: 20, fontWeight: 700 }}>
+                    {selected ? selected : ""}
+                  </Text>
+                  <Text style={{ fontWeight: 700 }}>
+                    {selectedHours ? selectedHours : ""}
+                  </Text>
+                  <Text style={{ paddingVertical: 20, fontWeight: 700 }}>
+                    {selectedSpecialist ? selectedSpecialist : ""}
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={{
+                  padding: 15,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                }}
+              >
+                <TouchableOpacity onPress={closeModal}>
+                  <Text
+                    style={{
+                      paddingVertical: 15,
+                      paddingHorizontal: 30,
+                      fontWeight: 700,
+                      fontSize: 18,
+                    }}
+                  >
+                    Imtina et
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    setSuccess(true);
+                  }}
+                >
+                  <Text
+                    style={{
+                      backgroundColor: "#FB9400",
+                      paddingVertical: 15,
+                      paddingHorizontal: 30,
+                      fontWeight: 700,
+                      fontSize: 18,
+                    }}
+                  >
+                    Təsdiqlə
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </>
+          </TouchableWithoutFeedback>
+        )}
+      </Modal>
     </ScrollView>
   );
 }
+// onPress={closeModal}

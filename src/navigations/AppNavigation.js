@@ -18,6 +18,11 @@ import EditProfile from "../screens/editProfile";
 import NotificationScreen from "../screens/Notification";
 import BookNowScreen from "../screens/bookNow";
 import ExploreScreen from "../screens/explore";
+import { NativeEventEmitter, NativeModules } from "react-native";
+
+// const MyModule = NativeModules.MyModule;
+
+// const eventEmitter = new NativeEventEmitter(MyModule);
 
 const Stack = createStackNavigator();
 

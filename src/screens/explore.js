@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Button, Text, View, Alert } from "react-native";
+import {
+  Platform,
+  Linking,
+  Text,
+  View,
+  Alert,
+  RefreshControl,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 export default function ExploreScreen(props) {
   const navigation = props;
-
   const [location, setLocation] = useState(null);
+  // const [refreshing, setRefreshing] = useState(false);
 
   const locations = [
     {
@@ -26,18 +33,29 @@ export default function ExploreScreen(props) {
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status !== "granted") {
-        Alert.alert("Alert Title", "My Alert Msg", [
-          {
-            text: "Ask me later",
-            onPress: () => console.log("Ask me later pressed"),
-          },
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel",
-          },
-          { text: "OK", onPress: () => console.log("OK Pressed") },
-        ]);
+        Alert.alert(
+          "Ərazi Məlumatları",
+          "Zəhmət olmasa tətbiqin cihazın konum bilgilərinə daxil olmasına icazə verin",
+          [
+            {
+              text: "Cancel",
+              onPress: () => {
+                console.log("cancel");
+              },
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                if (Platform.OS === "ios") {
+                  Linking.openURL("app-settings:");
+                } else {
+                  Linking.openSettings();
+                }
+              },
+            },
+          ]
+        );
       }
 
       const currentLocation = await Location.getCurrentPositionAsync({});
@@ -49,10 +67,27 @@ export default function ExploreScreen(props) {
 
   useEffect(() => {
     getLocation();
-  }, []);
+  }, [location]);
+
+  console.log(location);
+
+  // const onRefresh = () => {
+  //   setRefreshing(true);
+  //   getLocation();
+  //   setRefreshing(false);
+  // };
 
   return (
-    <View>
+    <View
+      // refreshControl={
+      //   <RefreshControl
+      //     refreshing={refreshing}
+      //     onRefresh={onRefresh}
+      //     tintColor="#3F51B5"
+      //     title="Refreshing..."
+      //   />
+      // }
+    >
       <View>
         {location ? (
           <MapView
@@ -88,7 +123,8 @@ export default function ExploreScreen(props) {
   );
 }
 
-{/* <Marker
+{
+  /* <Marker
   key={location.id}
   coordinate={location.coordinates}
   title={location.title}
@@ -106,4 +142,5 @@ export default function ExploreScreen(props) {
       </View>
     </Callout>
   </View>
-</Marker>; */}
+</Marker>; */
+}
