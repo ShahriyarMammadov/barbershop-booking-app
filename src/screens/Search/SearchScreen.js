@@ -1,8 +1,20 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { FlatList, Text, View, Image, TouchableHighlight, Pressable } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+  Pressable,
+} from "react-native";
 import styles from "./styles";
 import MenuImage from "../../components/MenuImage/MenuImage";
-import { getCategoryName, getRecipesByRecipeName, getRecipesByCategoryName, getRecipesByIngredientName } from "../../data/MockDataAPI";
+import {
+  getCategoryName,
+  getRecipesByRecipeName,
+  getRecipesByCategoryName,
+  getRecipesByIngredientName,
+} from "../../data/MockDataAPI";
 import { TextInput } from "react-native-gesture-handler";
 
 export default function SearchScreen(props) {
@@ -22,14 +34,20 @@ export default function SearchScreen(props) {
       ),
       headerTitle: () => (
         <View style={styles.searchContainer}>
-          <Image style={styles.searchIcon} source={require("../../../assets/icons/search.png")} />
+          <Image
+            style={styles.searchIcon}
+            source={require("../../../assets/icons/search.png")}
+          />
           <TextInput
             style={styles.searchInput}
             onChangeText={handleSearch}
             value={value}
           />
           <Pressable onPress={() => handleSearch("")}>
-          <Image style={styles.searchIcon} source={require("../../../assets/icons/close.png")} />
+            <Image
+              style={styles.searchIcon}
+              source={require("../../../assets/icons/close.png")}
+            />
           </Pressable>
         </View>
       ),
@@ -59,7 +77,10 @@ export default function SearchScreen(props) {
   };
 
   const renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)" onPress={() => onPressRecipe(item)}>
+    <TouchableHighlight
+      underlayColor="rgba(73,182,77,0.9)"
+      onPress={() => onPressRecipe(item)}
+    >
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
@@ -70,7 +91,14 @@ export default function SearchScreen(props) {
 
   return (
     <View>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={data} renderItem={renderRecipes} keyExtractor={(item) => `${item.recipeId}`} />
+      <FlatList
+        vertical
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        data={data}
+        renderItem={renderRecipes}
+        keyExtractor={(item) => `${item.recipeId}`}
+      />
     </View>
   );
 }

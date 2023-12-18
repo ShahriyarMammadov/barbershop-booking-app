@@ -580,3 +580,22 @@ export default function BookNowScreen(props) {
   );
 }
 // onPress={closeModal}
+
+// <TouchableHighlight
+//   underlayColor="grey"
+//   style={{ paddingHorizontal: 12, marginVertical: 15 }}
+//   onPress={() => {}}
+// >
+//   <View style={{ alignItems: "center" }}>
+//     <Image
+//       source={{ uri: item.profilePhoto }}
+//       style={{
+//         width: 100,
+//         height: 100,
+//         borderRadius: 20,
+//       }}
+//     />
+//     <Text style={{ fontWeight: 700, paddingTop: 5 }}>{item.name}</Text>
+//     <Text style={{ color: "grey" }}>{item.job}</Text>
+//   </View>
+// </TouchableHighlight>;

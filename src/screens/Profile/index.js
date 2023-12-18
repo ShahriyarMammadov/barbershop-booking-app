@@ -69,7 +69,7 @@ export default function ProfileScreen(props) {
     },
     {
       id: 4,
-      name: "Security ",
+      name: "Security",
       iconURL: require("../../../assets/icons/security.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },

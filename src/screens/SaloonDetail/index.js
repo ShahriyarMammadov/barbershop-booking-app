@@ -478,3 +478,33 @@ export default function SaloonDetail(props) {
         tappableDots={!!slider1Ref.current}
       /> */
 }
+
+{
+  /* <Carousel
+ref={slider1Ref}
+data={item.photosArray}
+renderItem={renderImage}
+sliderWidth={viewportWidth}
+itemWidth={viewportWidth}
+inactiveSlideScale={1}
+inactiveSlideOpacity={1}
+firstItem={0}
+loop={false}
+autoplay={false}
+autoplayDelay={500}
+autoplayInterval={3000}
+onSnapToItem={(index) => setActiveSlide(0)}
+/>
+<Pagination
+dotsLength={item.photosArray.length}
+activeDotIndex={activeSlide}
+containerStyle={styles.paginationContainer}
+dotColor="rgba(255, 255, 255, 0.92)"
+dotStyle={styles.paginationDot}
+inactiveDotColor="white"
+inactiveDotOpacity={0.4}
+inactiveDotScale={0.6}
+carouselRef={slider1Ref.current}
+tappableDots={!!slider1Ref.current}
+/> */
+}
