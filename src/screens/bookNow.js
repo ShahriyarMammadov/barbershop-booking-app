@@ -426,7 +426,8 @@ export default function BookNowScreen(props) {
 
       {/* MODAL */}
       <Modal
-        animationType="slide"
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
         swipeDirection="down"
         onSwipeComplete={closeModal}
         transparent={false}
@@ -434,11 +435,52 @@ export default function BookNowScreen(props) {
         onRequestClose={closeModal}
       >
         {success ? (
-          <View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              paddingHorizontal: 10,
+            }}
+          >
             <Image
               source={require("../../assets/icons/success.png")}
-              style={{ width: 100, height: 100 }}
+              style={{ width: 200, height: 200 }}
             />
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: 700,
+                fontSize: 30,
+                color: "#FB9400",
+                paddingVertical: 20,
+              }}
+            >
+              Uğurla Rezerv Edildi
+            </Text>
+            <Text style={{ textAlign: "center", color: "grey", fontSize: 16 }}>
+              Xahiş olunur rezerv etdiyiniz tarixdə rezerv olunan məkandə
+              olasınız.
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Detail", item);
+              }}
+              style={{ paddingVertical: 20 }}
+            >
+              <Text
+                style={{
+                  backgroundColor: "#FB9400",
+                  paddingVertical: 10,
+                  paddingHorizontal: 30,
+                  fontSize: 18,
+                  fontWeight: 700,
+                  marginVertical: 30,
+                }}
+              >
+                Bağla
+              </Text>
+            </TouchableOpacity>
           </View>
         ) : (
           <TouchableWithoutFeedback>
