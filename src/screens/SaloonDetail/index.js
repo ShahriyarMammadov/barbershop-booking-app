@@ -426,7 +426,7 @@ export default function SaloonDetail(props) {
       <FlatList
         data={categories}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => index}
         renderItem={renderCategoryItem}
         horizontal
       />

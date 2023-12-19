@@ -36,10 +36,10 @@ const GalleryTab = ({ item }) => {
     <View style={styles.container}>
       <FlatList
         showsVerticalScrollIndicator={false}
-        numColumns={2}
+        numColumns={3}
         data={item}
         renderItem={galleryRender}
-        keyExtractor={(_, index) => index.toString()}
+        keyExtractor={(item, index) => index}
       />
       <Modal
         animationType="slide"
@@ -54,7 +54,7 @@ const GalleryTab = ({ item }) => {
             <Image source={selectedImage} style={styles.modalImage} />
             <TouchableOpacity onPress={closeModal}>
               <View style={styles.closeButton}>
-                <Text style={styles.closeButtonText}>Close</Text>
+                <Text style={styles.closeButtonText}>Bağla</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   thumbnail: {
-    width: 150,
-    height: 150,
+    width: 110,
+    height: 110,
   },
   modalContainer: {
     flex: 1,

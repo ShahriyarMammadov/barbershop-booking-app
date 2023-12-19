@@ -16,6 +16,8 @@ import ExploreScreen from "../screens/explore";
 import PrivacyPolicyScreen from "../screens/privacyPolicy";
 import InviteFriendsScreen from "../screens/inviteFriends";
 import SecurityScreen from "../screens/security";
+import LoginWithEmail from "../screens/loginWithEmail";
+import FillYourProfile from "../screens/fillYourProfile";
 
 // const MyModule = NativeModules.MyModule;
 
@@ -23,7 +25,7 @@ import SecurityScreen from "../screens/security";
 
 const Stack = createStackNavigator();
 
-isLoggedIn = false;
+isLoggedIn = true;
 
 function WelcomeNavigator() {
   return (
@@ -34,7 +36,9 @@ function WelcomeNavigator() {
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="loginEmail" component={LoginWithEmail} />
       <Stack.Screen name="signup" component={SignUpScreen} />
+      <Stack.Screen name="Fill Your Profile" component={FillYourProfile} />
     </Stack.Navigator>
   );
 }

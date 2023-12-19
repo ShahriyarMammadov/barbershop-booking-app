@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Image,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 
 export default function SignUpScreen(props) {
@@ -36,7 +30,10 @@ export default function SignUpScreen(props) {
             flexDirection: "row",
             alignItems: "center",
             padding: 10,
+            paddingHorizontal: 20,
             marginBottom: 20,
+            backgroundColor: "#FAFAFA",
+            borderRadius: 10,
           }}
         >
           <Image
@@ -66,6 +63,9 @@ export default function SignUpScreen(props) {
             flexDirection: "row",
             alignItems: "center",
             padding: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#FAFAFA",
+            borderRadius: 10,
           }}
         >
           <Image
@@ -97,6 +97,9 @@ export default function SignUpScreen(props) {
           paddingVertical: 20,
           borderRadius: 30,
           marginTop: 50,
+        }}
+        onPress={() => {
+          navigation.navigate("Fill Your Profile");
         }}
       >
         <Text
@@ -131,6 +134,7 @@ export default function SignUpScreen(props) {
             borderStyle: "solid",
             borderColor: "rgba(128, 128, 128, 0.2)",
             borderRadius: 10,
+            backgroundColor: "#FAFAFA",
           }}
         >
           <Image
@@ -146,6 +150,7 @@ export default function SignUpScreen(props) {
             borderStyle: "solid",
             borderColor: "rgba(128, 128, 128, 0.2)",
             borderRadius: 10,
+            backgroundColor: "#FAFAFA",
           }}
         >
           <Image

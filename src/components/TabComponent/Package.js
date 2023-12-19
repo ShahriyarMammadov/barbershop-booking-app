@@ -15,12 +15,8 @@ export default function PackageTab({ item }) {
               marginVertical: 15,
             }}
           >
-            <Text key={i} style={{ fontWeight: 700 }}>
-              {e?.name}
-            </Text>
-            <Text key={i} style={{ color: "grey" }}>
-              {e?.price} ₼
-            </Text>
+            <Text style={{ fontWeight: 700 }}>{e?.name}</Text>
+            <Text style={{ color: "grey" }}>{e?.price} ₼</Text>
           </View>
         );
       })}

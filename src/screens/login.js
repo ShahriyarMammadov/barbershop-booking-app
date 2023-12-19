@@ -51,6 +51,7 @@ export default function LoginScreen(props) {
             borderWidth: 1,
             borderStyle: "solid",
             borderColor: "rgba(0,0,0,0.1)",
+            backgroundColor: "#FAFAFA",
           }}
         >
           <Image
@@ -74,6 +75,7 @@ export default function LoginScreen(props) {
             borderStyle: "solid",
             borderColor: "rgba(0,0,0,0.1)",
             marginTop: 15,
+            backgroundColor: "#FAFAFA",
           }}
         >
           <Image
@@ -103,6 +105,9 @@ export default function LoginScreen(props) {
           textAlign: "center",
           paddingVertical: 20,
           borderRadius: 20,
+        }}
+        onPress={() => {
+          navigation.navigate("loginEmail");
         }}
       >
         <Text

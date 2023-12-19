@@ -10,6 +10,7 @@ import {
   Dimensions,
   ScrollView,
   Pressable,
+  TextInput,
 } from "react-native";
 import SaloonCardComponent from "../../components/SallonCard";
 import { dataCategories } from "../../data/dataArrays";
@@ -286,7 +287,6 @@ export default function HomeScreen(props) {
         />
       }
     >
-      {/* Categories */}
       <Text
         style={{
           fontWeight: 700,
@@ -302,6 +302,48 @@ export default function HomeScreen(props) {
         />
       </Text>
 
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 10,
+          paddingHorizontal: 20,
+          marginBottom: 20,
+          backgroundColor: "#FAFAFA",
+          borderRadius: 10,
+        }}
+      >
+        <Image
+          source={require("../../../assets/icons/search.png")}
+          style={{
+            width: 20,
+            height: 20,
+            marginRight: 10,
+          }}
+        />
+        <TextInput
+          style={{
+            flex: 1,
+            height: 40,
+            paddingLeft: 5,
+          }}
+          placeholder="Axtarış"
+          onChangeText={(searchString) => {
+            console.log(searchString);
+          }}
+        />
+        {/* <Image
+          source={require("../../../assets/icons/search.png")}
+          style={{
+            width: 20,
+            height: 20,
+            marginRight: 5,
+            marginLeft: 5,
+          }}
+        /> */}
+      </View>
+
+      {/* Categories */}
       <View>
         <FlatList
           showsHorizontalScrollIndicator={false}
