@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 
 const WelcomeScreen = (props) => {
@@ -25,39 +26,53 @@ const WelcomeScreen = (props) => {
       style={styles.backgroundImage}
     >
       <View style={styles.overlay}>
-        <Text style={styles.text}>
-          <Text style={styles.greenText}>Qaychi.az</Text>
-          {"   "}
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
+          <Text style={{ color: "#FB9400", fontSize: 65, fontWeight: 700 }}>
+            Qaychi.az
+          </Text>
           <Image
             source={require("../../assets/icons/helloColored.png")}
-            style={{ width: 50, height: 50 }}
-          />{" "}
-          {"\n"}
-          Tətbiqinə xoş Gəlmişsiniz.
+            style={{ width: 60, height: 60 }}
+          />
+        </View>
+
+        <Text
+          style={{
+            fontSize: 30,
+            fontWeight: 700,
+            paddingVertical: 20,
+            marginBottom: 40,
+          }}
+        >
+          Tətbiqinə Xoş Gəlmişsiniz.
         </Text>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
+
+        <TouchableHighlight
+          underlayColor={"#D0D4CA"}
+          style={{
+            alignItems: "center",
+            backgroundColor: "#FB9400",
+            borderRadius: 30,
+            marginBottom: 40,
+            paddingVertical: 15,
+          }}
           onPress={() => {
             navigation.navigate("Login");
           }}
         >
           <Text
             style={{
-              backgroundColor: "#FB9400",
-              borderRadius: 30,
-              paddingHorizontal: 30,
-              paddingVertical: 15,
               fontSize: 20,
               color: "white",
-              marginBottom: 40,
             }}
           >
             Indi Başla
           </Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
+
         <Text
           style={{
-            paddingBottom: 20,
+            paddingBottom: 35,
             fontSize: 16,
             color: "#D0D4CA",
           }}
@@ -79,23 +94,8 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
     paddingHorizontal: 10,
-  },
-  text: {
-    paddingVertical: 40,
-    paddingBottom: 80,
-    fontSize: 30,
-    fontWeight: "700",
-    color: "white",
-  },
-  greenText: {
-    color: "#FB9400",
-    fontSize: 35,
-  },
-  icon: {
-    width: 50,
-    height: 50,
   },
 });
 

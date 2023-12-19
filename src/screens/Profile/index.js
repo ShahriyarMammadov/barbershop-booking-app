@@ -103,47 +103,6 @@ export default function ProfileScreen(props) {
     return navigation.navigate(routeName);
   };
 
-  const renderSettingsItem = ({ item }) => (
-    <TouchableOpacity
-      style={{
-        marginVertical: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingVertical: 5,
-      }}
-      onPress={() => {
-        categoryChange(item.name);
-      }}
-    >
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
-        <Image
-          source={item.iconURL}
-          style={styles.iconImage}
-          onPress={pickImage}
-        />
-        <Text
-          style={
-            item.name === "Logout"
-              ? { fontWeight: 700, fontSize: 16, color: "red" }
-              : { fontWeight: 700, fontSize: 16 }
-          }
-        >
-          {item?.name}
-        </Text>
-      </View>
-      {!item?.value ? (
-        <Image source={item?.rightIcon} style={{ width: 15, height: 15 }} />
-      ) : (
-        <Text
-          style={{ fontSize: 16, fontWeight: 700, textTransform: "uppercase" }}
-        >
-          {item?.value}
-        </Text>
-      )}
-    </TouchableOpacity>
-  );
-
   // CHANGE PROFILE PHOTO
   const [changeImage, setChangeImage] = useState(userData.profileImageURL);
 
@@ -196,13 +155,58 @@ export default function ProfileScreen(props) {
       </View>
 
       <View style={{ marginVertical: 20, paddingHorizontal: 15 }}>
-        <FlatList
-          vertical
-          showsVerticalScrollIndicator={false}
-          data={settings}
-          renderItem={renderSettingsItem}
-          keyExtractor={(item) => `${item.id}`}
-        />
+        {settings?.map((item, i) => {
+          return (
+            <TouchableOpacity
+              key={i}
+              style={{
+                marginVertical: 10,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingVertical: 5,
+              }}
+              onPress={() => {
+                categoryChange(item.name);
+              }}
+            >
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 15 }}
+              >
+                <Image
+                  source={item.iconURL}
+                  style={styles.iconImage}
+                  onPress={pickImage}
+                />
+                <Text
+                  style={
+                    item.name === "Logout"
+                      ? { fontWeight: 700, fontSize: 16, color: "red" }
+                      : { fontWeight: 700, fontSize: 16 }
+                  }
+                >
+                  {item?.name}
+                </Text>
+              </View>
+              {!item?.value ? (
+                <Image
+                  source={item?.rightIcon}
+                  style={{ width: 15, height: 15 }}
+                />
+              ) : (
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item?.value}
+                </Text>
+              )}
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </ScrollView>
   );

@@ -302,26 +302,27 @@ export default function HomeScreen(props) {
         />
       </Text>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <View>
         <FlatList
+          showsHorizontalScrollIndicator={false}
+          horizontal
           data={categories}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderCategoryItem}
-          horizontal
         />
-      </ScrollView>
+      </View>
 
       <Text style={{ fontWeight: 700, fontSize: 18 }}>{selectedCategory}</Text>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <View>
         <FlatList
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           data={data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderRecommendedItem}
           horizontal
         />
-      </ScrollView>
+      </View>
 
       {/* HR */}
       <View
@@ -361,14 +362,15 @@ export default function HomeScreen(props) {
           </Text>
         </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View>
           <FlatList
+            showsHorizontalScrollIndicator={false}
             data={categories}
             keyExtractor={(item) => item.id.toString()}
             renderItem={renderNearbyYourLocation}
             horizontal
           />
-        </ScrollView>
+        </View>
 
         {/* Saloon & BrberShop*/}
         <SaloonCardComponent navigation={navigation} />
@@ -400,14 +402,15 @@ export default function HomeScreen(props) {
           </Text>
         </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View>
           <FlatList
+            showsHorizontalScrollIndicator={false}
             data={categories}
             keyExtractor={(item) => item.id.toString()}
             renderItem={renderNearbyYourLocation}
             horizontal
           />
-        </ScrollView>
+        </View>
 
         {/* Saloon & BrberShop*/}
         <SaloonCardComponent navigation={navigation} />

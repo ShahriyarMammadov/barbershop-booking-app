@@ -420,7 +420,7 @@ export default function SaloonDetail(props) {
         showsHorizontalScrollIndicator={false}
         data={item?.specialist}
         renderItem={renderSpecialist}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index}
       />
 
       <FlatList

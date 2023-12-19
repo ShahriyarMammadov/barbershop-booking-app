@@ -196,72 +196,11 @@ export default function BookNowScreen(props) {
 
   console.log(selectedService);
 
-  const renderSpecialPrice = ({ item }) => {
-    const isSelectedServices = selectedService.includes(item?.name);
-
-    return (
-      <TouchableOpacity
-        key={item?.name.toString()}
-        style={{
-          flexDirection: "row",
-          padding: isSelectedServices ? 10 : 0,
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginVertical: 15,
-          borderStyle: "solid",
-          borderColor: isSelectedServices ? "#FB9400" : "transparent",
-          borderWidth: 1,
-          borderRadius: 15,
-        }}
-        onPress={() => {
-          if (isSelectedServices) {
-            setSelectedService(selectedService.filter((e) => e !== item?.name));
-          } else {
-            setSelectedService([...selectedService, item?.name]);
-          }
-        }}
-      >
-        <Text style={{ fontWeight: 700 }}>{item?.name}</Text>
-        <Text style={{ color: "grey" }}>{item?.price} ₼</Text>
-      </TouchableOpacity>
-    );
-  };
+  // const renderSpecialPrice = ({ item }) => {};
 
   // SERVİCES
   const [sliceServices, setSliceServices] = useState(10);
 
-  const renderServices = ({ item }) => {
-    const isSelectedServices = selectedService.includes(item?.service);
-
-    return (
-      <TouchableOpacity
-        key={item?.service?.toString()}
-        style={{
-          flexDirection: "row",
-          padding: isSelectedServices ? 10 : 0,
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginVertical: 15,
-          borderStyle: "solid",
-          borderColor: isSelectedServices ? "#FB9400" : "transparent",
-          borderWidth: 1,
-          borderRadius: 15,
-        }}
-        onPress={() => {
-          if (isSelectedServices) {
-            setSelectedService(
-              selectedService.filter((e) => e !== item?.service)
-            );
-          } else {
-            setSelectedService([...selectedService, item?.service]);
-          }
-        }}
-      >
-        <Text style={{ fontWeight: 700 }}>{item?.service}</Text>
-        <Text style={{ color: "grey" }}>{item?.price} ₼</Text>
-      </TouchableOpacity>
-    );
-  };
 
   // MODAL
   const [modalVisible, setModalVisible] = useState(false);
@@ -339,13 +278,38 @@ export default function BookNowScreen(props) {
         Xüsusi Təkliflər
       </Text>
 
-      <FlatList
-        vertical
-        showsVerticalScrollIndicator={false}
-        data={item?.package}
-        renderItem={renderSpecialPrice}
-        keyExtractor={(item, index) => index}
-      />
+      {item?.package?.map((item, i) => {
+        const isSelectedServices = selectedService.includes(item?.name);
+
+        return (
+          <TouchableOpacity
+            key={i}
+            style={{
+              flexDirection: "row",
+              padding: isSelectedServices ? 10 : 0,
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginVertical: 15,
+              borderStyle: "solid",
+              borderColor: isSelectedServices ? "#FB9400" : "transparent",
+              borderWidth: 1,
+              borderRadius: 15,
+            }}
+            onPress={() => {
+              if (isSelectedServices) {
+                setSelectedService(
+                  selectedService.filter((e) => e !== item?.name)
+                );
+              } else {
+                setSelectedService([...selectedService, item?.name]);
+              }
+            }}
+          >
+            <Text style={{ fontWeight: 700 }}>{item?.name}</Text>
+            <Text style={{ color: "grey" }}>{item?.price} ₼</Text>
+          </TouchableOpacity>
+        );
+      })}
 
       <Text
         style={{
@@ -359,13 +323,38 @@ export default function BookNowScreen(props) {
         Digər Təkliflər
       </Text>
 
-      <FlatList
-        vertical
-        showsVerticalScrollIndicator={false}
-        data={item?.services?.slice(0, sliceServices)}
-        renderItem={renderServices}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      {item?.services?.slice(0, sliceServices)?.map((item, i) => {
+        const isSelectedServices = selectedService.includes(item?.service);
+
+        return (
+          <TouchableOpacity
+            key={i}
+            style={{
+              flexDirection: "row",
+              padding: isSelectedServices ? 10 : 0,
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginVertical: 15,
+              borderStyle: "solid",
+              borderColor: isSelectedServices ? "#FB9400" : "transparent",
+              borderWidth: 1,
+              borderRadius: 15,
+            }}
+            onPress={() => {
+              if (isSelectedServices) {
+                setSelectedService(
+                  selectedService.filter((e) => e !== item?.service)
+                );
+              } else {
+                setSelectedService([...selectedService, item?.service]);
+              }
+            }}
+          >
+            <Text style={{ fontWeight: 700 }}>{item?.service}</Text>
+            <Text style={{ color: "grey" }}>{item?.price} ₼</Text>
+          </TouchableOpacity>
+        );
+      })}
 
       {item?.services.length > sliceServices ? (
         <TouchableOpacity

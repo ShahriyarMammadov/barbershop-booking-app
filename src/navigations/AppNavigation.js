@@ -23,7 +23,7 @@ import SecurityScreen from "../screens/security";
 
 const Stack = createStackNavigator();
 
-isLoggedIn = true;
+isLoggedIn = false;
 
 function WelcomeNavigator() {
   return (
