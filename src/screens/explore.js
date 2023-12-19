@@ -12,7 +12,12 @@ import * as Location from "expo-location";
 
 export default function ExploreScreen(props) {
   const navigation = props;
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState({
+    coords: {
+      latitude: 40.4144301,
+      longitude: 50.11,
+    },
+  });
   // const [refreshing, setRefreshing] = useState(false);
 
   const locations = [
@@ -79,14 +84,14 @@ export default function ExploreScreen(props) {
 
   return (
     <View
-      // refreshControl={
-      //   <RefreshControl
-      //     refreshing={refreshing}
-      //     onRefresh={onRefresh}
-      //     tintColor="#3F51B5"
-      //     title="Refreshing..."
-      //   />
-      // }
+    // refreshControl={
+    //   <RefreshControl
+    //     refreshing={refreshing}
+    //     onRefresh={onRefresh}
+    //     tintColor="#3F51B5"
+    //     title="Refreshing..."
+    //   />
+    // }
     >
       <View>
         {location ? (

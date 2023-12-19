@@ -98,7 +98,7 @@ export default function InviteFriendsScreen() {
           />
         }
         data={contacts}
-        keyExtractor={(item) => item.recordID}
+        keyExtractor={(item, index) => index}
         renderItem={renderItem}
       />
     </View>
