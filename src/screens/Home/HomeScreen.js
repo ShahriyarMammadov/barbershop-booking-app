@@ -14,6 +14,8 @@ import {
 } from "react-native";
 import SaloonCardComponent from "../../components/SallonCard";
 import { dataCategories } from "../../data/dataArrays";
+import LastVisitedPlaces from "../../components/lastVisitedPlaces";
+import TodaysSpecialCarousel from "../../components/specialCarousel";
 
 export default function HomeScreen(props) {
   const width = Dimensions.get("window").width;
@@ -26,7 +28,7 @@ export default function HomeScreen(props) {
       headerLeft: () => (
         <Image
           source={require("../../../assets/icon.png")}
-          style={{ width: 50, height: 50 }}
+          style={{ width: 40, height: 40, marginLeft: 10 }}
         />
       ),
       headerRight: () => (
@@ -302,6 +304,7 @@ export default function HomeScreen(props) {
         />
       </Text>
 
+      {/* SEARCH */}
       <View
         style={{
           flexDirection: "row",
@@ -342,6 +345,8 @@ export default function HomeScreen(props) {
           }}
         /> */}
       </View>
+
+      <TodaysSpecialCarousel />
 
       {/* Categories */}
       <View>
@@ -457,6 +462,8 @@ export default function HomeScreen(props) {
         {/* Saloon & BrberShop*/}
         <SaloonCardComponent navigation={navigation} />
       </View>
+
+      <LastVisitedPlaces />
     </ScrollView>
   );
 }

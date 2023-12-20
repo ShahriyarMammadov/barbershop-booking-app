@@ -2153,4 +2153,45 @@ export const userData = {
   location: "Azerbaijan, Baku",
   phoneNumber: 994503134473,
   gender: "Male",
+  lastVisitedPlaces: [
+    {
+      "12.02.2023": [
+        {
+          name: "Ramil Barbershop",
+          photo_url:
+            "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
+          yourStarCount: 5,
+          yourComment: "Qeshey yeriydi, xosuma geldi",
+          location: "816 Village Drive",
+        },
+        {
+          name: "Isa Barbershop",
+          photo_url:
+            "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
+          yourStarCount: 4,
+          yourComment: "Ela yeriydi, her sey yaxshiydi",
+          location: "816 Village Drive",
+        },
+      ],
+    },
+    {
+      "08.02.2023": [
+        {
+          name: "Shahriyar Barbershop",
+          photo_url:
+            "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
+          yourStarCount: 5,
+          yourComment: "Qeshey yeriydi, xosuma geldi",
+          location: "816 Village Drive",
+        },
+        {
+          name: "Əlinin Masaj Salonu",
+          photo_url:
+            "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
+          yourStarCount: 4,
+          location: "816 Village Drive",
+        },
+      ],
+    },
+  ],
 };
