@@ -10,7 +10,7 @@ export default function MyBookingScreen(props) {
       headerLeft: () => (
         <Image
           source={require("../../assets/icon.png")}
-          style={{ width: 50, height: 50 }}
+          style={{ width: 40, height: 40, marginLeft: 10 }}
         />
       ),
       headerRight: () => (

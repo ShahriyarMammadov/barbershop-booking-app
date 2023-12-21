@@ -1,9 +1,7 @@
 import React from "react";
 import {
-  Image,
   ImageBackground,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { userData } from "../data/dataArrays";

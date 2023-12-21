@@ -10,8 +10,12 @@ import {
   View,
   Linking,
   Share,
+  StyleSheet,
 } from "react-native";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+import Carousel, {
+  Pagination,
+  ParallaxImage,
+} from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
 import AboutTab from "../../components/TabComponent/AboutTab";
 import Servicestab from "../../components/TabComponent/Services";
@@ -72,19 +76,21 @@ export default function SaloonDetail(props) {
     });
   }, []);
 
-  const renderImage = ({ item }) => (
-    <TouchableHighlight>
-      <View
-        style={{
-          justifyContent: "center",
-          width: viewportWidth,
-          height: 500,
-          backgroundColor: "grey",
-        }}
-      >
-        <Image source={{ uri: item }} style={{ width: "100%", height: 500 }} />
-      </View>
-    </TouchableHighlight>
+  const renderImage = ({ item }, parallaxProps) => (
+    <View
+      style={{
+        width: viewportWidth,
+        height: 500,
+      }}
+    >
+      <ParallaxImage
+        source={{ uri: item }}
+        containerStyle={styles.imageContainer}
+        style={styles.image}
+        parallaxFactor={0.4}
+        {...parallaxProps}
+      />
+    </View>
   );
 
   // SHARE
@@ -192,6 +198,7 @@ export default function SaloonDetail(props) {
         data={item.photosArray}
         renderItem={renderImage}
         sliderWidth={viewportWidth}
+        sliderHeight={300}
         itemWidth={viewportWidth}
         inactiveSlideScale={1}
         inactiveSlideOpacity={1}
@@ -200,6 +207,7 @@ export default function SaloonDetail(props) {
         autoplay={true}
         autoplayDelay={500}
         autoplayInterval={3000}
+        hasParallaxImages={true}
         // onSnapToItem={(index) => setActiveSlide(index)}
       />
       <View style={{ paddingHorizontal: 10 }}>
@@ -448,6 +456,22 @@ export default function SaloonDetail(props) {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  imageContainer: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  image: {
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: "cover",
+    width: "100%",
+    height: "100%",
+  },
+});
 
 // refreshControl={
 //   <RefreshControl
