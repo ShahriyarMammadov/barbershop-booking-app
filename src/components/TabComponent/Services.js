@@ -56,7 +56,7 @@ export default function Servicestab({ item, navigation }) {
                       navigation.navigate("BookNow", item);
                     }}
                   >
-                    Book Now
+                    Rezerv Et
                   </Text>
                 </TouchableOpacity>
               </View>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 
 export default function CommentTab({ item, starCount }) {
+  const [comment, setComment] = useState("");
+
   const commentsRender = ({ item }) => {
     return (
       <View style={{ paddingVertical: 20 }}>
@@ -63,6 +66,20 @@ export default function CommentTab({ item, starCount }) {
     );
   };
 
+  const [rating, setRating] = useState(0);
+
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <TouchableOpacity key={i} onPress={() => setRating(i)}>
+          <Text style={{ fontSize: 25 }}>{i <= rating ? "★" : "☆"}</Text>
+        </TouchableOpacity>
+      );
+    }
+    return stars;
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <View
@@ -80,6 +97,58 @@ export default function CommentTab({ item, starCount }) {
         <Text>{starCount}</Text>
         <Text>({item?.length} reviews)</Text>
       </View>
+
+      <Text style={{ fontSize: 18, fontWeight: 700 }}>Rəy Bildirin</Text>
+
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 10,
+          paddingHorizontal: 20,
+          marginBottom: 10,
+          marginTop: 20,
+          backgroundColor: "#FAFAFA",
+          borderRadius: 10,
+        }}
+      >
+        <Image
+          source={require("../../../assets/icons/comment.png")}
+          style={{
+            width: 30,
+            height: 30,
+            marginRight: 10,
+          }}
+        />
+        <TextInput
+          style={{
+            flex: 1,
+            height: 40,
+            paddingLeft: 5,
+          }}
+          placeholder="Rəyiniz"
+          onChangeText={(value) => {
+            setComment(value);
+          }}
+        />
+      </View>
+
+      <View style={{ marginBottom: 15 }}>
+        <View style={{ flexDirection: "row" }}>{renderStars()}</View>
+        <Text>Rating: {rating}</Text>
+      </View>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#FB9400",
+          padding: 10,
+          alignSelf: "baseline",
+          marginBottom: 15,
+          borderRadius: 10,
+        }}
+      >
+        <Text style={{ fontWeight: 700, fontSize: 16 }}>Əlavə Et</Text>
+      </TouchableOpacity>
 
       <FlatList
         data={item}

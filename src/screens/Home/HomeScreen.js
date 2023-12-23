@@ -213,7 +213,7 @@ export default function HomeScreen(props) {
             navigation.navigate("BookNow", item);
           }}
         >
-          <Text style={{ color: "black", fontWeight: 700 }}>Book Now</Text>
+          <Text style={{ color: "black", fontWeight: 700 }}>Rezerv Et</Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>

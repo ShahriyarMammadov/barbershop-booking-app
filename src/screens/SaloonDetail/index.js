@@ -267,7 +267,7 @@ export default function SaloonDetail(props) {
                 navigation.navigate("BookNow", item);
               }}
             >
-              <Text style={{ fontSize: 16, fontWeight: 700 }}>Book Now</Text>
+              <Text style={{ fontSize: 16, fontWeight: 700 }}>Rezerv Et</Text>
             </TouchableOpacity>
           </View>
         </View>
