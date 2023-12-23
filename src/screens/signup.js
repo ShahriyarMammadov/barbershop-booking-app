@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
+// import axios from "axios";
 
 export default function SignUpScreen(props) {
   const { navigation } = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     navigation.setOptions({
@@ -19,6 +22,14 @@ export default function SignUpScreen(props) {
       title: "",
     });
   }, []);
+
+  // const SignUp = async () => {
+  //   try {
+  //     const data = await axios.post("", { email: email, password: password });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <View style={{ marginTop: 150, paddingHorizontal: 10 }}>
@@ -52,8 +63,8 @@ export default function SignUpScreen(props) {
             }}
             placeholder="Your Email"
             keyboardType="email-address"
-            onChangeText={(searchString) => {
-              console.log(searchString);
+            onChangeText={(value) => {
+              setPassword(value);
             }}
           />
         </View>
@@ -84,8 +95,8 @@ export default function SignUpScreen(props) {
             }}
             secureTextEntry
             placeholder="Password"
-            onChangeText={(searchString) => {
-              console.log(searchString);
+            onChangeText={(value) => {
+              setEmail(value);
             }}
           />
         </View>

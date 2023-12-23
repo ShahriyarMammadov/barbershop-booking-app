@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
+import axios from "axios";
 
 export default function LoginScreen(props) {
   const { navigation } = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     navigation.setOptions({
@@ -19,6 +22,18 @@ export default function LoginScreen(props) {
       headerTransparent: true,
     });
   }, []);
+
+  const login = async () => {
+    try {
+      const data = await axios.post("https://qaychi.az/api/Accounts/Login", {
+        email: email,
+        password: password,
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ScrollView style={{ paddingTop: 100, paddingHorizontal: 10 }}>

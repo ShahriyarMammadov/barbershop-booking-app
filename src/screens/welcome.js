@@ -42,6 +42,7 @@ const WelcomeScreen = (props) => {
             fontWeight: 700,
             paddingVertical: 20,
             marginBottom: 40,
+            color: "white",
           }}
         >
           Tətbiqinə Xoş Gəlmişsiniz.

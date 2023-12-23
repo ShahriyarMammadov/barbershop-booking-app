@@ -1,9 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
+import axios from "axios";
 
 export default function LoginWithEmail(props) {
   const { navigation } = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async () => {
+    try {
+      const data = await axios.post("https://qaychi.az/api/Accounts/Login", {
+        email: email,
+        password: password,
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -54,8 +69,8 @@ export default function LoginWithEmail(props) {
           }}
           placeholder="Your Email"
           keyboardType="email-address"
-          onChangeText={(searchString) => {
-            console.log(searchString);
+          onChangeText={(value) => {
+            setEmail(value);
           }}
         />
       </View>
@@ -87,8 +102,8 @@ export default function LoginWithEmail(props) {
           }}
           secureTextEntry
           placeholder="Password"
-          onChangeText={(searchString) => {
-            console.log(searchString);
+          onChangeText={(password) => {
+            setPassword(password);
           }}
         />
       </View>
@@ -99,6 +114,9 @@ export default function LoginWithEmail(props) {
           paddingVertical: 15,
           borderRadius: 25,
           marginTop: 20,
+        }}
+        onPress={() => {
+          login();
         }}
       >
         <Text style={{ textAlign: "center", fontWeight: 700, fontSize: 16 }}>
