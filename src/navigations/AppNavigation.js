@@ -25,7 +25,7 @@ import FillYourProfile from "../screens/fillYourProfile";
 
 const Stack = createStackNavigator();
 
-isLoggedIn = false;
+isLoggedIn = true;
 
 function WelcomeNavigator() {
   return (

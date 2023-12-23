@@ -75,7 +75,7 @@ export default function Footer() {
             color: currentRoute == "Explore" ? "#FB9400" : "black",
           }}
         >
-          Explore
+          Kəşf Et
         </Text>
       </TouchableOpacity>
 
@@ -95,7 +95,7 @@ export default function Footer() {
             color: currentRoute == "MyBooking" ? "#FB9400" : "black",
           }}
         >
-          My Booking
+          Booking
         </Text>
       </TouchableOpacity>
 
@@ -115,7 +115,7 @@ export default function Footer() {
             color: currentRoute == "Profile" ? "#FB9400" : "black",
           }}
         >
-          Profile
+          Profil
         </Text>
       </TouchableOpacity>
     </View>

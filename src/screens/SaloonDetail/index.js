@@ -69,7 +69,7 @@ export default function SaloonDetail(props) {
           style={{ width: 25, height: 25, marginRight: 30 }}
         />
       ),
-      title: item?.name,
+      title: "",
       // headerStatusBarOptions: {
       //   backgroundColor: "red",
       // },
@@ -408,7 +408,7 @@ export default function SaloonDetail(props) {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ fontWeight: 700, fontSize: 18 }}>Our Specialist</Text>
+        <Text style={{ fontWeight: 700, fontSize: 18 }}>Mütəxəssislərimiz</Text>
         <Text
           style={{
             color: "#FB9400",
@@ -419,7 +419,7 @@ export default function SaloonDetail(props) {
             navigation.navigate("Profile");
           }}
         >
-          See All
+          Hamısı
         </Text>
       </View>
 

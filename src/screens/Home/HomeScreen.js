@@ -21,7 +21,7 @@ export default function HomeScreen(props) {
   const width = Dimensions.get("window").width;
   const { navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Popular");
+  const [selectedCategory, setSelectedCategory] = useState("Tövsiyə Edilənlər");
 
   useEffect(() => {
     navigation.setOptions({
@@ -108,9 +108,9 @@ export default function HomeScreen(props) {
         padding: 5,
         borderRadius: 5,
       }}
-      onPress={() => {
-        categoryChange(item.name);
-      }}
+      // onPress={() => {
+      //   categoryChange(item.name);
+      // }}
     >
       <View style={{ alignItems: "center" }}>
         <View
@@ -155,7 +155,7 @@ export default function HomeScreen(props) {
         overflow: "hidden",
       }}
       onPress={() => {
-        categoryChange(item.name);
+        // categoryChange(item.name);
         navigation.navigate("Detail", item);
       }}
     >
@@ -164,7 +164,7 @@ export default function HomeScreen(props) {
           source={{ uri: item.photo_url }}
           style={{
             width: 353,
-            height: 170,
+            height: 230,
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
           }}
@@ -297,7 +297,7 @@ export default function HomeScreen(props) {
           paddingBottom: 15,
         }}
       >
-        Morning, Shahriyar{" "}
+        Salam, Shahriyar{" "}
         <Image
           source={require("../../../assets/icons/hello.png")}
           style={{ width: 40, height: 40 }}
@@ -349,7 +349,7 @@ export default function HomeScreen(props) {
       <TodaysSpecialCarousel />
 
       {/* Categories */}
-      <View>
+      <View style={{ paddingTop: 15 }}>
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -392,7 +392,7 @@ export default function HomeScreen(props) {
           }}
         >
           <Text style={{ fontWeight: 700, fontSize: 18 }}>
-            Nearby Your Location
+            Sizə Yaxın Məkanlar
           </Text>
 
           <Text
@@ -405,7 +405,7 @@ export default function HomeScreen(props) {
               navigation.navigate("Search");
             }}
           >
-            See All
+            Hamısına bax
           </Text>
         </View>
 
@@ -433,7 +433,7 @@ export default function HomeScreen(props) {
             paddingBottom: 15,
           }}
         >
-          <Text style={{ fontWeight: 700, fontSize: 18 }}>Most Popular</Text>
+          <Text style={{ fontWeight: 700, fontSize: 18 }}>Məşhur Məkanlar</Text>
 
           <Text
             style={{
@@ -445,7 +445,7 @@ export default function HomeScreen(props) {
               navigation.navigate("Search");
             }}
           >
-            See All
+            Hamısına bax
           </Text>
         </View>
 
