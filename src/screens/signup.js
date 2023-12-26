@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Alert,
+  Button,
+} from "react-native";
 import BackButton from "../components/BackButton/BackButton";
+import * as Facebook from "expo-facebook";
 // import axios from "axios";
 
 export default function SignUpScreen(props) {
@@ -23,13 +32,28 @@ export default function SignUpScreen(props) {
     });
   }, []);
 
-  // const SignUp = async () => {
-  //   try {
-  //     const data = await axios.post("", { email: email, password: password });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  async function logIn() {
+    try {
+      await Facebook.initializeAsync({
+        appId: "1413939492524506",
+      });
+      const { type, token, expirationDate, permissions, declinedPermissions } =
+        await Facebook.logInWithReadPermissionsAsync({
+          permissions: ["public_profile"],
+        });
+      if (type === "success") {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`
+        );
+        console.log("Logged in!", `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      console.log(`Facebook Login Error: ${message}`);
+    }
+  }
 
   return (
     <View style={{ marginTop: 150, paddingHorizontal: 10 }}>
@@ -147,6 +171,7 @@ export default function SignUpScreen(props) {
             borderRadius: 10,
             backgroundColor: "#FAFAFA",
           }}
+          onPress={logIn}
         >
           <Image
             source={require("../../assets/icons/facebook.png")}

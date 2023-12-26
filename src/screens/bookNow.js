@@ -93,13 +93,17 @@ export default function BookNowScreen(props) {
   };
 
   // ACTIVE CLASS ADD
-  const [selectedHours, setSelectedHours] = useState(1);
+  const [selectedHours, setSelectedHours] = useState(null);
 
-  const activeClassAdd = (date) => {
-    setSelectedHours(date);
+  const activeClassAdd = (hour) => {
+    setSelectedHours((prevSelectedHour) =>
+      prevSelectedHour === hour ? null : hour
+    );
   };
 
   const renderOpenHours = ({ item }) => {
+    const isSelectedHour = selectedHours === item;
+
     return (
       <TouchableOpacity
         style={{
@@ -110,16 +114,14 @@ export default function BookNowScreen(props) {
           borderColor: "#FB9400",
           marginHorizontal: 10,
           borderRadius: 20,
-          backgroundColor: item === selectedHours ? "#FB9400" : "transparent",
+          backgroundColor: isSelectedHour ? "#FB9400" : "transparent",
         }}
         onPress={() => {
           activeClassAdd(item);
         }}
       >
         <Text
-          style={
-            item === selectedHours ? { color: "white" } : { color: "#FB9400" }
-          }
+          style={isSelectedHour ? { color: "white" } : { color: "#FB9400" }}
         >
           {item}
         </Text>
@@ -145,7 +147,9 @@ export default function BookNowScreen(props) {
           marginBottom: 10,
         }}
         onPress={() => {
-          setSelectedSpecialist(item?.name);
+          setSelectedSpecialist((prevSelectedSpecialist) =>
+            prevSelectedSpecialist === item?.name ? null : item?.name
+          );
         }}
       >
         <View style={{ alignItems: "center" }}>
@@ -200,7 +204,6 @@ export default function BookNowScreen(props) {
 
   // SERVİCES
   const [sliceServices, setSliceServices] = useState(10);
-
 
   // MODAL
   const [modalVisible, setModalVisible] = useState(false);

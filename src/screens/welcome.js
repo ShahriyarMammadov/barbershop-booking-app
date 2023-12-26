@@ -6,8 +6,6 @@ import {
   Image,
   StyleSheet,
   TouchableHighlight,
-  TouchableOpacity,
-  Dimensions,
 } from "react-native";
 
 const WelcomeScreen = (props) => {
