@@ -93,11 +93,11 @@ export default function BookNowScreen(props) {
   };
 
   // ACTIVE CLASS ADD
-  const [selectedHours, setSelectedHours] = useState(null);
+  const [selectedHours, setSelectedHours] = useState("");
 
   const activeClassAdd = (hour) => {
     setSelectedHours((prevSelectedHour) =>
-      prevSelectedHour === hour ? null : hour
+      prevSelectedHour === hour ? "" : hour
     );
   };
 
@@ -130,7 +130,7 @@ export default function BookNowScreen(props) {
   };
 
   // RENDER SPECIALIST
-  const [selectedSpecialist, setSelectedSpecialist] = useState(1);
+  const [selectedSpecialist, setSelectedSpecialist] = useState("");
 
   const renderSpecialist = ({ item }) => {
     return (
@@ -148,7 +148,7 @@ export default function BookNowScreen(props) {
         }}
         onPress={() => {
           setSelectedSpecialist((prevSelectedSpecialist) =>
-            prevSelectedSpecialist === item?.name ? null : item?.name
+            prevSelectedSpecialist === item?.name ? "" : item?.name
           );
         }}
       >
@@ -389,7 +389,12 @@ export default function BookNowScreen(props) {
           marginBottom: 15,
         }}
         onPress={() => {
-          if (selectedSpecialist.length === 0 || selectedService.length === 0) {
+          if (
+            selectedSpecialist.length === 0 ||
+            selectedService.length === 0 ||
+            selectedHours.length === 0 ||
+            selected.length === 0
+          ) {
             Alert.alert("Xəta", "Zəhmət olmasa Xanaları Düzgün seçin", [
               {
                 text: "OK",
@@ -475,7 +480,7 @@ export default function BookNowScreen(props) {
             </TouchableOpacity>
           </View>
         ) : (
-          <TouchableWithoutFeedback>
+          <ScrollView>
             <>
               <View
                 style={{
@@ -483,7 +488,7 @@ export default function BookNowScreen(props) {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: 15,
-                  paddingVertical: 80,
+                  paddingTop: 80,
                 }}
               >
                 <View>
@@ -526,6 +531,24 @@ export default function BookNowScreen(props) {
                 </View>
               </View>
 
+              <View style={{ paddingHorizontal: 10, paddingBottom: 20 }}>
+                <Text style={{ paddingVertical: 10, color: "grey" }}>
+                  Göstəriləcək Xidmətlər:{" "}
+                </Text>
+                {selectedService
+                  ? selectedService?.map((e, i) => {
+                      return (
+                        <Text
+                          key={i}
+                          style={{ paddingVertical: 10, fontWeight: 700 }}
+                        >
+                          {e}
+                        </Text>
+                      );
+                    })
+                  : "Xidmət Seçməmisiniz"}
+              </View>
+
               <View
                 style={{
                   padding: 15,
@@ -565,7 +588,7 @@ export default function BookNowScreen(props) {
                 </TouchableOpacity>
               </View>
             </>
-          </TouchableWithoutFeedback>
+          </ScrollView>
         )}
       </Modal>
     </ScrollView>
