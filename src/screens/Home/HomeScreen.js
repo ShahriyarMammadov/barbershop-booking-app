@@ -22,6 +22,9 @@ export default function HomeScreen(props) {
   const { navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Tövsiyə Edilənlər");
+  const [date, setDate] = useState("");
+  let currentDate = new Date().toString();
+  let currentHour = +currentDate.slice(16, 18);
 
   useEffect(() => {
     navigation.setOptions({
@@ -44,7 +47,18 @@ export default function HomeScreen(props) {
         </Pressable>
       ),
     });
+
+    if (6 < currentHour && currentHour < 12) {
+      setDate("Sabahın Xeyir");
+    } else if (12 < currentHour && currentHour < 17) {
+      setDate("Günortan Xeyir");
+    } else {
+      setDate("Axşamın Xeyir");
+    }
   }, []);
+
+  console.log(currentDate);
+  console.log(date);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -292,15 +306,19 @@ export default function HomeScreen(props) {
       <Text
         style={{
           fontWeight: 700,
-          fontSize: 35,
-          paddingTop: 15,
+          fontSize: 30,
+          paddingTop: 10,
           paddingBottom: 15,
+          fontStyle: "italic",
+          textShadowColor: "#FB9400",
+          textShadowOffset: { width: 1, height: 1 },
+          textShadowRadius: 5,
         }}
       >
-        Salam, Shahriyar{" "}
+        {date}, Shahriyar{" "}
         <Image
           source={require("../../../assets/icons/hello.png")}
-          style={{ width: 40, height: 40 }}
+          style={{ width: 25, height: 25 }}
         />
       </Text>
 
