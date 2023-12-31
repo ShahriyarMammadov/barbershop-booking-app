@@ -1,22 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 import axios from "axios";
+import JWT from "expo-jwt";
 
 export default function LoginWithEmail(props) {
-  const { navigation } = props;
+  const { navigation, updateLoginStatus } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const login = async () => {
     try {
-      const data = await axios.post("https://qaychi.az/api/Accounts/Login", {
+      setLoading(true);
+      var { data } = await axios.post("https://qaychi.az/api/Accounts/Login", {
         email: email,
         password: password,
       });
-      console.log(data);
+
+      const key = "HS256";
+      const token = data;
+
+      JWT.decode(token, key);
+      console.log(Boolean(data));
     } catch (error) {
-      console.log(error);
+      console.log("error:", error);
+      setLoading(false);
+      if (data) {
+        updateLoginStatus(true);
+        setLoading(false);
+      } else {
+        Alert.alert("Xəta", " sifre ve mail yanlisdir!");
+        setLoading(false);
+      }
     }
   };
 
@@ -111,17 +135,30 @@ export default function LoginWithEmail(props) {
       <TouchableOpacity
         style={{
           backgroundColor: "#FB9400",
-          paddingVertical: 15,
+          paddingVertical: 18,
           borderRadius: 25,
           marginTop: 20,
+          justifyContent: "center",
+          alignItems: "center",
         }}
         onPress={() => {
           login();
         }}
+        disabled={loading}
       >
-        <Text style={{ textAlign: "center", fontWeight: 700, fontSize: 16 }}>
-          Daxil Ol
-        </Text>
+        {loading ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: 700,
+              fontSize: 16,
+            }}
+          >
+            Daxil Ol
+          </Text>
+        )}
       </TouchableOpacity>
 
       <Text

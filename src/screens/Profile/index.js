@@ -17,7 +17,7 @@ import { getLocales } from "expo-localization";
 import * as ImagePicker from "expo-image-picker";
 
 export default function ProfileScreen(props) {
-  const { navigation } = props;
+  const { navigation, updateLoginStatus } = props;
   const width = Dimensions.get("window").width;
   const [refreshing, setRefreshing] = useState(false);
   const deviceLanguage = getLocales()[0].languageCode;
@@ -100,7 +100,11 @@ export default function ProfileScreen(props) {
   ];
 
   const categoryChange = (routeName) => {
-    return navigation.navigate(routeName);
+    if (routeName === "Logout") {
+      updateLoginStatus(false);
+    } else {
+      navigation.navigate(routeName);
+    }
   };
 
   // CHANGE PROFILE PHOTO

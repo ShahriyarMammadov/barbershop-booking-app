@@ -16,8 +16,11 @@ import SaloonCardComponent from "../../components/SallonCard";
 import { dataCategories } from "../../data/dataArrays";
 import LastVisitedPlaces from "../../components/lastVisitedPlaces";
 import TodaysSpecialCarousel from "../../components/specialCarousel";
+// import decodeJWT from "../../services/jwtDecode";
 
 export default function HomeScreen(props) {
+  // decodeJWT(token);
+
   const width = Dimensions.get("window").width;
   const { navigation } = props;
   const [refreshing, setRefreshing] = useState(false);

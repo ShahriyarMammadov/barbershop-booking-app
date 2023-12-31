@@ -97,7 +97,7 @@ export default function SaloonDetail(props) {
   const handleShare = async () => {
     try {
       const shareOptions = {
-        message: `Check out ${item.name} on our app! ${item.socialMediaURL[0]?.instagram}`,
+        message: `'${item.name}' sizinlə paylaşıram`,
       };
 
       const result = await Share.share(shareOptions);
