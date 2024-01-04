@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
   Alert,
-  Button,
   ScrollView,
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
@@ -59,7 +58,21 @@ export default function SignUpScreen(props) {
     }
   }
 
-  console.log(isChecked);
+  const handleSignUp = () => {
+    try {
+      if (email.length < 10 || password.length < 8) {
+        Alert.alert('Xəta', "Düzgün Mail Və Şifrə Daxil Edin!");
+      } else {
+        navigation.navigate("Fill Your Profile", {
+          checked: isChecked,
+          mail: email,
+          password: password,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ScrollView style={{ paddingHorizontal: 10 }}>
@@ -166,7 +179,7 @@ export default function SignUpScreen(props) {
           marginTop: 30,
         }}
         onPress={() => {
-          navigation.navigate("Fill Your Profile", { checked: isChecked });
+          handleSignUp();
         }}
       >
         <Text

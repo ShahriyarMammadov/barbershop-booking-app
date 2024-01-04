@@ -10,21 +10,22 @@ import {
   View,
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
-import ModalDropdown from "react-native-modal-dropdown";
 import * as ImagePicker from "expo-image-picker";
+import ModalDropdown from "react-native-modal-dropdown";
 
 export default function FillYourProfile(props) {
   const { navigation } = props;
-  const { checked } = props?.route?.params;
-  console.log("fill: ", checked);
+  const { checked, mail, password } = props?.route?.params;
+
+  console.log("fill: ", checked, mail, password);
   const width = Dimensions.get("window").width;
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [phone, setPhone] = useState();
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [gender, setGender] = useState("");
 
   useEffect(() => {
     navigation.setOptions({
@@ -79,7 +80,7 @@ export default function FillYourProfile(props) {
         <Text>Siz user kimi qeydiyyatdan kecirsiz!</Text>
       )}
 
-      <TextInput
+      {/* <TextInput
         style={{
           height: 40,
           backgroundColor: "rgba(128, 128, 128, 0.2)",
@@ -94,7 +95,7 @@ export default function FillYourProfile(props) {
         onChangeText={(searchString) => {
           setFullName(searchString);
         }}
-      />
+      /> */}
 
       <TextInput
         style={{
@@ -106,10 +107,10 @@ export default function FillYourProfile(props) {
           fontWeight: "bold",
           marginVertical: 25,
         }}
-        placeholder="Username"
-        value={userName}
-        onChangeText={(searchString) => {
-          setUserName(searchString);
+        placeholder="Adınız"
+        value={name}
+        onChangeText={(value) => {
+          setName(value);
         }}
       />
 
@@ -122,11 +123,11 @@ export default function FillYourProfile(props) {
           fontSize: 16,
           fontWeight: "bold",
         }}
-        placeholder="Your Email"
-        keyboardType="numeric"
-        value={birthDate}
-        onChangeText={(searchString) => {
-          setBirthDate(searchString);
+        placeholder="Soyadınız"
+        // keyboardType="numeric"
+        value={surname}
+        onChangeText={(value) => {
+          setSurname(value);
         }}
       />
 
@@ -140,11 +141,11 @@ export default function FillYourProfile(props) {
           fontWeight: "bold",
           marginTop: 25,
         }}
-        placeholder="Your Phone Number"
-        keyboardType="numeric"
-        value={phoneNumber}
-        onChangeText={(searchString) => {
-          setPhoneNumber(searchString);
+        placeholder="Ünvanınız"
+        // keyboardType="numeric"
+        value={address}
+        onChangeText={(value) => {
+          setAddress(value);
         }}
       />
 
@@ -158,11 +159,11 @@ export default function FillYourProfile(props) {
           fontWeight: "bold",
           marginVertical: 25,
         }}
-        placeholder="Your Email"
-        value={email}
-        keyboardType="email-address"
-        onChangeText={(searchString) => {
-          setEmail(searchString);
+        placeholder="Əlaqə Vasitəsi"
+        value={phone}
+        keyboardType="numeric"
+        onChangeText={(value) => {
+          setPhone(value);
         }}
       />
 
@@ -176,24 +177,35 @@ export default function FillYourProfile(props) {
           fontWeight: "bold",
           marginBottom: 25,
         }}
-        placeholder="Your Address"
-        value={address}
-        keyboardType="email-address"
-        onChangeText={(searchString) => {
-          setAddress(searchString);
+        placeholder="Təkrar Şifrə"
+        value={repeatPassword}
+        secureTextEntry
+        onChangeText={(value) => {
+          setRepeatPassword(value);
         }}
       />
 
       <ModalDropdown
-        options={["Male", "Female", "No Select"]}
-        onSelect={(value) => console.log(value)}
+        options={["Kişi", "Qadın", "Seçilməyib"]}
+        onSelect={(value) => setGender(value)}
         style={{
           width: width,
           paddingHorizontal: 10,
         }}
         textStyle={{ fontSize: 16, fontWeight: 700 }}
         dropdownTextStyle={{ fontSize: 16, fontWeight: 700 }}
-        defaultValue={"Male"}
+          // renderRow={(option, index, isSelected) => (
+          //   <Text style={{ fontSize: 16 }}>{option}</Text>
+          // )}
+          // renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => (
+          //   <View
+          //     key={rowID}
+          //     style={{ height: 1, backgroundColor: "lightgray" }}
+          //   />
+          // )}
+        keyboardShouldPersistTaps="always"
+        accessible={true}
+        defaultValue={"Seçilməyib"}
         dropdownStyle={{
           width: width - 80,
           marginTop: -20,
