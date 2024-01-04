@@ -7,6 +7,7 @@ import {
   View,
   ActivityIndicator,
   Alert,
+  ScrollView,
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 import axios from "axios";
@@ -21,26 +22,30 @@ export default function LoginWithEmail(props) {
   const login = async () => {
     try {
       setLoading(true);
-      var { data } = await axios.post("https://qaychi.az/api/Accounts/Login", {
-        email: email,
-        password: password,
-      });
+      if (email.length !== 0 || password.length !== 0) {
+        var { data } = await axios.post(
+          "https://qaychi.az/api/Accounts/Login",
+          {
+            email: email,
+            password: password,
+          }
+        );
+      } else Alert.alert("Xəta", "Xanaları Tam Doldurun!");
 
-      const key = "HS256";
+      const key = "shh";
       const token = data;
 
-      JWT.decode(token, key);
-      console.log(Boolean(data));
+      console.log(JWT.decode(token, key));
+
+      if (data) {
+        setLoading(false);
+        updateLoginStatus(true);
+      }
     } catch (error) {
       console.log("error:", error);
+      updateLoginStatus(true);
+      console.log(data);
       setLoading(false);
-      if (data) {
-        updateLoginStatus(true);
-        setLoading(false);
-      } else {
-        Alert.alert("Xəta", " sifre ve mail yanlisdir!");
-        setLoading(false);
-      }
     }
   };
 
@@ -60,8 +65,14 @@ export default function LoginWithEmail(props) {
   }, []);
 
   return (
-    <View style={{ marginTop: 160, paddingHorizontal: 10 }}>
-      <Text style={{ fontWeight: 700, fontSize: 40 }}>
+    <ScrollView style={{ paddingHorizontal: 10 }}>
+      <Text
+        style={{
+          fontWeight: 700,
+          fontSize: 40,
+          marginTop: 130,
+        }}
+      >
         Hesabınıza Daxil Olun
       </Text>
 
@@ -161,10 +172,14 @@ export default function LoginWithEmail(props) {
         )}
       </TouchableOpacity>
 
+      <TouchableOpacity style={{ marginTop: 20 }}>
+        <Text style={{ textAlign: "center" }}>Şifrəni Unutmuşam</Text>
+      </TouchableOpacity>
+
       <Text
         style={{
           textAlign: "center",
-          paddingVertical: 50,
+          paddingVertical: 30,
           fontSize: 16,
           color: "grey",
         }}
@@ -172,7 +187,14 @@ export default function LoginWithEmail(props) {
         Və ya
       </Text>
 
-      <View style={{ flexDirection: "row", gap: 50, justifyContent: "center" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          gap: 50,
+          justifyContent: "center",
+          paddingBottom: 30,
+        }}
+      >
         <TouchableOpacity
           style={{
             padding: 10,
@@ -206,6 +228,6 @@ export default function LoginWithEmail(props) {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }

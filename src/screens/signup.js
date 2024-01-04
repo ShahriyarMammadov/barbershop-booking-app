@@ -7,15 +7,19 @@ import {
   View,
   Alert,
   Button,
+  ScrollView,
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 import * as Facebook from "expo-facebook";
+import Checkbox from "expo-checkbox";
+
 // import axios from "axios";
 
 export default function SignUpScreen(props) {
   const { navigation } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isChecked, setChecked] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({
@@ -55,9 +59,13 @@ export default function SignUpScreen(props) {
     }
   }
 
+  console.log(isChecked);
+
   return (
-    <View style={{ marginTop: 150, paddingHorizontal: 10 }}>
-      <Text style={{ fontSize: 35, fontWeight: 700 }}>Yeni Hesab Yaradın</Text>
+    <ScrollView style={{ paddingHorizontal: 10 }}>
+      <Text style={{ fontSize: 35, fontWeight: 700, marginTop: 130 }}>
+        Yeni Hesab Yaradın
+      </Text>
 
       <View style={{ marginTop: 60 }}>
         <View
@@ -126,15 +134,39 @@ export default function SignUpScreen(props) {
         </View>
       </View>
 
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 10,
+          marginTop: 20,
+        }}
+      >
+        <Checkbox
+          style={{ margin: 8 }}
+          value={isChecked}
+          onValueChange={setChecked}
+          color={isChecked ? "#FDA62B" : undefined}
+        />
+
+        <Text
+          onPress={() => {
+            setChecked(!isChecked);
+          }}
+        >
+          Biznes Hesabı kimi Qeydiyyatdan keç
+        </Text>
+      </View>
+
       <TouchableOpacity
         style={{
           backgroundColor: "#FB9400",
           paddingVertical: 20,
           borderRadius: 30,
-          marginTop: 50,
+          marginTop: 30,
         }}
         onPress={() => {
-          navigation.navigate("Fill Your Profile");
+          navigation.navigate("Fill Your Profile", { checked: isChecked });
         }}
       >
         <Text
@@ -152,7 +184,7 @@ export default function SignUpScreen(props) {
       <Text
         style={{
           textAlign: "center",
-          paddingVertical: 50,
+          paddingVertical: 35,
           fontSize: 16,
           color: "grey",
         }}
@@ -202,6 +234,7 @@ export default function SignUpScreen(props) {
           alignItems: "center",
           justifyContent: "center",
           marginTop: 40,
+          paddingBottom: 20,
         }}
       >
         <Text>Hesabınız var? {"  "}</Text>
@@ -215,6 +248,6 @@ export default function SignUpScreen(props) {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }

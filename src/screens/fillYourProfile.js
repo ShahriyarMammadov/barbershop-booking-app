@@ -15,6 +15,8 @@ import * as ImagePicker from "expo-image-picker";
 
 export default function FillYourProfile(props) {
   const { navigation } = props;
+  const { checked } = props?.route?.params;
+  console.log("fill: ", checked);
   const width = Dimensions.get("window").width;
 
   const [fullName, setFullName] = useState("");
@@ -70,6 +72,12 @@ export default function FillYourProfile(props) {
           />
         </Pressable>
       </View>
+
+      {checked ? (
+        <Text>siz admin kimi qeydiyyatdan kecirsiz!!</Text>
+      ) : (
+        <Text>Siz user kimi qeydiyyatdan kecirsiz!</Text>
+      )}
 
       <TextInput
         style={{

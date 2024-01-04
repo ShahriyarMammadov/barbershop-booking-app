@@ -19,6 +19,7 @@ import SecurityScreen from "../screens/security";
 import LoginWithEmail from "../screens/loginWithEmail";
 import FillYourProfile from "../screens/fillYourProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import LoginLoaderScreen from "../screens/loginLoader";
 
 const Stack = createStackNavigator();
 
@@ -73,6 +74,7 @@ function MainNavigator({ updateLoginStatus }) {
 
 export default function AppContainer() {
   const [isLoggedIn, setLoggedIn] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -80,21 +82,29 @@ export default function AppContainer() {
         const status = await AsyncStorage.getItem("isLoggedIn");
         if (status) {
           setLoggedIn(JSON.parse(status));
+          setLoading(false);
+        } else {
+          setLoading(false);
         }
       } catch (error) {
         console.log("Error checking login status:", error);
+        setLoading(false);
       }
     };
 
     checkLoginStatus();
   }, []);
 
+  console.log(loading);
+
   const updateLoginStatus = async (status) => {
     setLoggedIn(status);
     try {
       await AsyncStorage.setItem("isLoggedIn", JSON.stringify(status));
+      setLoading(false);
     } catch (error) {
       console.log("Error saving login status:", error);
+      setLoading(false);
     }
   };
 
@@ -105,6 +115,8 @@ export default function AppContainer() {
           <MainNavigator updateLoginStatus={updateLoginStatus} />
           <Footer />
         </>
+      ) : loading ? (
+        <LoginLoaderScreen />
       ) : (
         <WelcomeNavigator updateLoginStatus={updateLoginStatus} />
       )}

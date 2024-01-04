@@ -36,8 +36,8 @@ export default function LoginScreen(props) {
   };
 
   return (
-    <ScrollView style={{ paddingTop: 100, paddingHorizontal: 10 }}>
-      <View style={{ alignItems: "center", marginBottom: 50 }}>
+    <ScrollView style={{ paddingHorizontal: 10 }}>
+      <View style={{ alignItems: "center", marginBottom: 50, marginTop: 90 }}>
         <Image
           source={require("../../assets/loginHero.png")}
           style={{ width: 250, height: 250 }}

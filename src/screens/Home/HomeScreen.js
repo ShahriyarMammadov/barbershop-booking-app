@@ -318,7 +318,7 @@ export default function HomeScreen(props) {
           textShadowRadius: 5,
         }}
       >
-        {date}, Shahriyar{" "}
+        {date}, Isa{" "}
         <Image
           source={require("../../../assets/icons/hello.png")}
           style={{ width: 25, height: 25 }}
