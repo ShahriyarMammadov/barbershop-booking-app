@@ -16,6 +16,7 @@ import SaloonCardComponent from "../../components/SallonCard";
 import { dataCategories } from "../../data/dataArrays";
 import LastVisitedPlaces from "../../components/lastVisitedPlaces";
 import TodaysSpecialCarousel from "../../components/specialCarousel";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // import decodeJWT from "../../services/jwtDecode";
 
 export default function HomeScreen(props) {
@@ -26,6 +27,7 @@ export default function HomeScreen(props) {
   const [refreshing, setRefreshing] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Tövsiyə Edilənlər");
   const [date, setDate] = useState("");
+  const [userData, setUserData] = useState({});
   let currentDate = new Date().toString();
   let currentHour = +currentDate.slice(16, 18);
 
@@ -58,7 +60,18 @@ export default function HomeScreen(props) {
     } else {
       setDate("Axşamın Xeyir");
     }
+
+    getUserData();
   }, []);
+
+  const getUserData = async () => {
+    try {
+      const data = await AsyncStorage.getItem("data");
+      setUserData(JSON.parse(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   console.log(currentDate);
   console.log(date);
@@ -293,6 +306,8 @@ export default function HomeScreen(props) {
     </TouchableHighlight>
   );
 
+  console.log(userData.name);
+
   return (
     <ScrollView
       style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
@@ -309,7 +324,7 @@ export default function HomeScreen(props) {
       <Text
         style={{
           fontWeight: 700,
-          fontSize: 30,
+          fontSize: 25,
           paddingTop: 10,
           paddingBottom: 15,
           fontStyle: "italic",
@@ -318,7 +333,7 @@ export default function HomeScreen(props) {
           textShadowRadius: 5,
         }}
       >
-        {date}, Isa{" "}
+        {date}, {userData?.name}{" "}
         <Image
           source={require("../../../assets/icons/hello.png")}
           style={{ width: 25, height: 25 }}

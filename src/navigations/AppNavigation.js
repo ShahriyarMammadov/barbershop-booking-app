@@ -20,6 +20,7 @@ import LoginWithEmail from "../screens/loginWithEmail";
 import FillYourProfile from "../screens/fillYourProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginLoaderScreen from "../screens/loginLoader";
+import OtpScreen from "../screens/otp";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,11 @@ function WelcomeNavigator({ updateLoginStatus }) {
         )}
       </Stack.Screen>
       <Stack.Screen name="signup" component={SignUpScreen} />
+      <Stack.Screen name="OTP">
+        {(props) => (
+          <OtpScreen {...props} updateLoginStatus={updateLoginStatus} />
+        )}
+      </Stack.Screen>
       <Stack.Screen name="Fill Your Profile" component={FillYourProfile} />
     </Stack.Navigator>
   );
@@ -64,6 +70,11 @@ function MainNavigator({ updateLoginStatus }) {
       <Stack.Screen name="MyBooking" component={MyBookingScreen} />
       <Stack.Screen name="Edit Profile" component={EditProfile} />
       <Stack.Screen name="Detail" component={SaloonDetail} />
+      <Stack.Screen name="OTP">
+        {(props) => (
+          <OtpScreen {...props} updateLoginStatus={updateLoginStatus} />
+        )}
+      </Stack.Screen>
       <Stack.Screen name="BookNow" component={BookNowScreen} />
       <Stack.Screen name="Privacy Policy" component={PrivacyPolicyScreen} />
       <Stack.Screen name="Invite Friends" component={InviteFriendsScreen} />
@@ -94,8 +105,6 @@ export default function AppContainer() {
 
     checkLoginStatus();
   }, []);
-
-  console.log(loading);
 
   const updateLoginStatus = async (status) => {
     setLoggedIn(status);

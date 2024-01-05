@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import {
   ScrollView,
@@ -13,11 +14,26 @@ export default function EditProfile(props) {
   const { navigation } = props;
   const { width: windowWidth } = Dimensions.get("window");
 
-  const [fullName, setFullName] = useState("Shahriyar Mammadov");
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const data = await AsyncStorage.getItem("data");
+        const parseData = JSON.parse(data);
+        setName(parseData?.name);
+        setSurname(parseData?.surname);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getUserData();
+  }, []);
+
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("shahriyarmammadov16@gmail.com");
   const [userName, setUserName] = useState("Shahriyar4473");
   const [address, setAddress] = useState("Bine Sovxoz");
-  const [birthDate, setBirthDate] = useState("20/05/2002");
+  const [surname, setSurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(994503134473);
 
   return (
@@ -32,10 +48,10 @@ export default function EditProfile(props) {
           fontSize: 16,
           fontWeight: "bold",
         }}
-        placeholder="Your Email"
-        value={fullName}
-        onChangeText={(searchString) => {
-          setFullName(searchString);
+        placeholder="Adınız"
+        value={name}
+        onChangeText={(value) => {
+          setName(value);
         }}
       />
 
@@ -49,10 +65,11 @@ export default function EditProfile(props) {
           fontWeight: "bold",
           marginVertical: 25,
         }}
-        placeholder="Username"
-        value={userName}
-        onChangeText={(searchString) => {
-          setUserName(searchString);
+        placeholder="Soyadınız"
+        // keyboardType="numeric"
+        value={surname}
+        onChangeText={(value) => {
+          setSurname(value);
         }}
       />
 
@@ -65,11 +82,10 @@ export default function EditProfile(props) {
           fontSize: 16,
           fontWeight: "bold",
         }}
-        placeholder="Your Email"
-        keyboardType="numeric"
-        value={birthDate}
+        placeholder="Username"
+        value={userName}
         onChangeText={(searchString) => {
-          setBirthDate(searchString);
+          setUserName(searchString);
         }}
       />
 

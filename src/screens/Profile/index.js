@@ -12,14 +12,19 @@ import {
   View,
 } from "react-native";
 import BackButton from "../../components/BackButton/BackButton";
-import { userData } from "../../data/dataArrays";
 import { getLocales } from "expo-localization";
 import * as ImagePicker from "expo-image-picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileScreen(props) {
   const { navigation, updateLoginStatus } = props;
   const width = Dimensions.get("window").width;
   const [refreshing, setRefreshing] = useState(false);
+  const [userData, setUserData] = useState({});
+  const [changeImage, setChangeImage] = useState(
+    userData?.profileImg ||
+      "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+  );
   const deviceLanguage = getLocales()[0].languageCode;
 
   useEffect(() => {
@@ -39,7 +44,22 @@ export default function ProfileScreen(props) {
         />
       ),
     });
+
+    getUserData();
   }, []);
+
+  const getUserData = async () => {
+    try {
+      const data = await AsyncStorage.getItem("data");
+      const parseData = JSON.parse(data);
+      await setUserData(parseData);
+      setChangeImage(parseData?.profileImg);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(userData.profileImg);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -102,13 +122,13 @@ export default function ProfileScreen(props) {
   const categoryChange = (routeName) => {
     if (routeName === "Logout") {
       updateLoginStatus(false);
+      navigation.navigate("Welcome");
     } else {
       navigation.navigate(routeName);
     }
   };
 
   // CHANGE PROFILE PHOTO
-  const [changeImage, setChangeImage] = useState(userData.profileImageURL);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -122,6 +142,8 @@ export default function ProfileScreen(props) {
       setChangeImage(result.assets[0].uri);
     }
   };
+
+  console.log("change Image", changeImage);
 
   return (
     <ScrollView
@@ -153,7 +175,7 @@ export default function ProfileScreen(props) {
           />
         </Pressable>
         <Text style={{ paddingTop: 20, fontWeight: 700, fontSize: 20 }}>
-          {userData?.fullName}
+          {userData?.name} {userData?.surname}
         </Text>
         <Text style={{ paddingTop: 10, fontSize: 14 }}>{userData?.email}</Text>
       </View>

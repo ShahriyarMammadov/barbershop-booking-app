@@ -23,6 +23,7 @@ import {
 } from "firebase/storage";
 import { storage } from "../components/firebaseConfig";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function FillYourProfile(props) {
   const { navigation } = props;
@@ -57,6 +58,8 @@ export default function FillYourProfile(props) {
       title: "Hesabınızı Tamamlayın",
     });
   }, []);
+
+  console.log(mail);
 
   // CHANGE PROFILE PHOTO
 
@@ -105,10 +108,9 @@ export default function FillYourProfile(props) {
         }
       );
 
-      if ((data = "data OTP sent")) {
-        navigation.navigate("OTP", { email: mail });
-      } else {
-        Alert.alert("Xəta", "Xəta Baş verdi");
+      if (data) {
+        await AsyncStorage.setItem("data", JSON.stringify(data));
+        navigation.navigate("OTP", { mail: mail, data: data });
       }
 
       console.log("data", data);
@@ -186,231 +188,212 @@ export default function FillYourProfile(props) {
         </Pressable>
       </View>
 
-      {checked ? (
-        <Text>siz admin kimi qeydiyyatdan kecirsiz!!</Text>
+      {loading ? (
+        <Text>hesabiniz yaradilir</Text>
       ) : (
-        <Text>Siz user kimi qeydiyyatdan kecirsiz!</Text>
-      )}
+        <>
+          {checked ? (
+            <Text>siz admin kimi qeydiyyatdan kecirsiz!!</Text>
+          ) : (
+            <Text>Siz user kimi qeydiyyatdan kecirsiz!</Text>
+          )}
 
-      {/* <TextInput
-        style={{
-          height: 40,
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-        }}
-        placeholder="Your Email"
-        value={fullName}
-        onChangeText={(searchString) => {
-          setFullName(searchString);
-        }}
-      /> */}
-
-      <TextInput
-        style={{
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-          marginVertical: 25,
-        }}
-        placeholder="Adınız"
-        value={name}
-        onChangeText={(value) => {
-          setName(value);
-        }}
-      />
-
-      <TextInput
-        style={{
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-        }}
-        placeholder="Soyadınız"
-        // keyboardType="numeric"
-        value={surname}
-        onChangeText={(value) => {
-          setSurname(value);
-        }}
-      />
-
-      <TextInput
-        style={{
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-          marginTop: 25,
-        }}
-        placeholder="Ata Adınız"
-        // keyboardType="numeric"
-        value={fatherName}
-        onChangeText={(value) => {
-          setFatherName(value);
-        }}
-      />
-
-      <TextInput
-        style={{
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-          marginTop: 25,
-        }}
-        placeholder="Ünvanınız"
-        // keyboardType="numeric"
-        value={address}
-        onChangeText={(value) => {
-          setAddress(value);
-        }}
-      />
-
-      <TextInput
-        style={{
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-          marginVertical: 25,
-        }}
-        placeholder="Əlaqə Vasitəsi"
-        value={phone}
-        keyboardType="numeric"
-        onChangeText={(value) => {
-          setPhone(value);
-        }}
-      />
-
-      <TextInput
-        style={{
-          backgroundColor: "rgba(128, 128, 128, 0.2)",
-          paddingHorizontal: 10,
-          height: 60,
-          borderRadius: 10,
-          fontSize: 16,
-          fontWeight: "bold",
-          marginBottom: 25,
-        }}
-        placeholder="Təkrar Şifrə"
-        value={repeatPassword}
-        secureTextEntry
-        onChangeText={(value) => {
-          setRepeatPassword(value);
-        }}
-      />
-
-      <ModalDropdown
-        options={["Kişi", "Qadın", "Seçilməyib"]}
-        onSelect={(value) => setGender(value)}
-        style={{
-          width: width,
-          paddingHorizontal: 10,
-        }}
-        textStyle={{ fontSize: 16, fontWeight: 700 }}
-        dropdownTextStyle={{ fontSize: 16, fontWeight: 700 }}
-        // renderRow={(option, index, isSelected) => (
-        //   <Text style={{ fontSize: 16 }}>{option}</Text>
-        // )}
-        // renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => (
-        //   <View
-        //     key={rowID}
-        //     style={{ height: 1, backgroundColor: "lightgray" }}
-        //   />
-        // )}
-        defaultValue={"Gender"}
-        dropdownStyle={{
-          width: width - 80,
-          marginTop: -20,
-        }}
-      />
-
-      <Modal
-        visible={modalVisible}
-        onBackdropPress={() => setModalVisible(false)}
-        transparent={true}
-      >
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <View
+          <TextInput
             style={{
-              backgroundColor: "white",
-              padding: 20,
+              backgroundColor: "rgba(128, 128, 128, 0.2)",
+              paddingHorizontal: 10,
+              height: 60,
               borderRadius: 10,
-              width: 300,
+              fontSize: 16,
+              fontWeight: "bold",
+              marginVertical: 25,
+            }}
+            placeholder="Adınız"
+            value={name}
+            onChangeText={(value) => {
+              setName(value);
+            }}
+          />
+
+          <TextInput
+            style={{
+              backgroundColor: "rgba(128, 128, 128, 0.2)",
+              paddingHorizontal: 10,
+              height: 60,
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: "bold",
+            }}
+            placeholder="Soyadınız"
+            value={surname}
+            onChangeText={(value) => {
+              setSurname(value);
+            }}
+          />
+
+          <TextInput
+            style={{
+              backgroundColor: "rgba(128, 128, 128, 0.2)",
+              paddingHorizontal: 10,
+              height: 60,
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: "bold",
+              marginTop: 25,
+            }}
+            placeholder="Ata Adınız"
+            value={fatherName}
+            onChangeText={(value) => {
+              setFatherName(value);
+            }}
+          />
+
+          <TextInput
+            style={{
+              backgroundColor: "rgba(128, 128, 128, 0.2)",
+              paddingHorizontal: 10,
+              height: 60,
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: "bold",
+              marginTop: 25,
+            }}
+            placeholder="Ünvanınız"
+            value={address}
+            onChangeText={(value) => {
+              setAddress(value);
+            }}
+          />
+
+          <TextInput
+            style={{
+              backgroundColor: "rgba(128, 128, 128, 0.2)",
+              paddingHorizontal: 10,
+              height: 60,
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: "bold",
+              marginVertical: 25,
+            }}
+            placeholder="Əlaqə Vasitəsi"
+            value={phone}
+            keyboardType="numeric"
+            onChangeText={(value) => {
+              setPhone(value);
+            }}
+          />
+
+          <TextInput
+            style={{
+              backgroundColor: "rgba(128, 128, 128, 0.2)",
+              paddingHorizontal: 10,
+              height: 60,
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: "bold",
+              marginBottom: 25,
+            }}
+            placeholder="Təkrar Şifrə"
+            value={repeatPassword}
+            secureTextEntry
+            onChangeText={(value) => {
+              setRepeatPassword(value);
+            }}
+          />
+
+          <ModalDropdown
+            options={["Kişi", "Qadın", "Seçilməyib"]}
+            onSelect={(value) => setGender(value)}
+            style={{
+              width: width,
+              paddingHorizontal: 10,
+            }}
+            textStyle={{ fontSize: 16, fontWeight: 700 }}
+            dropdownTextStyle={{ fontSize: 16, fontWeight: 700 }}
+            defaultValue={"Gender"}
+            dropdownStyle={{
+              width: width - 80,
+              marginTop: -20,
+            }}
+          />
+
+          <Modal
+            visible={modalVisible}
+            onBackdropPress={() => setModalVisible(false)}
+            transparent={true}
+          >
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "white",
+                  padding: 20,
+                  borderRadius: 10,
+                  width: 300,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 18,
+                    padding: 10,
+                    backgroundColor: "grey",
+                    textAlign: "center",
+                    position: "absolute",
+                    borderRadius: 10,
+                    top: 0,
+                    right: 0,
+                    width: 40,
+                    color: "white",
+                  }}
+                  onPress={() => {
+                    setModalVisible(false);
+                  }}
+                >
+                  X
+                </Text>
+
+                <TouchableOpacity onPress={pickImage}>
+                  <Text style={{ fontSize: 18, marginBottom: 10 }}>
+                    Qalereyadan Seç
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={takePhoto}>
+                  <Text style={{ fontSize: 18 }}>Kameradan Çək</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#FB9400",
+              paddingVertical: 20,
+              borderRadius: 30,
+              marginVertical: 20,
+            }}
+            onPress={() => {
+              submitData();
             }}
           >
             <Text
               style={{
-                fontSize: 18,
-                padding: 10,
-                backgroundColor: "grey",
                 textAlign: "center",
-                position: "absolute",
-                borderRadius: 10,
-                top: 0,
-                right: 0,
-                width: 40,
+                fontWeight: 700,
+                fontSize: 17,
                 color: "white",
               }}
-              onPress={() => {
-                setModalVisible(false);
-              }}
             >
-              X
+              Yadda Saxla
             </Text>
-
-            <TouchableOpacity onPress={pickImage}>
-              <Text style={{ fontSize: 18, marginBottom: 10 }}>
-                Qalereyadan Seç
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={takePhoto}>
-              <Text style={{ fontSize: 18 }}>Kameradan Çək</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <TouchableOpacity
-        style={{
-          backgroundColor: "#FB9400",
-          paddingVertical: 20,
-          borderRadius: 30,
-          marginVertical: 20,
-        }}
-        onPress={() => {
-          submitData();
-        }}
-      >
-        <Text
-          style={{
-            textAlign: "center",
-            fontWeight: 700,
-            fontSize: 17,
-            color: "white",
-          }}
-        >
-          Yadda Saxla
-        </Text>
-      </TouchableOpacity>
+          </TouchableOpacity>
+        </>
+      )}
     </ScrollView>
   );
 }
