@@ -12,6 +12,13 @@ import {
 import BackButton from "../components/BackButton/BackButton";
 import * as ImagePicker from "expo-image-picker";
 import ModalDropdown from "react-native-modal-dropdown";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  uploadString,
+} from "firebase/storage";
+import { storage } from "../components/firebaseConfig";
 
 export default function FillYourProfile(props) {
   const { navigation } = props;
@@ -26,6 +33,9 @@ export default function FillYourProfile(props) {
   const [phone, setPhone] = useState();
   const [repeatPassword, setRepeatPassword] = useState("");
   const [gender, setGender] = useState("");
+  const [changeImage, setChangeImage] = useState(
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8kiSH5ZSAcVoj3tAQQDoP_ux0sSricMyUg&usqp=CAU"
+  );
 
   useEffect(() => {
     navigation.setOptions({
@@ -41,10 +51,26 @@ export default function FillYourProfile(props) {
     });
   }, []);
 
+  console.log(changeImage);
+
   // CHANGE PROFILE PHOTO
-  const [changeImage, setChangeImage] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8kiSH5ZSAcVoj3tAQQDoP_ux0sSricMyUg&usqp=CAU"
-  );
+
+  const submitData = async () => {
+    try {
+      const randomFileName = Math.random().toString(36).substring(7);
+      const storageRef = ref(storage, `images/${randomFileName}`);
+
+      const response = await fetch(changeImage);
+      const blob = await response.blob();
+
+      await uploadBytes(storageRef, blob);
+
+      const downloadURL = await getDownloadURL(storageRef);
+      console.log("Uploaded file URL:", downloadURL);
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -194,15 +220,15 @@ export default function FillYourProfile(props) {
         }}
         textStyle={{ fontSize: 16, fontWeight: 700 }}
         dropdownTextStyle={{ fontSize: 16, fontWeight: 700 }}
-          // renderRow={(option, index, isSelected) => (
-          //   <Text style={{ fontSize: 16 }}>{option}</Text>
-          // )}
-          // renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => (
-          //   <View
-          //     key={rowID}
-          //     style={{ height: 1, backgroundColor: "lightgray" }}
-          //   />
-          // )}
+        // renderRow={(option, index, isSelected) => (
+        //   <Text style={{ fontSize: 16 }}>{option}</Text>
+        // )}
+        // renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => (
+        //   <View
+        //     key={rowID}
+        //     style={{ height: 1, backgroundColor: "lightgray" }}
+        //   />
+        // )}
         keyboardShouldPersistTaps="always"
         accessible={true}
         defaultValue={"Seçilməyib"}
@@ -218,6 +244,9 @@ export default function FillYourProfile(props) {
           paddingVertical: 20,
           borderRadius: 30,
           marginVertical: 20,
+        }}
+        onPress={() => {
+          submitData();
         }}
       >
         <Text
