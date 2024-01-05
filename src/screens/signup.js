@@ -61,7 +61,7 @@ export default function SignUpScreen(props) {
   const handleSignUp = () => {
     try {
       if (email.length < 10 || password.length < 8) {
-        Alert.alert('Xəta', "Düzgün Mail Və Şifrə Daxil Edin!");
+        Alert.alert("Xəta", "Düzgün Mail Və Şifrə Daxil Edin!");
       } else {
         navigation.navigate("Fill Your Profile", {
           checked: isChecked,
@@ -109,7 +109,7 @@ export default function SignUpScreen(props) {
             placeholder="Your Email"
             keyboardType="email-address"
             onChangeText={(value) => {
-              setPassword(value);
+              setEmail(value);
             }}
           />
         </View>
@@ -141,7 +141,7 @@ export default function SignUpScreen(props) {
             secureTextEntry
             placeholder="Password"
             onChangeText={(value) => {
-              setEmail(value);
+              setPassword(value);
             }}
           />
         </View>

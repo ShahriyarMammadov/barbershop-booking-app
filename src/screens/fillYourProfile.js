@@ -22,12 +22,12 @@ import {
   uploadString,
 } from "firebase/storage";
 import { storage } from "../components/firebaseConfig";
+import axios from "axios";
 
 export default function FillYourProfile(props) {
   const { navigation } = props;
   const { checked, mail, password } = props?.route?.params;
 
-  console.log("fill: ", checked, mail, password);
   const width = Dimensions.get("window").width;
 
   const [loading, setLoading] = useState(false);
@@ -38,6 +38,7 @@ export default function FillYourProfile(props) {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState();
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [fatherName, setFatherName] = useState("");
   const [gender, setGender] = useState("");
   const [changeImage, setChangeImage] = useState(
     "https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -86,11 +87,35 @@ export default function FillYourProfile(props) {
       await uploadBytes(storageRef, blob);
 
       const downloadURL = await getDownloadURL(storageRef);
-      console.log("Uploaded file URL:", downloadURL);
+
+      const { data } = await axios.post(
+        `https://qaychi.az/api/Accounts/Register`,
+        {
+          name: name,
+          surname: surname,
+          fatherName: fatherName,
+          email: mail,
+          address: address,
+          gender: gender === 0 ? "Kişi" : "Qadın",
+          phone: phone,
+          password: password,
+          repeatPassword: repeatPassword,
+          profileImage: downloadURL,
+          userType: checked ? "Sahibkar" : "İstifadəçi",
+        }
+      );
+
+      if ((data = "data OTP sent")) {
+        navigation.navigate("OTP", { email: mail });
+      } else {
+        Alert.alert("Xəta", "Xəta Baş verdi");
+      }
+
+      console.log("data", data);
 
       setLoading(false);
     } catch (error) {
-      console.error("Upload error:", error);
+      console.error(error);
       setLoading(false);
     }
   };
@@ -228,6 +253,24 @@ export default function FillYourProfile(props) {
           fontWeight: "bold",
           marginTop: 25,
         }}
+        placeholder="Ata Adınız"
+        // keyboardType="numeric"
+        value={fatherName}
+        onChangeText={(value) => {
+          setFatherName(value);
+        }}
+      />
+
+      <TextInput
+        style={{
+          backgroundColor: "rgba(128, 128, 128, 0.2)",
+          paddingHorizontal: 10,
+          height: 60,
+          borderRadius: 10,
+          fontSize: 16,
+          fontWeight: "bold",
+          marginTop: 25,
+        }}
         placeholder="Ünvanınız"
         // keyboardType="numeric"
         value={address}
@@ -290,9 +333,7 @@ export default function FillYourProfile(props) {
         //     style={{ height: 1, backgroundColor: "lightgray" }}
         //   />
         // )}
-        keyboardShouldPersistTaps="always"
-        accessible={true}
-        defaultValue={"Seçilməyib"}
+        defaultValue={"Gender"}
         dropdownStyle={{
           width: width - 80,
           marginTop: -20,
