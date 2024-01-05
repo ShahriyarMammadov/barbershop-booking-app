@@ -8,6 +8,9 @@ import {
   Dimensions,
   Pressable,
   View,
+  Alert,
+  ActivityIndicator,
+  Modal,
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 import * as ImagePicker from "expo-image-picker";
@@ -27,6 +30,9 @@ export default function FillYourProfile(props) {
   console.log("fill: ", checked, mail, password);
   const width = Dimensions.get("window").width;
 
+  const [loading, setLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   const [surname, setSurname] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -34,7 +40,7 @@ export default function FillYourProfile(props) {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [gender, setGender] = useState("");
   const [changeImage, setChangeImage] = useState(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8kiSH5ZSAcVoj3tAQQDoP_ux0sSricMyUg&usqp=CAU"
+    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
   );
 
   useEffect(() => {
@@ -51,8 +57,6 @@ export default function FillYourProfile(props) {
     });
   }, []);
 
-  console.log(changeImage);
-
   // CHANGE PROFILE PHOTO
 
   const submitData = async () => {
@@ -63,12 +67,31 @@ export default function FillYourProfile(props) {
       const response = await fetch(changeImage);
       const blob = await response.blob();
 
+      const fileSizeInMB = blob.size / (1024 * 1024);
+
+      console.log(fileSizeInMB);
+      if (fileSizeInMB > 3) {
+        Alert.alert(
+          "XƏTA",
+          `Zəhmət Olmasa Həcmi 3MB-dan Aşağı Olan Şəkil Seçin, Seçilən Faylın Həcmi: ${fileSizeInMB?.toFixed(
+            2
+          )}MB`,
+          [{ text: "OK" }]
+        );
+        setLoading(false);
+        return;
+      }
+      setLoading(true);
+
       await uploadBytes(storageRef, blob);
 
       const downloadURL = await getDownloadURL(storageRef);
       console.log("Uploaded file URL:", downloadURL);
+
+      setLoading(false);
     } catch (error) {
       console.error("Upload error:", error);
+      setLoading(false);
     }
   };
 
@@ -79,24 +102,62 @@ export default function FillYourProfile(props) {
       aspect: [4, 4],
       quality: 1,
     });
+    setModalVisible(false);
 
     if (!result.canceled) {
-      setChangeImage(result.assets[0].uri);
+      const asset = result.assets[0];
+      setChangeImage(asset.uri);
+    }
+  };
+
+  const takePhoto = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+    setModalVisible(false);
+
+    if (!result.canceled) {
+      setChangeImage(result.assets[0]?.uri);
     }
   };
 
   return (
     <ScrollView style={{ paddingHorizontal: 10 }}>
-      <View style={{ alignItems: "center", marginBottom: 30, marginTop: 40 }}>
-        <Pressable onPress={pickImage} style={{}}>
-          <Image
-            source={{ uri: `${changeImage}` }}
-            style={{
-              width: 150,
-              height: 150,
-              borderRadius: 70,
-            }}
-          />
+      <View
+        style={{
+          alignItems: "center",
+          marginBottom: 30,
+          marginTop: 40,
+        }}
+      >
+        <Pressable
+          onPress={() => {
+            setModalVisible(true);
+          }}
+          style={{
+            width: 150,
+            height: 150,
+            borderRadius: 70,
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {loading ? (
+            <ActivityIndicator size="large" color="#0000ff" />
+          ) : (
+            <Image
+              source={{ uri: `${changeImage}` }}
+              style={{
+                width: 150,
+                height: 150,
+                borderRadius: 70,
+              }}
+            />
+          )}
         </Pressable>
       </View>
 
@@ -237,6 +298,55 @@ export default function FillYourProfile(props) {
           marginTop: -20,
         }}
       />
+
+      <Modal
+        visible={modalVisible}
+        onBackdropPress={() => setModalVisible(false)}
+        transparent={true}
+      >
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 10,
+              width: 300,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                padding: 10,
+                backgroundColor: "grey",
+                textAlign: "center",
+                position: "absolute",
+                borderRadius: 10,
+                top: 0,
+                right: 0,
+                width: 40,
+                color: "white",
+              }}
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            >
+              X
+            </Text>
+
+            <TouchableOpacity onPress={pickImage}>
+              <Text style={{ fontSize: 18, marginBottom: 10 }}>
+                Qalereyadan Seç
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={takePhoto}>
+              <Text style={{ fontSize: 18 }}>Kameradan Çək</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
       <TouchableOpacity
         style={{
