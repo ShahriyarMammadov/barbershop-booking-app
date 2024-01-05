@@ -42,7 +42,7 @@ export default function HomeScreen(props) {
       headerRight: () => (
         <Pressable
           onPress={() => {
-            navigation.navigate("Notification");
+            navigation.navigate("Bildirişlər");
           }}
         >
           <Image

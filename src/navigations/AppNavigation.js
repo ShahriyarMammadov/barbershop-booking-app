@@ -61,14 +61,14 @@ function MainNavigator({ updateLoginStatus }) {
     >
       <Stack.Screen name="Qaychi.az" component={HomeScreen} />
       <Stack.Screen name="Explore" component={ExploreScreen} />
-      <Stack.Screen name="Notification" component={NotificationScreen} />
+      <Stack.Screen name="Bildirişlər" component={NotificationScreen} />
       <Stack.Screen name="Profile">
         {(props) => (
           <ProfileScreen {...props} updateLoginStatus={updateLoginStatus} />
         )}
       </Stack.Screen>
       <Stack.Screen name="MyBooking" component={MyBookingScreen} />
-      <Stack.Screen name="Edit Profile" component={EditProfile} />
+      <Stack.Screen name="Profil Ayarları" component={EditProfile} />
       <Stack.Screen name="Detail" component={SaloonDetail} />
       <Stack.Screen name="OTP">
         {(props) => (
@@ -76,9 +76,9 @@ function MainNavigator({ updateLoginStatus }) {
         )}
       </Stack.Screen>
       <Stack.Screen name="BookNow" component={BookNowScreen} />
-      <Stack.Screen name="Privacy Policy" component={PrivacyPolicyScreen} />
-      <Stack.Screen name="Invite Friends" component={InviteFriendsScreen} />
-      <Stack.Screen name="Security" component={SecurityScreen} />
+      <Stack.Screen name="Məxfilik Və Siyasət" component={PrivacyPolicyScreen} />
+      <Stack.Screen name="Dəvət Et" component={InviteFriendsScreen} />
+      <Stack.Screen name="Təhlükəsizlik" component={SecurityScreen} />
     </Stack.Navigator>
   );
 }

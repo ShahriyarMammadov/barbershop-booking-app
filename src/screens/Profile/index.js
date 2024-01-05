@@ -3,6 +3,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Modal,
   Pressable,
   RefreshControl,
   ScrollView,
@@ -15,12 +16,20 @@ import BackButton from "../../components/BackButton/BackButton";
 import { getLocales } from "expo-localization";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
+import { storage } from "../../components/firebaseConfig";
 
 export default function ProfileScreen(props) {
   const { navigation, updateLoginStatus } = props;
   const width = Dimensions.get("window").width;
   const [refreshing, setRefreshing] = useState(false);
   const [userData, setUserData] = useState({});
+  const [modalVisible, setModalVisible] = useState(false);
   const [changeImage, setChangeImage] = useState(
     userData?.profileImg ||
       "https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -59,8 +68,6 @@ export default function ProfileScreen(props) {
     }
   };
 
-  console.log(userData.profileImg);
-
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
@@ -71,50 +78,50 @@ export default function ProfileScreen(props) {
   const settings = [
     {
       id: 1,
-      name: "Edit Profile",
+      name: "Profil Ayarları",
       iconURL: require("../../../assets/icons/profile.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 2,
-      name: "Notification",
+      name: "Bildirişlər",
       iconURL: require("../../../assets/icons/notification.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 3,
-      name: "Payment",
+      name: "Ödəniş",
       iconURL: require("../../../assets/icons/payment.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 4,
-      name: "Security",
+      name: "Təhlükəsizlik",
       iconURL: require("../../../assets/icons/security.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 5,
-      name: "Language",
+      name: "Tətbiq Dili",
       value: deviceLanguage,
       iconURL: require("../../../assets/icons/language.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 6,
-      name: "Privacy Policy",
+      name: "Məxfilik Və Siyasət",
       iconURL: require("../../../assets/icons/privacypolicy.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 7,
-      name: "Invite Friends",
+      name: "Dəvət Et",
       iconURL: require("../../../assets/icons/invitefriends.png"),
       rightIcon: require("../../../assets/icons/righticon.png"),
     },
     {
       id: 8,
-      name: "Logout",
+      name: "Çıxış",
       iconURL: require("../../../assets/icons/logout.png"),
     },
   ];
@@ -128,18 +135,94 @@ export default function ProfileScreen(props) {
     }
   };
 
+  // Delete and Upload Image
+  const submitData = async () => {
+    try {
+      const randomFileName = Math.random().toString(36).substring(7);
+      const storageRef = ref(storage, `images/${randomFileName}`);
+
+      const response = await fetch(changeImage);
+      const blob = await response.blob();
+
+      const fileSizeInMB = blob.size / (1024 * 1024);
+
+      console.log(fileSizeInMB);
+      if (fileSizeInMB > 3) {
+        Alert.alert(
+          "XƏTA",
+          `Zəhmət Olmasa Həcmi 3MB-dan Aşağı Olan Şəkil Seçin, Seçilən Faylın Həcmi: ${fileSizeInMB?.toFixed(
+            2
+          )}MB`,
+          [{ text: "OK" }]
+        );
+        setLoading(false);
+        return;
+      }
+      setLoading(true);
+
+      await uploadBytes(storageRef, blob);
+
+      const downloadURL = await getDownloadURL(storageRef);
+
+      const { data } = await axios.post(
+        `https://qaychi.az/api/Accounts/Register`,
+        {
+          name: name,
+          surname: surname,
+          fatherName: fatherName,
+          email: mail,
+          address: address,
+          gender: gender === 0 ? "Kişi" : "Qadın",
+          phone: phone,
+          password: password,
+          repeatPassword: repeatPassword,
+          profileImage: downloadURL,
+          userType: checked ? "Sahibkar" : "İstifadəçi",
+        }
+      );
+
+      if (data) {
+        await AsyncStorage.setItem("data", JSON.stringify(data));
+        navigation.navigate("OTP", { mail: mail, data: data });
+      }
+
+      console.log("data", data);
+
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
   // CHANGE PROFILE PHOTO
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [4, 4],
       quality: 1,
     });
+    setModalVisible(false);
 
     if (!result.canceled) {
-      setChangeImage(result.assets[0].uri);
+      const asset = result.assets[0];
+      setChangeImage(asset.uri);
+    }
+  };
+
+  const takePhoto = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+    setModalVisible(false);
+
+    if (!result.canceled) {
+      setChangeImage(result.assets[0]?.uri);
     }
   };
 
@@ -160,7 +243,9 @@ export default function ProfileScreen(props) {
     >
       <View style={{ width: width, alignItems: "center" }}>
         <Pressable
-          onPress={pickImage}
+          onPress={() => {
+            setModalVisible(true);
+          }}
           style={{
             marginTop: 40,
           }}
@@ -206,8 +291,8 @@ export default function ProfileScreen(props) {
                 />
                 <Text
                   style={
-                    item.name === "Logout"
-                      ? { fontWeight: 700, fontSize: 16, color: "red" }
+                    item.name === "Çıxış"
+                      ? { fontWeight: 700, fontSize: 16, color: "#EF4040" }
                       : { fontWeight: 700, fontSize: 16 }
                   }
                 >
@@ -234,6 +319,59 @@ export default function ProfileScreen(props) {
           );
         })}
       </View>
+
+      <Modal
+        visible={modalVisible}
+        onBackdropPress={() => setModalVisible(false)}
+        transparent={true}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 10,
+              width: 300,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                padding: 10,
+                backgroundColor: "grey",
+                textAlign: "center",
+                position: "absolute",
+                borderRadius: 10,
+                top: 0,
+                right: 0,
+                width: 40,
+                color: "white",
+              }}
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            >
+              X
+            </Text>
+
+            <TouchableOpacity onPress={pickImage}>
+              <Text style={{ fontSize: 18, marginBottom: 10 }}>
+                Qalereyadan Seç
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={takePhoto}>
+              <Text style={{ fontSize: 18 }}>Kameradan Çək</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
