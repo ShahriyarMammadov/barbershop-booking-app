@@ -53,9 +53,9 @@ export default function HomeScreen(props) {
       ),
     });
 
-    if (6 < currentHour && currentHour < 12) {
+    if (6 <= currentHour && currentHour < 12) {
       setDate("Sabahın Xeyir");
-    } else if (12 < currentHour && currentHour < 17) {
+    } else if (12 <= currentHour && currentHour <= 17) {
       setDate("Günortan Xeyir");
     } else {
       setDate("Axşamın Xeyir");

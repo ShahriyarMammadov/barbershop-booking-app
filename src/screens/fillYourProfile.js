@@ -63,9 +63,19 @@ export default function FillYourProfile(props) {
 
   // CHANGE PROFILE PHOTO
 
+  const generateRandomFileName = () => {
+    let randomFileName = "";
+    while (randomFileName.length < 20) {
+      randomFileName += Math.random().toString(36).substring(2);
+    }
+    randomFileName = randomFileName.substring(0, 20);
+
+    return randomFileName;
+  };
+
   const submitData = async () => {
     try {
-      const randomFileName = Math.random().toString(36).substring(7);
+      const randomFileName = generateRandomFileName();
       const storageRef = ref(storage, `images/${randomFileName}`);
 
       const response = await fetch(changeImage);
@@ -117,7 +127,9 @@ export default function FillYourProfile(props) {
 
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      if (error.response && error.response.data) {
+        console.log("Response body:", error.response.data);
+      }
       setLoading(false);
     }
   };
@@ -189,13 +201,23 @@ export default function FillYourProfile(props) {
       </View>
 
       {loading ? (
-        <Text>hesabiniz yaradilir</Text>
+        <Text
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            fontWeight: 700,
+            fontSize: 18,
+          }}
+        >
+          Hesabınız Yaradılır...
+        </Text>
       ) : (
         <>
           {checked ? (
-            <Text>siz admin kimi qeydiyyatdan kecirsiz!!</Text>
+            <Text>Siz Sahibkar Kimi Qeydiyyatdan Keçirsiz.</Text>
           ) : (
-            <Text>Siz user kimi qeydiyyatdan kecirsiz!</Text>
+            <Text>Siz İstifadəçi Kimi Qeydiyyatdan Kecirsiz!</Text>
           )}
 
           <TextInput

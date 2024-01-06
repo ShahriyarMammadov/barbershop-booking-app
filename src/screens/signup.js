@@ -167,7 +167,7 @@ export default function SignUpScreen(props) {
             setChecked(!isChecked);
           }}
         >
-          Biznes Hesabı kimi Qeydiyyatdan keç
+          Sahibkar Hesabı İlə Qeydiyyatdan keç
         </Text>
       </View>
 

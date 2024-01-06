@@ -33,7 +33,7 @@ export default function InviteFriendsScreen() {
   }, []);
 
   const shareToWhatsApp = (phoneNumber) => {
-    const message = "Link link link link!";
+    const message = "https://qaychi.az";
     const whatsappLink = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(
       message
     )}`;

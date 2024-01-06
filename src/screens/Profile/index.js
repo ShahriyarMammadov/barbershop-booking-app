@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Dimensions,
-  FlatList,
+  Animated,
   Image,
   Modal,
   Pressable,
@@ -30,6 +30,9 @@ export default function ProfileScreen(props) {
   const [refreshing, setRefreshing] = useState(false);
   const [userData, setUserData] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [changedImage, setChangedImage] = useState(false);
+
   const [changeImage, setChangeImage] = useState(
     userData?.profileImg ||
       "https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -126,9 +129,9 @@ export default function ProfileScreen(props) {
     },
   ];
 
-  const categoryChange = (routeName) => {
-    if (routeName === "Logout") {
-      updateLoginStatus(false);
+  const categoryChange = async (routeName) => {
+    if (routeName === "Çıxış") {
+      await updateLoginStatus(false);
       navigation.navigate("Welcome");
     } else {
       navigation.navigate(routeName);
@@ -136,10 +139,30 @@ export default function ProfileScreen(props) {
   };
 
   // Delete and Upload Image
+
+  const generateRandomFileName = () => {
+    let randomFileName = "";
+    while (randomFileName.length < 20) {
+      randomFileName += Math.random().toString(36).substring(2);
+    }
+    randomFileName = randomFileName.substring(0, 20);
+
+    return randomFileName;
+  };
+
   const submitData = async () => {
     try {
-      const randomFileName = Math.random().toString(36).substring(7);
+      const randomFileName = generateRandomFileName();
       const storageRef = ref(storage, `images/${randomFileName}`);
+
+      if (changeImage) {
+        const deleteImageName = userData?.profileImg?.slice(77, 97);
+        console.log(deleteImageName);
+        const deleteImageRef = ref(storage, `images/${deleteImageName}`);
+        await deleteObject(deleteImageRef);
+        console.log("Old image deleted successfully");
+        setChangedImage(false);
+      }
 
       const response = await fetch(changeImage);
       const blob = await response.blob();
@@ -155,43 +178,54 @@ export default function ProfileScreen(props) {
           )}MB`,
           [{ text: "OK" }]
         );
-        setLoading(false);
         return;
       }
       setLoading(true);
+
+      // deleteObject(deleteImageRef)
+      //   .then(() => {
+      //     console.log("Sekil Ugurla silindi");
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
 
       await uploadBytes(storageRef, blob);
 
       const downloadURL = await getDownloadURL(storageRef);
 
-      const { data } = await axios.post(
-        `https://qaychi.az/api/Accounts/Register`,
-        {
-          name: name,
-          surname: surname,
-          fatherName: fatherName,
-          email: mail,
-          address: address,
-          gender: gender === 0 ? "Kişi" : "Qadın",
-          phone: phone,
-          password: password,
-          repeatPassword: repeatPassword,
-          profileImage: downloadURL,
-          userType: checked ? "Sahibkar" : "İstifadəçi",
-        }
-      );
+      console.log("download URL:", downloadURL);
 
-      if (data) {
-        await AsyncStorage.setItem("data", JSON.stringify(data));
-        navigation.navigate("OTP", { mail: mail, data: data });
-      }
+      // const { data } = await axios.post(
+      //   `https://qaychi.az/api/Accounts/Register`,
+      //   {
+      //     name: name,
+      //     surname: surname,
+      //     fatherName: fatherName,
+      //     email: mail,
+      //     address: address,
+      //     gender: gender === 0 ? "Kişi" : "Qadın",
+      //     phone: phone,
+      //     password: password,
+      //     repeatPassword: repeatPassword,
+      //     profileImage: downloadURL,
+      //     userType: checked ? "Sahibkar" : "İstifadəçi",
+      //   }
+      // );
 
-      console.log("data", data);
+      // if (data) {
+      //   await AsyncStorage.setItem("data", JSON.stringify(data));
+      //   navigation.navigate("OTP", { mail: mail, data: data });
+      // }
 
+      // console.log("data", data);
+
+      setChangedImage(false);
       setLoading(false);
     } catch (error) {
       console.error(error);
       setLoading(false);
+      setChangedImage(false);
     }
   };
 
@@ -209,6 +243,7 @@ export default function ProfileScreen(props) {
     if (!result.canceled) {
       const asset = result.assets[0];
       setChangeImage(asset.uri);
+      setChangedImage(true);
     }
   };
 
@@ -223,6 +258,7 @@ export default function ProfileScreen(props) {
 
     if (!result.canceled) {
       setChangeImage(result.assets[0]?.uri);
+      setChangedImage(true);
     }
   };
 
@@ -247,7 +283,7 @@ export default function ProfileScreen(props) {
             setModalVisible(true);
           }}
           style={{
-            marginTop: 40,
+            marginTop: 20,
           }}
         >
           <Image
@@ -259,8 +295,26 @@ export default function ProfileScreen(props) {
             }}
           />
         </Pressable>
+
+        {changedImage ? (
+          <Text
+            onPress={submitData}
+            style={{
+              fontWeight: 600,
+              fontSize: 16,
+              marginTop: 5,
+              padding: 10,
+            }}
+          >
+            {loading ? "Yüklənir..." : "Dəyişiklikləri Saxla"}
+          </Text>
+        ) : (
+          ""
+        )}
+
         <Text style={{ paddingTop: 20, fontWeight: 700, fontSize: 20 }}>
-          {userData?.name} {userData?.surname}
+          {userData?.name} {""}
+          {userData?.surname}
         </Text>
         <Text style={{ paddingTop: 10, fontSize: 14 }}>{userData?.email}</Text>
       </View>

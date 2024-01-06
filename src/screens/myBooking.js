@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Image, ScrollView } from "react-native";
 import SaloonCardComponent from "../components/SallonCard";
+import NoDataComponent from "../components/noData";
 
 export default function MyBookingScreen(props) {
   const { navigation } = props;
@@ -25,8 +26,14 @@ export default function MyBookingScreen(props) {
 
   return (
     <ScrollView style={{ paddingHorizontal: 10, paddingVertical: 15 }}>
-      <SaloonCardComponent />
-      <SaloonCardComponent />
+      <NoDataComponent
+        name="Heç Bir Məlumat Yoxdur"
+        description="Elə İndi Məkanlara Baxın və İstək Siyahısına Əlavə Edin."
+        navigation={navigation}
+      />
+
+      {/* <SaloonCardComponent />
+      <SaloonCardComponent /> */}
     </ScrollView>
   );
 }
