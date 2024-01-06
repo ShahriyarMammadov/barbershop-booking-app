@@ -17,6 +17,7 @@ import { dataCategories } from "../../data/dataArrays";
 import LastVisitedPlaces from "../../components/lastVisitedPlaces";
 import TodaysSpecialCarousel from "../../components/specialCarousel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 // import decodeJWT from "../../services/jwtDecode";
 
 export default function HomeScreen(props) {
@@ -28,6 +29,7 @@ export default function HomeScreen(props) {
   const [selectedCategory, setSelectedCategory] = useState("Tövsiyə Edilənlər");
   const [date, setDate] = useState("");
   const [userData, setUserData] = useState({});
+  const [categories, setCategories] = useState({});
   let currentDate = new Date().toString();
   let currentHour = +currentDate.slice(16, 18);
 
@@ -62,12 +64,25 @@ export default function HomeScreen(props) {
     }
 
     getUserData();
+    getCategories();
   }, []);
 
   const getUserData = async () => {
     try {
       const data = await AsyncStorage.getItem("data");
       setUserData(JSON.parse(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCategories = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://qaychi.az/api/Categories/GetAll"
+      );
+
+      setCategories(data);
     } catch (error) {
       console.log(error);
     }
@@ -82,50 +97,6 @@ export default function HomeScreen(props) {
       setRefreshing(false);
     }, 2000);
   };
-
-  // CATEGORIES
-  const categories = [
-    {
-      id: 1,
-      name: "Hamısı",
-      src: require("../../../assets/icons/massage.png"),
-    },
-    {
-      id: 2,
-      name: "Keratin",
-      src: require("../../../assets/icons/makeup.png"),
-    },
-    {
-      id: 3,
-      name: "Masaj",
-      src: require("../../../assets/icons/haircut.png"),
-    },
-    {
-      id: 4,
-      name: "Populyar",
-      src: require("../../../assets/icons/manicure.png"),
-    },
-    {
-      id: 5,
-      name: "Bezek",
-      src: require("../../../assets/icons/massage.png"),
-    },
-    {
-      id: 6,
-      name: "Make Up",
-      src: require("../../../assets/icons/massage.png"),
-    },
-    {
-      id: 7,
-      name: "Manicure",
-      src: require("../../../assets/icons/massage.png"),
-    },
-    {
-      id: 8,
-      name: "Dırnaq",
-      src: require("../../../assets/icons/massage.png"),
-    },
-  ];
 
   const categoryChange = (categoryName) => {
     setSelectedCategory(categoryName);
@@ -151,7 +122,7 @@ export default function HomeScreen(props) {
           }}
         >
           <Image
-            source={item.src}
+            source={{ uri: item?.icon }}
             style={{
               width: 40,
               height: 40,
@@ -306,8 +277,6 @@ export default function HomeScreen(props) {
     </TouchableHighlight>
   );
 
-  console.log(userData.name);
-
   return (
     <ScrollView
       style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
@@ -333,7 +302,7 @@ export default function HomeScreen(props) {
           textShadowRadius: 5,
         }}
       >
-        {date}, {userData?.name}{" "}
+        {date}, {userData ? userData?.name : "Isa"}{" "}
         <Image
           source={require("../../../assets/icons/hello.png")}
           style={{ width: 25, height: 25 }}

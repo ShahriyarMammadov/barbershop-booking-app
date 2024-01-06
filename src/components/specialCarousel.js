@@ -1,23 +1,36 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Dimensions, ImageBackground, Text, View } from "react-native";
 import Carousel from "react-native-snap-carousel";
-import { specialOffers } from "../data/dataArrays";
+import axios from "axios";
 
 export default function TodaysSpecialCarousel() {
+  const [reclams, setReclams] = useState({});
+
   const width = Dimensions.get("window").width;
   const carouselRef = useRef(null);
+
+  useEffect(() => {
+    const getReclams = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://qaychi.az/api/Reclams/GetAll"
+        );
+
+        setReclams(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getReclams();
+  }, []);
 
   const renderImage = ({ item }) => {
     return (
       <ImageBackground
-        source={{ uri: item?.backGroundImage }}
+        source={{
+          uri: "https://static.vecteezy.com/system/resources/thumbnails/008/110/386/small/abstract-color-graphic-geometric-elements-abstract-backgrounds-free-vector.jpg",
+        }}
         style={{
           width: width - 20,
           height: 180,
@@ -41,18 +54,18 @@ export default function TodaysSpecialCarousel() {
             }}
           >
             <View>
-              {item?.discountPercentage ? (
+              {item?.discountPercent ? (
                 <Text style={{ paddingVertical: 10, color: "white" }}>
-                  {item?.discountPercentage} % OFF
+                  {item?.discountPercent} % OFF
                 </Text>
               ) : null}
               <Text style={{ fontWeight: 700, fontSize: 25, color: "white" }}>
                 {item?.name}
               </Text>
             </View>
-            {item?.discountPercentage ? (
+            {item?.discountPercent ? (
               <Text style={{ fontWeight: 700, fontSize: 45, color: "white" }}>
-                {item?.discountPercentage}%
+                {item?.discountPercent}%
               </Text>
             ) : null}
           </View>
@@ -69,10 +82,11 @@ export default function TodaysSpecialCarousel() {
     <View style={{ height: 180 }}>
       <Carousel
         ref={carouselRef}
-        data={specialOffers}
+        data={reclams}
         renderItem={renderImage}
         sliderWidth={width - 20}
         itemWidth={width}
+        keyExtractor={(item) => item.id}
         sliderHeight={180}
         inactiveSlideScale={1}
         inactiveSlideOpacity={1}
