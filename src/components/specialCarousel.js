@@ -60,7 +60,7 @@ export default function TodaysSpecialCarousel() {
                 </Text>
               ) : null}
               <Text style={{ fontWeight: 700, fontSize: 25, color: "white" }}>
-                {item?.name}
+                {item?.title2}
               </Text>
             </View>
             {item?.discountPercent ? (

@@ -12,10 +12,7 @@ import {
   Share,
   StyleSheet,
 } from "react-native";
-import Carousel, {
-  Pagination,
-  ParallaxImage,
-} from "react-native-snap-carousel";
+import Carousel, { ParallaxImage } from "react-native-snap-carousel";
 import BackButton from "../../components/BackButton/BackButton";
 import AboutTab from "../../components/TabComponent/AboutTab";
 import Servicestab from "../../components/TabComponent/Services";
@@ -27,7 +24,6 @@ export default function SaloonDetail(props) {
   const { navigation, route } = props;
   const { width: viewportWidth } = Dimensions.get("window");
   const item = route.params;
-  const [activeSlide, setActiveSlide] = useState(0);
   const slider1Ref = useRef();
 
   const categories = [
@@ -287,7 +283,10 @@ export default function SaloonDetail(props) {
                 padding: 5,
                 borderRadius: 5,
               }}
-              onPress={() => Linking.openURL(Object.values(e)[0])}
+              onPress={() => {
+                Linking.openURL(Object.values(e)[0]);
+                console.log(Object.values(e)[0]);
+              }}
             >
               <View style={{ alignItems: "center" }}>
                 <View
@@ -324,11 +323,6 @@ export default function SaloonDetail(props) {
                       />
                     ) : element === "Location" ? (
                       <Image
-                        onPress={() =>
-                          Linking.openURL(
-                            `google.navigation:q=${item?.location}`
-                          )
-                        }
                         source={require("../../../assets/icons/locationdot.png")}
                         style={{
                           width: 30,

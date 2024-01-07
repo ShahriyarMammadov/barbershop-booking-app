@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ScrollView,
   Image,
@@ -10,20 +10,15 @@ import {
   View,
   Alert,
   ActivityIndicator,
-  Modal,
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 import * as ImagePicker from "expo-image-picker";
 import ModalDropdown from "react-native-modal-dropdown";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  uploadString,
-} from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../components/firebaseConfig";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Modalize } from "react-native-modalize";
 
 export default function FillYourProfile(props) {
   const { navigation } = props;
@@ -32,7 +27,6 @@ export default function FillYourProfile(props) {
   const width = Dimensions.get("window").width;
 
   const [loading, setLoading] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const [surname, setSurname] = useState("");
   const [name, setName] = useState("");
@@ -60,6 +54,33 @@ export default function FillYourProfile(props) {
   }, []);
 
   console.log(mail);
+
+  // MODAL
+  const data = [
+    { id: 1, title: "Qalereyadan Seç" },
+    { id: 2, title: "Kamera İlə Çək" },
+  ];
+
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+
+  const renderItem = ({ item }) => (
+    <View>
+      <TouchableOpacity
+        style={{ padding: 10, marginTop: 10 }}
+        onPress={() => {
+          item?.id === 1 ? pickImage() : takePhoto();
+        }}
+      >
+        <Text style={{ textAlign: "center", fontWeight: 700, fontSize: 16 }}>
+          {item?.title}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   // CHANGE PROFILE PHOTO
 
@@ -141,7 +162,6 @@ export default function FillYourProfile(props) {
       aspect: [4, 4],
       quality: 1,
     });
-    setModalVisible(false);
 
     if (!result.canceled) {
       const asset = result.assets[0];
@@ -156,7 +176,6 @@ export default function FillYourProfile(props) {
       aspect: [4, 4],
       quality: 1,
     });
-    setModalVisible(false);
 
     if (!result.canceled) {
       setChangeImage(result.assets[0]?.uri);
@@ -164,258 +183,221 @@ export default function FillYourProfile(props) {
   };
 
   return (
-    <ScrollView style={{ paddingHorizontal: 10 }}>
-      <View
-        style={{
-          alignItems: "center",
-          marginBottom: 30,
-          marginTop: 40,
-        }}
-      >
-        <Pressable
-          onPress={() => {
-            setModalVisible(true);
-          }}
+    <>
+      <ScrollView style={{ paddingHorizontal: 10 }}>
+        <View
           style={{
-            width: 150,
-            height: 150,
-            borderRadius: 70,
-            flex: 1,
-            justifyContent: "center",
             alignItems: "center",
+            marginBottom: 30,
+            marginTop: 40,
           }}
         >
-          {loading ? (
-            <ActivityIndicator size="large" color="#0000ff" />
-          ) : (
-            <Image
-              source={{ uri: `${changeImage}` }}
+          <Pressable
+            onPress={() => {
+              onOpen();
+            }}
+            style={{
+              width: 150,
+              height: 150,
+              borderRadius: 70,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {loading ? (
+              <ActivityIndicator size="large" color="#0000ff" />
+            ) : (
+              <Image
+                source={{ uri: `${changeImage}` }}
+                style={{
+                  width: 150,
+                  height: 150,
+                  borderRadius: 70,
+                }}
+              />
+            )}
+          </Pressable>
+        </View>
+
+        {loading ? (
+          <Text
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              fontWeight: 700,
+              fontSize: 18,
+            }}
+          >
+            Hesabınız Yaradılır...
+          </Text>
+        ) : (
+          <>
+            {checked ? (
+              <Text>Siz Sahibkar Kimi Qeydiyyatdan Keçirsiz.</Text>
+            ) : (
+              <Text>Siz İstifadəçi Kimi Qeydiyyatdan Kecirsiz!</Text>
+            )}
+
+            <TextInput
               style={{
-                width: 150,
-                height: 150,
-                borderRadius: 70,
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                paddingHorizontal: 10,
+                height: 60,
+                borderRadius: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                marginVertical: 25,
+              }}
+              placeholder="Adınız"
+              value={name}
+              onChangeText={(value) => {
+                setName(value);
               }}
             />
-          )}
-        </Pressable>
-      </View>
 
-      {loading ? (
-        <Text
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            fontWeight: 700,
-            fontSize: 18,
-          }}
-        >
-          Hesabınız Yaradılır...
-        </Text>
-      ) : (
-        <>
-          {checked ? (
-            <Text>Siz Sahibkar Kimi Qeydiyyatdan Keçirsiz.</Text>
-          ) : (
-            <Text>Siz İstifadəçi Kimi Qeydiyyatdan Kecirsiz!</Text>
-          )}
-
-          <TextInput
-            style={{
-              backgroundColor: "rgba(128, 128, 128, 0.2)",
-              paddingHorizontal: 10,
-              height: 60,
-              borderRadius: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              marginVertical: 25,
-            }}
-            placeholder="Adınız"
-            value={name}
-            onChangeText={(value) => {
-              setName(value);
-            }}
-          />
-
-          <TextInput
-            style={{
-              backgroundColor: "rgba(128, 128, 128, 0.2)",
-              paddingHorizontal: 10,
-              height: 60,
-              borderRadius: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-            }}
-            placeholder="Soyadınız"
-            value={surname}
-            onChangeText={(value) => {
-              setSurname(value);
-            }}
-          />
-
-          <TextInput
-            style={{
-              backgroundColor: "rgba(128, 128, 128, 0.2)",
-              paddingHorizontal: 10,
-              height: 60,
-              borderRadius: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              marginTop: 25,
-            }}
-            placeholder="Ata Adınız"
-            value={fatherName}
-            onChangeText={(value) => {
-              setFatherName(value);
-            }}
-          />
-
-          <TextInput
-            style={{
-              backgroundColor: "rgba(128, 128, 128, 0.2)",
-              paddingHorizontal: 10,
-              height: 60,
-              borderRadius: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              marginTop: 25,
-            }}
-            placeholder="Ünvanınız"
-            value={address}
-            onChangeText={(value) => {
-              setAddress(value);
-            }}
-          />
-
-          <TextInput
-            style={{
-              backgroundColor: "rgba(128, 128, 128, 0.2)",
-              paddingHorizontal: 10,
-              height: 60,
-              borderRadius: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              marginVertical: 25,
-            }}
-            placeholder="Əlaqə Vasitəsi"
-            value={phone}
-            keyboardType="numeric"
-            onChangeText={(value) => {
-              setPhone(value);
-            }}
-          />
-
-          <TextInput
-            style={{
-              backgroundColor: "rgba(128, 128, 128, 0.2)",
-              paddingHorizontal: 10,
-              height: 60,
-              borderRadius: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              marginBottom: 25,
-            }}
-            placeholder="Təkrar Şifrə"
-            value={repeatPassword}
-            secureTextEntry
-            onChangeText={(value) => {
-              setRepeatPassword(value);
-            }}
-          />
-
-          <ModalDropdown
-            options={["Kişi", "Qadın", "Seçilməyib"]}
-            onSelect={(value) => setGender(value)}
-            style={{
-              width: width,
-              paddingHorizontal: 10,
-            }}
-            textStyle={{ fontSize: 16, fontWeight: 700 }}
-            dropdownTextStyle={{ fontSize: 16, fontWeight: 700 }}
-            defaultValue={"Gender"}
-            dropdownStyle={{
-              width: width - 80,
-              marginTop: -20,
-            }}
-          />
-
-          <Modal
-            visible={modalVisible}
-            onBackdropPress={() => setModalVisible(false)}
-            transparent={true}
-          >
-            <View
+            <TextInput
               style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                paddingHorizontal: 10,
+                height: 60,
+                borderRadius: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+              }}
+              placeholder="Soyadınız"
+              value={surname}
+              onChangeText={(value) => {
+                setSurname(value);
+              }}
+            />
+
+            <TextInput
+              style={{
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                paddingHorizontal: 10,
+                height: 60,
+                borderRadius: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                marginTop: 25,
+              }}
+              placeholder="Ata Adınız"
+              value={fatherName}
+              onChangeText={(value) => {
+                setFatherName(value);
+              }}
+            />
+
+            <TextInput
+              style={{
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                paddingHorizontal: 10,
+                height: 60,
+                borderRadius: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                marginTop: 25,
+              }}
+              placeholder="Ünvanınız"
+              value={address}
+              onChangeText={(value) => {
+                setAddress(value);
+              }}
+            />
+
+            <TextInput
+              style={{
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                paddingHorizontal: 10,
+                height: 60,
+                borderRadius: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                marginVertical: 25,
+              }}
+              placeholder="Əlaqə Vasitəsi"
+              value={phone}
+              keyboardType="numeric"
+              onChangeText={(value) => {
+                setPhone(value);
+              }}
+            />
+
+            <TextInput
+              style={{
+                backgroundColor: "rgba(128, 128, 128, 0.2)",
+                paddingHorizontal: 10,
+                height: 60,
+                borderRadius: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                marginBottom: 25,
+              }}
+              placeholder="Təkrar Şifrə"
+              value={repeatPassword}
+              secureTextEntry
+              onChangeText={(value) => {
+                setRepeatPassword(value);
+              }}
+            />
+
+            <ModalDropdown
+              options={["Kişi", "Qadın", "Seçilməyib"]}
+              onSelect={(value) => setGender(value)}
+              style={{
+                width: width,
+                paddingHorizontal: 10,
+              }}
+              textStyle={{ fontSize: 16, fontWeight: 700 }}
+              dropdownTextStyle={{ fontSize: 16, fontWeight: 700 }}
+              defaultValue={"Gender"}
+              dropdownStyle={{
+                width: width - 80,
+                marginTop: -20,
+              }}
+            />
+
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#FB9400",
+                paddingVertical: 20,
+                borderRadius: 30,
+                marginVertical: 20,
+              }}
+              onPress={() => {
+                submitData();
               }}
             >
-              <View
+              <Text
                 style={{
-                  backgroundColor: "white",
-                  padding: 20,
-                  borderRadius: 10,
-                  width: 300,
+                  textAlign: "center",
+                  fontWeight: 700,
+                  fontSize: 17,
+                  color: "white",
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 18,
-                    padding: 10,
-                    backgroundColor: "grey",
-                    textAlign: "center",
-                    position: "absolute",
-                    borderRadius: 10,
-                    top: 0,
-                    right: 0,
-                    width: 40,
-                    color: "white",
-                  }}
-                  onPress={() => {
-                    setModalVisible(false);
-                  }}
-                >
-                  X
-                </Text>
+                Yadda Saxla
+              </Text>
+            </TouchableOpacity>
+          </>
+        )}
+      </ScrollView>
 
-                <TouchableOpacity onPress={pickImage}>
-                  <Text style={{ fontSize: 18, marginBottom: 10 }}>
-                    Qalereyadan Seç
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={takePhoto}>
-                  <Text style={{ fontSize: 18 }}>Kameradan Çək</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
-
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#FB9400",
-              paddingVertical: 20,
-              borderRadius: 30,
-              marginVertical: 20,
-            }}
-            onPress={() => {
-              submitData();
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: 700,
-                fontSize: 17,
-                color: "white",
-              }}
-            >
-              Yadda Saxla
-            </Text>
-          </TouchableOpacity>
-        </>
-      )}
-    </ScrollView>
+      <Modalize
+        ref={modalizeRef}
+        snapPoint={170}
+        modalStyle={{
+          padding: 10,
+        }}
+        modalHeight={150}
+        flatListProps={{
+          data: data,
+          renderItem: renderItem,
+          keyExtractor: (item) => item.id,
+        }}
+      />
+    </>
   );
 }

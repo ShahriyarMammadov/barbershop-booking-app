@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Image, ScrollView } from "react-native";
+import { Image, Pressable, ScrollView } from "react-native";
 import SaloonCardComponent from "../components/SallonCard";
 import NoDataComponent from "../components/noData";
 
@@ -15,10 +15,16 @@ export default function MyBookingScreen(props) {
         />
       ),
       headerRight: () => (
-        <Image
-          source={require("../../assets/icons/notification.png")}
-          style={{ width: 25, height: 25, marginRight: 30 }}
-        />
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Bildirişlər");
+          }}
+        >
+          <Image
+            source={require("../../assets/icons/notification.png")}
+            style={{ width: 25, height: 25, marginRight: 30 }}
+          />
+        </Pressable>
       ),
       title: "My Bookmark",
     });

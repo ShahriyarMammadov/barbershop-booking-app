@@ -94,6 +94,8 @@ export default function HomeScreen(props) {
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
+      getUserData();
+      getCategories();
       setRefreshing(false);
     }, 2000);
   };

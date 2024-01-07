@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   Animated,
@@ -23,15 +23,17 @@ import {
   deleteObject,
 } from "firebase/storage";
 import { storage } from "../../components/firebaseConfig";
+import { Modalize } from "react-native-modalize";
 
 export default function ProfileScreen(props) {
   const { navigation, updateLoginStatus } = props;
-  const width = Dimensions.get("window").width;
   const [refreshing, setRefreshing] = useState(false);
   const [userData, setUserData] = useState({});
-  const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [changedImage, setChangedImage] = useState(false);
+
+  const width = Dimensions.get("window").width;
+  const height = Dimensions.get("window").height;
 
   const [changeImage, setChangeImage] = useState(
     userData?.profileImg ||
@@ -50,10 +52,16 @@ export default function ProfileScreen(props) {
         />
       ),
       headerRight: () => (
-        <Image
-          source={require("../../../assets/icons/notification.png")}
-          style={{ width: 25, height: 25, marginRight: 30 }}
-        />
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Bildirişlər");
+          }}
+        >
+          <Image
+            source={require("../../../assets/icons/notification.png")}
+            style={{ width: 25, height: 25, marginRight: 30 }}
+          />
+        </Pressable>
       ),
     });
 
@@ -71,6 +79,8 @@ export default function ProfileScreen(props) {
     }
   };
 
+  console.log(userData);
+
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
@@ -79,6 +89,14 @@ export default function ProfileScreen(props) {
   };
 
   const settings = [
+    userData?.userType === "Sahibkar"
+      ? {
+          id: 1,
+          name: "Mağazanızı Yaradın",
+          iconURL: require("../../../assets/icons/magaza.png"),
+          rightIcon: require("../../../assets/icons/righticon.png"),
+        }
+      : null,
     {
       id: 1,
       name: "Profil Ayarları",
@@ -137,6 +155,33 @@ export default function ProfileScreen(props) {
       navigation.navigate(routeName);
     }
   };
+
+  // MODAL
+  const data = [
+    { id: 1, title: "Qalereyadan Seç" },
+    { id: 2, title: "Kamera İlə Çək" },
+  ];
+
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+
+  const renderItem = ({ item }) => (
+    <View>
+      <TouchableOpacity
+        style={{ padding: 10, marginTop: 10 }}
+        onPress={() => {
+          item?.id === 1 ? pickImage() : takePhoto();
+        }}
+      >
+        <Text style={{ textAlign: "center", fontWeight: 700, fontSize: 16 }}>
+          {item?.title}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   // Delete and Upload Image
 
@@ -238,7 +283,6 @@ export default function ProfileScreen(props) {
       aspect: [4, 4],
       quality: 1,
     });
-    setModalVisible(false);
 
     if (!result.canceled) {
       const asset = result.assets[0];
@@ -254,7 +298,6 @@ export default function ProfileScreen(props) {
       aspect: [4, 4],
       quality: 1,
     });
-    setModalVisible(false);
 
     if (!result.canceled) {
       setChangeImage(result.assets[0]?.uri);
@@ -280,7 +323,7 @@ export default function ProfileScreen(props) {
       <View style={{ width: width, alignItems: "center" }}>
         <Pressable
           onPress={() => {
-            setModalVisible(true);
+            onOpen();
           }}
           style={{
             marginTop: 20,
@@ -330,22 +373,23 @@ export default function ProfileScreen(props) {
                 alignItems: "center",
                 justifyContent: "space-between",
                 paddingVertical: 5,
+                display: !item?.name ? "none" : "",
               }}
               onPress={() => {
-                categoryChange(item.name);
+                categoryChange(item?.name);
               }}
             >
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 15 }}
               >
                 <Image
-                  source={item.iconURL}
+                  source={item?.iconURL}
                   style={styles.iconImage}
                   onPress={pickImage}
                 />
                 <Text
                   style={
-                    item.name === "Çıxış"
+                    item?.name === "Çıxış"
                       ? { fontWeight: 700, fontSize: 16, color: "#EF4040" }
                       : { fontWeight: 700, fontSize: 16 }
                   }
@@ -374,58 +418,24 @@ export default function ProfileScreen(props) {
         })}
       </View>
 
-      <Modal
-        visible={modalVisible}
-        onBackdropPress={() => setModalVisible(false)}
-        transparent={true}
-      >
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "white",
-              padding: 20,
-              borderRadius: 10,
-              width: 300,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 18,
-                padding: 10,
-                backgroundColor: "grey",
-                textAlign: "center",
-                position: "absolute",
-                borderRadius: 10,
-                top: 0,
-                right: 0,
-                width: 40,
-                color: "white",
-              }}
-              onPress={() => {
-                setModalVisible(false);
-              }}
-            >
-              X
-            </Text>
-
-            <TouchableOpacity onPress={pickImage}>
-              <Text style={{ fontSize: 18, marginBottom: 10 }}>
-                Qalereyadan Seç
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={takePhoto}>
-              <Text style={{ fontSize: 18 }}>Kameradan Çək</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+      <Modalize
+        ref={modalizeRef}
+        snapPoint={240}
+        modalStyle={{
+          padding: 10,
+        }}
+        modalHeight={230}
+        // HeaderComponent={
+        //   <View style={styles.modalHeader}>
+        //     <Text>Modal Başlık</Text>
+        //   </View>
+        // }
+        flatListProps={{
+          data: data,
+          renderItem: renderItem,
+          keyExtractor: (item) => item.id,
+        }}
+      />
     </ScrollView>
   );
 }

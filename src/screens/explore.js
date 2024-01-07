@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
-import LinearGradient from "react-native-linear-gradient";
 import { Modalize } from "react-native-modalize";
+import axios from "axios";
 
 export default function ExploreScreen(props) {
   const navigation = props;
@@ -83,32 +83,34 @@ export default function ExploreScreen(props) {
 
   console.log(location);
 
-  const [isModalVisible, setModalVisible] = React.useState(false);
+  // const [isModalVisible, setModalVisible] = useState(false);
   const modalizeRef = useRef(null);
 
-  const onOpen = () => {
-    setModalVisible(true);
-  };
+  // const onOpen = () => {
+  //   setModalVisible(true);
+  // };
 
-  const onClose = () => {
-    setModalVisible(false);
-  };
+  // const onClose = () => {
+  //   setModalVisible(false);
+  // };
 
-  const getData = () => [
-    { id: "1", heading: "Item 1" },
-    { id: "2", heading: "Item 2" },
-    { id: "3", heading: "Item 3" },
-  ];
+  // Selected Saloon
+  const [selectedObject, setSelectedObject] = useState([]);
 
-  const onMapPress = () => {
+  const onMapPress = async (id) => {
+    console.log(id);
     modalizeRef.current?.open();
+    setSelectedObject(id);
+
+    // const { data } = await axios.get(``);
   };
 
   const renderItem = ({ item }) => (
     <View
+      key={item?.id}
       style={{ padding: 16, borderBottomWidth: 1, borderBottomColor: "#ccc" }}
     >
-      <Text>{item.heading}</Text>
+      <Text>{item?.title}</Text>
     </View>
   );
 
@@ -133,7 +135,10 @@ export default function ExploreScreen(props) {
                 coordinate={location?.coordinates}
                 title={location?.title}
                 // onPress={() => handleMarkerPress(location)}
-                onPress={onMapPress}
+                onPress={() => {
+                  // onMapPress(location?.id);
+                  onMapPress(location);
+                }}
               >
                 <View style={{ padding: 5, alignItems: "center" }}>
                   <Image
@@ -163,10 +168,10 @@ export default function ExploreScreen(props) {
           <Modalize
             ref={modalizeRef}
             // modalHeight={height / 2}
-            snapPoint={height / 2} // Snapping'in gerçekleşeceği yükseklik
+            snapPoint={height / 2}
             modalHeight={height - 200}
             flatListProps={{
-              data: getData(),
+              data: locations,
               renderItem: renderItem,
               keyExtractor: (item) => item.heading,
               showsVerticalScrollIndicator: false,
