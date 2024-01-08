@@ -21,6 +21,7 @@ import FillYourProfile from "../screens/fillYourProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginLoaderScreen from "../screens/loginLoader";
 import OtpScreen from "../screens/otp";
+import ForgotPasswordScreen from "../screens/forgotPassword";
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,7 @@ function WelcomeNavigator({ updateLoginStatus }) {
         )}
       </Stack.Screen>
       <Stack.Screen name="Fill Your Profile" component={FillYourProfile} />
+      <Stack.Screen name="Şifrə Dəyişimi" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
 }
@@ -76,9 +78,13 @@ function MainNavigator({ updateLoginStatus }) {
         )}
       </Stack.Screen>
       <Stack.Screen name="BookNow" component={BookNowScreen} />
-      <Stack.Screen name="Məxfilik Və Siyasət" component={PrivacyPolicyScreen} />
+      <Stack.Screen
+        name="Məxfilik Və Siyasət"
+        component={PrivacyPolicyScreen}
+      />
       <Stack.Screen name="Dəvət Et" component={InviteFriendsScreen} />
       <Stack.Screen name="Təhlükəsizlik" component={SecurityScreen} />
+      <Stack.Screen name="Şifrə Dəyişimi" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
 }

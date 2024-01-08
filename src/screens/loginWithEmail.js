@@ -169,7 +169,12 @@ export default function LoginWithEmail(props) {
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity style={{ marginTop: 20 }}>
+      <TouchableOpacity
+        style={{ marginTop: 20 }}
+        onPress={() => {
+          navigation.navigate("Şifrə Dəyişimi");
+        }}
+      >
         <Text style={{ textAlign: "center" }}>Şifrəni Unutmuşam</Text>
       </TouchableOpacity>
 
