@@ -53,7 +53,7 @@ function WelcomeNavigator({ updateLoginStatus }) {
   );
 }
 
-function MainNavigator({ updateLoginStatus }) {
+function MainNavigator({ updateLoginStatus, ID }) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -68,7 +68,11 @@ function MainNavigator({ updateLoginStatus }) {
       <Stack.Screen name="Bildirişlər" component={NotificationScreen} />
       <Stack.Screen name="Profile">
         {(props) => (
-          <ProfileScreen {...props} updateLoginStatus={updateLoginStatus} />
+          <ProfileScreen
+            {...props}
+            updateLoginStatus={updateLoginStatus}
+            ID={ID}
+          />
         )}
       </Stack.Screen>
       <Stack.Screen name="MyBooking" component={MyBookingScreen} />
@@ -93,15 +97,15 @@ function MainNavigator({ updateLoginStatus }) {
 }
 
 export default function AppContainer() {
-  const [isLoggedIn, setLoggedIn] = useState("");
+  const [userID, setUserID] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const status = await AsyncStorage.getItem("isLoggedIn");
-        if (status) {
-          setLoggedIn(JSON.parse(status));
+        const id = await AsyncStorage.getItem("userID");
+        if (id) {
+          setUserID(id);
           setLoading(false);
         } else {
           setLoading(false);
@@ -115,10 +119,12 @@ export default function AppContainer() {
     checkLoginStatus();
   }, []);
 
-  const updateLoginStatus = async (status) => {
-    setLoggedIn(status);
+  console.log("navigation", userID);
+
+  const updateLoginStatus = async (id) => {
+    setUserID(id);
     try {
-      await AsyncStorage.setItem("isLoggedIn", JSON.stringify(status));
+      await AsyncStorage.setItem("userID", id);
       setLoading(false);
     } catch (error) {
       console.log("Error saving login status:", error);
@@ -128,9 +134,9 @@ export default function AppContainer() {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? (
+      {userID ? (
         <>
-          <MainNavigator updateLoginStatus={updateLoginStatus} />
+          <MainNavigator updateLoginStatus={updateLoginStatus} ID={userID} />
           <Footer />
         </>
       ) : loading ? (

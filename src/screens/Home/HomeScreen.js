@@ -18,11 +18,8 @@ import LastVisitedPlaces from "../../components/lastVisitedPlaces";
 import TodaysSpecialCarousel from "../../components/specialCarousel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-// import decodeJWT from "../../services/jwtDecode";
 
 export default function HomeScreen(props) {
-  // decodeJWT(token);
-
   const width = Dimensions.get("window").width;
   const { navigation } = props;
   const [refreshing, setRefreshing] = useState(false);
@@ -69,8 +66,15 @@ export default function HomeScreen(props) {
 
   const getUserData = async () => {
     try {
-      const data = await AsyncStorage.getItem("data");
-      setUserData(JSON.parse(data));
+      const userID = await AsyncStorage.getItem("userID");
+
+      const { data } = await axios.get(
+        `https://qaychi.az/api/Accounts/MyAccount?Id=${userID}`
+      );
+
+      setUserData(data);
+
+      console.log(userData);
     } catch (error) {
       console.log(error);
     }
@@ -93,11 +97,9 @@ export default function HomeScreen(props) {
 
   const onRefresh = () => {
     setRefreshing(true);
-    setTimeout(() => {
-      getUserData();
-      getCategories();
-      setRefreshing(false);
-    }, 2000);
+    getUserData();
+    getCategories();
+    setRefreshing(false);
   };
 
   const categoryChange = (categoryName) => {
@@ -304,7 +306,7 @@ export default function HomeScreen(props) {
           textShadowRadius: 5,
         }}
       >
-        {date}, {userData ? userData?.name : "Isa"}{" "}
+        {date}, {userData ? userData?.name : ""}
         <Image
           source={require("../../../assets/icons/hello.png")}
           style={{ width: 25, height: 25 }}

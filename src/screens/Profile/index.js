@@ -11,6 +11,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
 import BackButton from "../../components/BackButton/BackButton";
 import { getLocales } from "expo-localization";
@@ -24,13 +25,16 @@ import {
 } from "firebase/storage";
 import { storage } from "../../components/firebaseConfig";
 import { Modalize } from "react-native-modalize";
+import axios from "axios";
 
 export default function ProfileScreen(props) {
-  const { navigation, updateLoginStatus } = props;
+  const { navigation, updateLoginStatus, ID } = props;
   const [refreshing, setRefreshing] = useState(false);
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
   const [changedImage, setChangedImage] = useState(false);
+
+  console.log("PROFILE ID", ID);
 
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
@@ -43,7 +47,6 @@ export default function ProfileScreen(props) {
 
   useEffect(() => {
     navigation.setOptions({
-      //   headerTransparent: "true",
       headerLeft: () => (
         <BackButton
           onPress={() => {
@@ -70,10 +73,11 @@ export default function ProfileScreen(props) {
 
   const getUserData = async () => {
     try {
-      const data = await AsyncStorage.getItem("data");
-      const parseData = JSON.parse(data);
-      await setUserData(parseData);
-      setChangeImage(parseData?.profileImg);
+      const { data } = await axios.get(
+        `https://qaychi.az/api/Accounts/MyAccount?Id=${ID}`
+      );
+      setUserData(data);
+      setChangeImage(data?.profileImg);
     } catch (error) {
       console.log(error);
     }
@@ -83,9 +87,8 @@ export default function ProfileScreen(props) {
 
   const onRefresh = () => {
     setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
+    getUserData();
+    setRefreshing(false);
   };
 
   const settings = [
@@ -197,18 +200,6 @@ export default function ProfileScreen(props) {
 
   const submitData = async () => {
     try {
-      const randomFileName = generateRandomFileName();
-      const storageRef = ref(storage, `images/${randomFileName}`);
-
-      if (changeImage) {
-        const deleteImageName = userData?.profileImg?.slice(77, 97);
-        console.log(deleteImageName);
-        const deleteImageRef = ref(storage, `images/${deleteImageName}`);
-        await deleteObject(deleteImageRef);
-        console.log("Old image deleted successfully");
-        setChangedImage(false);
-      }
-
       const response = await fetch(changeImage);
       const blob = await response.blob();
 
@@ -225,15 +216,20 @@ export default function ProfileScreen(props) {
         );
         return;
       }
-      setLoading(true);
 
-      // deleteObject(deleteImageRef)
-      //   .then(() => {
-      //     console.log("Sekil Ugurla silindi");
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+      const randomFileName = generateRandomFileName();
+      const storageRef = ref(storage, `images/${randomFileName}`);
+
+      if (changeImage) {
+        const deleteImageName = userData?.profileImg?.slice(77, 97);
+        console.log(deleteImageName);
+        const deleteImageRef = ref(storage, `images/${deleteImageName}`);
+        await deleteObject(deleteImageRef);
+        console.log("Old image deleted successfully");
+        setChangedImage(false);
+      }
+
+      setLoading(true);
 
       await uploadBytes(storageRef, blob);
 

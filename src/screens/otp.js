@@ -11,7 +11,7 @@ import BackButton from "../components/BackButton/BackButton";
 import axios from "axios";
 
 export default function OtpScreen({ route, navigation, updateLoginStatus }) {
-  const { mail, data } = route.params;
+  const { mail, data, userID } = route.params;
 
   let otpInput = useRef(null);
 
@@ -62,28 +62,30 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
     }
   };
 
-  console.log(mail, otpCode, data);
+  console.log(userID);
 
   const confirmAccount = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.post(
+      const data = await axios.post(
         `https://qaychi.az/api/Accounts/ConfirmAccount?Email=${mail}&code=${otpCode}`,
         {}
       );
 
-      // if (data) {
-      //   updateLoginStatus(true);
-      // }
       console.log(data);
 
-      updateLoginStatus(true);
+      updateLoginStatus(userID);
 
       navigation.navigate("Qaychi.az");
 
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.data) {
+        console.log(error?.response?.data);
+        if (error?.response?.data === "OTP is wrong") {
+          Alert.alert("XƏTA", "Daxil Etdiyiniz OTP Kodu Yanlışdır.");
+        }
+      }
       setLoading(false);
     }
   };

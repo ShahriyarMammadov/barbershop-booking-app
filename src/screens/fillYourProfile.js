@@ -56,7 +56,7 @@ export default function FillYourProfile(props) {
   console.log(mail);
 
   // MODAL
-  const data = [
+  const modalData = [
     { id: 1, title: "Qalereyadan Seç" },
     { id: 2, title: "Kamera İlə Çək" },
   ];
@@ -96,60 +96,84 @@ export default function FillYourProfile(props) {
 
   const submitData = async () => {
     try {
-      const randomFileName = generateRandomFileName();
-      const storageRef = ref(storage, `images/${randomFileName}`);
+      if (
+        name.length < 2 ||
+        surname.length < 2 ||
+        repeatPassword.length < 2 ||
+        phone.length < 2
+      ) {
+        Alert.alert("XƏTA", "Xanaları Tam Doldurun!!!");
+      } else {
+        setLoading(true);
 
-      const response = await fetch(changeImage);
-      const blob = await response.blob();
+        // FIREBASE IMAGE DOWNLOAD AND GET URL
+        const randomFileName = generateRandomFileName();
+        const storageRef = ref(storage, `images/${randomFileName}`);
 
-      const fileSizeInMB = blob.size / (1024 * 1024);
+        const response = await fetch(changeImage);
+        const blob = await response.blob();
 
-      console.log(fileSizeInMB);
-      if (fileSizeInMB > 3) {
-        Alert.alert(
-          "XƏTA",
-          `Zəhmət Olmasa Həcmi 3MB-dan Aşağı Olan Şəkil Seçin, Seçilən Faylın Həcmi: ${fileSizeInMB?.toFixed(
-            2
-          )}MB`,
-          [{ text: "OK" }]
-        );
-        setLoading(false);
-        return;
-      }
-      setLoading(true);
+        const fileSizeInMB = blob.size / (1024 * 1024);
 
-      await uploadBytes(storageRef, blob);
-
-      const downloadURL = await getDownloadURL(storageRef);
-
-      const { data } = await axios.post(
-        `https://qaychi.az/api/Accounts/Register`,
-        {
-          name: name,
-          surname: surname,
-          fatherName: fatherName,
-          email: mail,
-          address: address,
-          gender: gender === 0 ? "Kişi" : "Qadın",
-          phone: phone,
-          password: password,
-          repeatPassword: repeatPassword,
-          profileImage: downloadURL,
-          userType: checked ? "Sahibkar" : "İstifadəçi",
+        console.log(fileSizeInMB);
+        if (fileSizeInMB > 3) {
+          Alert.alert(
+            "XƏTA",
+            `Zəhmət Olmasa Həcmi 3MB-dan Aşağı Olan Şəkil Seçin, Seçilən Faylın Həcmi: ${fileSizeInMB?.toFixed(
+              2
+            )}MB`,
+            [{ text: "OK" }]
+          );
+          setLoading(false);
+          return;
         }
-      );
 
-      if (data) {
-        await AsyncStorage.setItem("data", JSON.stringify(data));
-        navigation.navigate("OTP", { mail: mail, data: data });
+        await uploadBytes(storageRef, blob);
+
+        const downloadURL = await getDownloadURL(storageRef);
+
+        const { data } = await axios.post(
+          `https://qaychi.az/api/Accounts/Register`,
+          {
+            name: name,
+            surname: surname,
+            fatherName: fatherName,
+            email: mail,
+            address: address,
+            gender:
+              gender === 0 ? "Kişi" : gender === 1 ? "Qadın" : "Seçilməyib",
+            phone: phone,
+            password: password,
+            repeatPassword: repeatPassword,
+            profileImage: downloadURL,
+            userType: checked ? "Sahibkar" : "İstifadəçi",
+          }
+        );
+
+        if (data) {
+          await AsyncStorage.setItem("userID", data?.id);
+          navigation.navigate("OTP", {
+            mail: mail,
+            data: data,
+            userID: data?.id,
+          });
+        }
+
+        console.log("data", data?.id);
       }
-
-      console.log("data", data);
 
       setLoading(false);
     } catch (error) {
       if (error.response && error.response.data) {
-        console.log("Response body:", error.response.data);
+        console.log(error?.response?.data);
+        if (error?.response?.data === "This user is exist") {
+          Alert.alert(
+            "XƏTA",
+            "Daxil Etdiyiniz Email Hesabına Bağlı Olan Başqa Bir Hesab Mövcuddur!!!"
+          );
+        } else if (error?.response?.data === "PassowordError") {
+          Alert.alert("XƏTA", "Daxil Etdiyiniz Şifrələr Eyni Deyil!!!");
+        }
       }
       setLoading(false);
     }
@@ -393,7 +417,7 @@ export default function FillYourProfile(props) {
         }}
         modalHeight={150}
         flatListProps={{
-          data: data,
+          data: modalData,
           renderItem: renderItem,
           keyExtractor: (item) => item.id,
         }}
