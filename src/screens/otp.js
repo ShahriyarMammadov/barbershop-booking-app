@@ -62,9 +62,9 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
     }
   };
 
-  console.log(mail, otpCode);
+  console.log(mail, otpCode, data);
 
-  const handleVerify = async () => {
+  const confirmAccount = async () => {
     try {
       setLoading(true);
       const { data } = await axios.post(
@@ -79,12 +79,45 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
 
       updateLoginStatus(true);
 
-      navigation.navigate("Qaychi.az")
+      navigation.navigate("Qaychi.az");
 
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
+    }
+  };
+
+  const forgotPasswordVerify = async () => {
+    try {
+      const data = await axios.post(
+        `https://qaychi.az/api/Accounts/ConfirmForgot?Email=${mail}&code=${otpCode}`
+      );
+
+      if (data && data?.data) {
+        if (data?.data === "OTP sent") {
+          navigation.navigate("Yeni Şifrə", {
+            userID: data?.data,
+          });
+        } else {
+          console.log("else keys:", data?.data);
+        }
+      } else {
+        console.log(
+          "Response body not found or does not have 'response' property."
+        );
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleVerify = () => {
+    if (data === "forgotPassword") {
+      forgotPasswordVerify();
+    } else {
+      confirmAccount();
     }
   };
 
@@ -120,7 +153,7 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
       >
         <Text style={{ color: "white" }}>
           {loading ? (
-            <ActivityIndicator size="large" color="#0000ff" />
+            <ActivityIndicator size="small" color="#0000ff" />
           ) : (
             "Təsdiqlə"
           )}
@@ -140,16 +173,6 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
           marginTop: 20,
         }}
       >
-        {/* <TouchableOpacity
-          style={{
-            backgroundColor: "#F57620",
-            padding: 10,
-            borderRadius: 10,
-          }}
-        >
-          <Text style={{ color: "white" }}>Daha Sonra Təsdiqlə</Text>
-        </TouchableOpacity> */}
-
         <TouchableOpacity
           disabled={otpResendSendTime == 0 ? false : true}
           style={{
@@ -158,7 +181,6 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
           }}
           onPress={() => {
             handleResendCode();
-            // Alert.alert("Coming Soon", "Coming Soon");
           }}
         >
           <Text>

@@ -11,11 +11,11 @@ import {
 } from "react-native";
 import BackButton from "../components/BackButton/BackButton";
 import axios from "axios";
-import JWT from "expo-jwt";
-import { AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 
-export default function LoginWithEmail(props) {
-  const { navigation, updateLoginStatus } = props;
+export default function LoginWithEmail(navigation, updateLoginStatus, route) {
+  const { message } = route?.params;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,29 +24,20 @@ export default function LoginWithEmail(props) {
     try {
       setLoading(true);
       if (email.length !== 0 || password.length !== 0) {
-        var { data } = await axios.post(
-          "https://qaychi.az/api/Accounts/Login",
-          {
-            email: email,
-            password: password,
-          }
-        );
+        const data = await axios.post("https://qaychi.az/api/Accounts/Login", {
+          email: email,
+          password: password,
+        });
       } else Alert.alert("Xəta", "Xanaları Tam Doldurun!");
 
-      const key = "shh";
-      const token = data;
+      // if (data) {
+      //   setLoading(false);
+      //   updateLoginStatus(true);
+      // }
 
-      console.log(JWT.decode(token, key));
-
-      if (data) {
-        setLoading(false);
-        updateLoginStatus(true);
-      }
+      console.log(data);
     } catch (error) {
       console.log("error:", error);
-      updateLoginStatus(true);
-      console.log(data);
-      setLoading(false);
     }
   };
 
@@ -108,7 +99,7 @@ export default function LoginWithEmail(props) {
           }}
         />
       </View>
-
+      {message ? <Text>{message}</Text> : ""}
       <View
         style={{
           flexDirection: "row",
