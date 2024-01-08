@@ -1,42 +1,19 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   ScrollView,
-  Image,
   Text,
   TextInput,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from "react-native";
 import ModalDropdown from "react-native-modal-dropdown";
 
-export default function EditProfile(props) {
-  const { navigation } = props;
+export default function EditProfile({ navigation, route }) {
+  const { userData } = route?.params;
   const { width: windowWidth } = Dimensions.get("window");
-
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const data = await AsyncStorage.getItem("data");
-        const parseData = JSON.parse(data);
-        setName(parseData?.name);
-        setSurname(parseData?.surname);
-        setFatherName(parseData?.fatherName);
-        setLocation(parseData?.address);
-        setEmail(parseData?.email);
-        setUsername(parseData?.userName);
-        setPhoneNumber(parseData?.phoneNumber);
-        setGender(parseData?.gender);
-        setUserId(parseData?.id);
-        setUserType(parseData?.userType);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getUserData();
-  }, []);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,27 +23,47 @@ export default function EditProfile(props) {
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userType, setUserType] = useState("");
+
+  useEffect(() => {
+    setName(userData?.name);
+    setEmail(userData?.email);
+    setFatherName(userData?.fatherName);
+    setUsername(userData?.userName);
+    setSurname(userData?.surname);
+    setLocation(userData?.location);
+    setPhoneNumber(userData?.phoneNumber);
+    setGender(userData?.gender);
+  }, []);
 
   const updateProfile = async () => {
     try {
-      console.log(userId);
-      const { data } = await axios.post(
-        `https://qaychi.az/api/Accounts/EditProfile?AppUserId=${userId}`,
-        {
-          name: name,
-          surname: surname,
-          fatherName: fatherName,
-          address: location,
-          gender: gender,
-          phone: phoneNumber,
-          userName: username,
-          UserType: userType,
-        }
-      );
-
-      console.log(data);
+      const ID = userData?.id;
+      if (
+        name.length < 2 ||
+        email.length < 2 ||
+        fatherName.length < 2 ||
+        username.length < 4 ||
+        surname.length < 2 ||
+        location.length < 6 ||
+        phoneNumber.length < 10
+      ) {
+        Alert.alert("XƏTA", "Məlumatları Düzgün Daxil Edin!");
+      } else {
+        const { data } = await axios.post(
+          `https://qaychi.az/api/Accounts/EditProfile?AppUserId=${ID}`,
+          {
+            name: name,
+            surname: surname,
+            fatherName: fatherName,
+            address: location,
+            gender: gender,
+            phone: phoneNumber,
+            userName: username,
+            UserType: userData?.userType,
+          }
+        );
+        console.log(data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -106,7 +103,7 @@ export default function EditProfile(props) {
         }}
         placeholder="Soyadınız"
         // keyboardType="numeric"
-        value={surname}
+        defaultValue={surname}
         onChangeText={(value) => {
           setSurname(value);
         }}

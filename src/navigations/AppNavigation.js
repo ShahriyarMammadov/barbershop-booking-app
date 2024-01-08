@@ -66,7 +66,7 @@ function MainNavigator({ updateLoginStatus, ID }) {
       <Stack.Screen name="Qaychi.az" component={HomeScreen} />
       <Stack.Screen name="Explore" component={ExploreScreen} />
       <Stack.Screen name="Bildirişlər" component={NotificationScreen} />
-      <Stack.Screen name="Profile">
+      <Stack.Screen name="Profil">
         {(props) => (
           <ProfileScreen
             {...props}

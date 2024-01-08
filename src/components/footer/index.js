@@ -22,7 +22,7 @@ export default function Footer() {
   };
 
   const navigateToProfile = () => {
-    navigation.navigate("Profile");
+    navigation.navigate("Profil");
     setCurrentRoute(navigation?.getCurrentRoute()?.name);
   };
 
@@ -112,7 +112,7 @@ export default function Footer() {
             paddingTop: 4,
             fontWeight: 700,
             fontSize: 12,
-            color: currentRoute == "Profile" ? "#FB9400" : "black",
+            color: currentRoute == "Profil" ? "#FB9400" : "black",
           }}
         >
           Profil

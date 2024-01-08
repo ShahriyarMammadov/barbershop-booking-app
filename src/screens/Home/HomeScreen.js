@@ -18,6 +18,7 @@ import LastVisitedPlaces from "../../components/lastVisitedPlaces";
 import TodaysSpecialCarousel from "../../components/specialCarousel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import AnimatedSkeletonComponent from "../../components/skeleton";
 
 export default function HomeScreen(props) {
   const width = Dimensions.get("window").width;
@@ -27,6 +28,7 @@ export default function HomeScreen(props) {
   const [date, setDate] = useState("");
   const [userData, setUserData] = useState({});
   const [categories, setCategories] = useState({});
+  const [loading, setLoading] = useState(false);
   let currentDate = new Date().toString();
   let currentHour = +currentDate.slice(16, 18);
 
@@ -66,6 +68,7 @@ export default function HomeScreen(props) {
 
   const getUserData = async () => {
     try {
+      setLoading(true);
       const userID = await AsyncStorage.getItem("userID");
 
       const { data } = await axios.get(
@@ -87,6 +90,7 @@ export default function HomeScreen(props) {
       );
 
       setCategories(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -281,70 +285,73 @@ export default function HomeScreen(props) {
     </TouchableHighlight>
   );
 
-  return (
-    <ScrollView
-      style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
-      showsVerticalScrollIndicator={false}
-      refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-          tintColor="#3F51B5"
-          title="Refreshing..."
-        />
-      }
-    >
-      <Text
-        style={{
-          fontWeight: 700,
-          fontSize: 25,
-          paddingTop: 10,
-          paddingBottom: 15,
-          fontStyle: "italic",
-          textShadowColor: "#FB9400",
-          textShadowOffset: { width: 1, height: 1 },
-          textShadowRadius: 5,
-        }}
+  return loading ? (
+    <AnimatedSkeletonComponent isLoading={true} screenName={"home"} />
+  ) : (
+    <>
+      <ScrollView
+        style={{ width: width, paddingRight: 10, paddingLeft: 10 }}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="#3F51B5"
+            title="Refreshing..."
+          />
+        }
       >
-        {date}, {userData ? userData?.name : ""}
-        <Image
-          source={require("../../../assets/icons/hello.png")}
-          style={{ width: 25, height: 25 }}
-        />
-      </Text>
+        <Text
+          style={{
+            fontWeight: 700,
+            fontSize: 25,
+            paddingTop: 10,
+            paddingBottom: 15,
+            fontStyle: "italic",
+            textShadowColor: "#FB9400",
+            textShadowOffset: { width: 1, height: 1 },
+            textShadowRadius: 5,
+          }}
+        >
+          {date}, {userData ? userData?.name : ""}
+          <Image
+            source={require("../../../assets/icons/hello.png")}
+            style={{ width: 25, height: 25 }}
+          />
+        </Text>
 
-      {/* SEARCH */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 10,
-          paddingHorizontal: 20,
-          marginBottom: 20,
-          backgroundColor: "#FAFAFA",
-          borderRadius: 10,
-        }}
-      >
-        <Image
-          source={require("../../../assets/icons/search.png")}
+        {/* SEARCH */}
+        <View
           style={{
-            width: 20,
-            height: 20,
-            marginRight: 10,
+            flexDirection: "row",
+            alignItems: "center",
+            padding: 10,
+            paddingHorizontal: 20,
+            marginBottom: 20,
+            backgroundColor: "#FAFAFA",
+            borderRadius: 10,
           }}
-        />
-        <TextInput
-          style={{
-            flex: 1,
-            height: 40,
-            paddingLeft: 5,
-          }}
-          placeholder="Axtarış"
-          onChangeText={(searchString) => {
-            console.log(searchString);
-          }}
-        />
-        {/* <Image
+        >
+          <Image
+            source={require("../../../assets/icons/search.png")}
+            style={{
+              width: 20,
+              height: 20,
+              marginRight: 10,
+            }}
+          />
+          <TextInput
+            style={{
+              flex: 1,
+              height: 40,
+              paddingLeft: 5,
+            }}
+            placeholder="Axtarış"
+            onChangeText={(searchString) => {
+              console.log(searchString);
+            }}
+          />
+          {/* <Image
           source={require("../../../assets/icons/search.png")}
           style={{
             width: 20,
@@ -353,127 +360,132 @@ export default function HomeScreen(props) {
             marginLeft: 5,
           }}
         /> */}
-      </View>
-
-      <TodaysSpecialCarousel />
-
-      {/* Categories */}
-      <View style={{ paddingTop: 15 }}>
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          data={categories}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderCategoryItem}
-        />
-      </View>
-
-      <Text style={{ fontWeight: 700, fontSize: 18 }}>{selectedCategory}</Text>
-
-      <View>
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderRecommendedItem}
-          horizontal
-        />
-      </View>
-
-      {/* HR */}
-      <View
-        style={{
-          borderBottomColor: "grey",
-          borderBottomWidth: 1,
-          marginTop: 20,
-        }}
-      />
-      {/* HR */}
-
-      <View>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingTop: 15,
-            paddingBottom: 15,
-          }}
-        >
-          <Text style={{ fontWeight: 700, fontSize: 18 }}>
-            Sizə Yaxın Məkanlar
-          </Text>
-
-          <Text
-            style={{
-              color: "#FB9400",
-              fontWeight: 700,
-              fontSize: 18,
-            }}
-            onPress={() => {
-              navigation.navigate("Search");
-            }}
-          >
-            Hamısına bax
-          </Text>
         </View>
+
+        <TodaysSpecialCarousel />
+
+        {/* Categories */}
+        <View style={{ paddingTop: 15 }}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={categories}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderCategoryItem}
+          />
+        </View>
+
+        <Text style={{ fontWeight: 700, fontSize: 18 }}>
+          {selectedCategory}
+        </Text>
 
         <View>
           <FlatList
             showsHorizontalScrollIndicator={false}
-            data={categories}
+            data={data}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={renderNearbyYourLocation}
+            renderItem={renderRecommendedItem}
             horizontal
           />
         </View>
 
-        {/* Saloon & BrberShop*/}
-        <SaloonCardComponent navigation={navigation} />
-      </View>
-
-      <View>
+        {/* HR */}
         <View
           style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingTop: 15,
-            paddingBottom: 15,
+            borderBottomColor: "grey",
+            borderBottomWidth: 1,
+            marginTop: 20,
           }}
-        >
-          <Text style={{ fontWeight: 700, fontSize: 18 }}>Məşhur Məkanlar</Text>
+        />
+        {/* HR */}
 
-          <Text
+        <View>
+          <View
             style={{
-              color: "#FB9400",
-              fontWeight: 700,
-              fontSize: 18,
-            }}
-            onPress={() => {
-              navigation.navigate("Search");
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingTop: 15,
+              paddingBottom: 15,
             }}
           >
-            Hamısına bax
-          </Text>
+            <Text style={{ fontWeight: 700, fontSize: 18 }}>
+              Sizə Yaxın Məkanlar
+            </Text>
+
+            <Text
+              style={{
+                color: "#FB9400",
+                fontWeight: 700,
+                fontSize: 18,
+              }}
+              onPress={() => {
+                navigation.navigate("Search");
+              }}
+            >
+              Hamısına bax
+            </Text>
+          </View>
+
+          <View>
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={categories}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={renderNearbyYourLocation}
+              horizontal
+            />
+          </View>
+
+          {/* Saloon & BrberShop*/}
+          <SaloonCardComponent navigation={navigation} />
         </View>
 
         <View>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            data={categories}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={renderNearbyYourLocation}
-            horizontal
-          />
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingTop: 15,
+              paddingBottom: 15,
+            }}
+          >
+            <Text style={{ fontWeight: 700, fontSize: 18 }}>
+              Məşhur Məkanlar
+            </Text>
+
+            <Text
+              style={{
+                color: "#FB9400",
+                fontWeight: 700,
+                fontSize: 18,
+              }}
+              onPress={() => {
+                navigation.navigate("Search");
+              }}
+            >
+              Hamısına bax
+            </Text>
+          </View>
+
+          <View>
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={categories}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={renderNearbyYourLocation}
+              horizontal
+            />
+          </View>
+
+          {/* Saloon & BrberShop*/}
+          <SaloonCardComponent navigation={navigation} />
         </View>
 
-        {/* Saloon & BrberShop*/}
-        <SaloonCardComponent navigation={navigation} />
-      </View>
-
-      <LastVisitedPlaces />
-    </ScrollView>
+        <LastVisitedPlaces />
+      </ScrollView>
+    </>
   );
 }
 

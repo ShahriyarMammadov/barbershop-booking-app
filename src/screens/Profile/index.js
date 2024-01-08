@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
-  Animated,
   Image,
-  Modal,
   Pressable,
   RefreshControl,
   ScrollView,
@@ -16,7 +14,7 @@ import {
 import BackButton from "../../components/BackButton/BackButton";
 import { getLocales } from "expo-localization";
 import * as ImagePicker from "expo-image-picker";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   ref,
   uploadBytes,
@@ -26,6 +24,7 @@ import {
 import { storage } from "../../components/firebaseConfig";
 import { Modalize } from "react-native-modalize";
 import axios from "axios";
+import AnimatedSkeletonComponent from "../../components/skeleton";
 
 export default function ProfileScreen(props) {
   const { navigation, updateLoginStatus, ID } = props;
@@ -73,11 +72,13 @@ export default function ProfileScreen(props) {
 
   const getUserData = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(
         `https://qaychi.az/api/Accounts/MyAccount?Id=${ID}`
       );
       setUserData(data);
       setChangeImage(data?.profileImg);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -154,6 +155,8 @@ export default function ProfileScreen(props) {
     if (routeName === "Çıxış") {
       await updateLoginStatus(false);
       navigation.navigate("Welcome");
+    } else if (routeName === "Profil Ayarları") {
+      navigation.navigate("Profil Ayarları", { userData: userData });
     } else {
       navigation.navigate(routeName);
     }
@@ -301,8 +304,6 @@ export default function ProfileScreen(props) {
     }
   };
 
-  console.log("change Image", changeImage);
-
   return (
     <ScrollView
       style={{ width: width }}
@@ -316,47 +317,55 @@ export default function ProfileScreen(props) {
         />
       }
     >
-      <View style={{ width: width, alignItems: "center" }}>
-        <Pressable
-          onPress={() => {
-            onOpen();
-          }}
-          style={{
-            marginTop: 20,
-          }}
-        >
-          <Image
-            source={{ uri: `${changeImage}` }}
-            style={{
-              width: 130,
-              height: 130,
-              borderRadius: 70,
-            }}
-          />
-        </Pressable>
+      {loading ? (
+        <AnimatedSkeletonComponent isLoading={true} screenName={"profile"} />
+      ) : (
+        <>
+          <View style={{ width: width, alignItems: "center" }}>
+            <Pressable
+              onPress={() => {
+                onOpen();
+              }}
+              style={{
+                marginTop: 20,
+              }}
+            >
+              <Image
+                source={{ uri: `${changeImage}` }}
+                style={{
+                  width: 130,
+                  height: 130,
+                  borderRadius: 70,
+                }}
+              />
+            </Pressable>
 
-        {changedImage ? (
-          <Text
-            onPress={submitData}
-            style={{
-              fontWeight: 600,
-              fontSize: 16,
-              marginTop: 5,
-              padding: 10,
-            }}
-          >
-            {loading ? "Yüklənir..." : "Dəyişiklikləri Saxla"}
-          </Text>
-        ) : (
-          ""
-        )}
+            {changedImage ? (
+              <Text
+                onPress={submitData}
+                style={{
+                  fontWeight: 600,
+                  fontSize: 16,
+                  marginTop: 5,
+                  padding: 10,
+                }}
+              >
+                {loading ? "Yüklənir..." : "Dəyişiklikləri Saxla"}
+              </Text>
+            ) : (
+              ""
+            )}
 
-        <Text style={{ paddingTop: 20, fontWeight: 700, fontSize: 20 }}>
-          {userData?.name} {""}
-          {userData?.surname}
-        </Text>
-        <Text style={{ paddingTop: 10, fontSize: 14 }}>{userData?.email}</Text>
-      </View>
+            <Text style={{ paddingTop: 20, fontWeight: 700, fontSize: 20 }}>
+              {userData?.name} {""}
+              {userData?.surname}
+            </Text>
+            <Text style={{ paddingTop: 10, fontSize: 14 }}>
+              {userData?.email}
+            </Text>
+          </View>
+        </>
+      )}
 
       <View style={{ marginVertical: 20, paddingHorizontal: 15 }}>
         {settings?.map((item, i) => {
