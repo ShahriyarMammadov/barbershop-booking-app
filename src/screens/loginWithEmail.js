@@ -12,6 +12,7 @@ import {
 import BackButton from "../components/BackButton/BackButton";
 import axios from "axios";
 import JWT from "expo-jwt";
+import { AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
 
 export default function LoginWithEmail(props) {
   const { navigation, updateLoginStatus } = props;
@@ -88,13 +89,11 @@ export default function LoginWithEmail(props) {
           borderRadius: 10,
         }}
       >
-        <Image
-          source={require("../../assets/icons/mail.png")}
-          style={{
-            width: 20,
-            height: 20,
-            marginRight: 10,
-          }}
+        <Feather
+          name="mail"
+          size={24}
+          color="black"
+          style={{ marginRight: 10 }}
         />
         <TextInput
           style={{
@@ -121,13 +120,11 @@ export default function LoginWithEmail(props) {
           borderRadius: 10,
         }}
       >
-        <Image
-          source={require("../../assets/icons/password.png")}
-          style={{
-            width: 20,
-            height: 20,
-            marginRight: 10,
-          }}
+        <MaterialIcons
+          name="lock-outline"
+          size={24}
+          color="black"
+          style={{ marginRight: 10 }}
         />
         <TextInput
           style={{

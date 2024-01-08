@@ -11,6 +11,7 @@ import {
 import BackButton from "../components/BackButton/BackButton";
 import * as Facebook from "expo-facebook";
 import Checkbox from "expo-checkbox";
+import { MaterialIcons, Feather } from "@expo/vector-icons";
 
 // import axios from "axios";
 
@@ -92,14 +93,8 @@ export default function SignUpScreen(props) {
             borderRadius: 10,
           }}
         >
-          <Image
-            source={require("../../assets/icons/mail.png")}
-            style={{
-              width: 20,
-              height: 20,
-              marginRight: 10,
-            }}
-          />
+          <Feather name="mail" size={24} color="black" />
+
           <TextInput
             style={{
               flex: 1,
@@ -124,14 +119,7 @@ export default function SignUpScreen(props) {
             borderRadius: 10,
           }}
         >
-          <Image
-            source={require("../../assets/icons/password.png")}
-            style={{
-              width: 20,
-              height: 20,
-              marginRight: 10,
-            }}
-          />
+          <MaterialIcons name="lock-outline" size={24} color="black" />
           <TextInput
             style={{
               flex: 1,
