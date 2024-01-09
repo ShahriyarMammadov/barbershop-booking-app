@@ -230,8 +230,6 @@ export default function ProfileScreen(props) {
         await deleteObject(deleteImageRef);
         console.log("Old image deleted successfully");
         setChangedImage(false);
-      } else {
-        console.log("Köhnə Şəkil Tapılmadı");
       }
 
       setLoading(true);

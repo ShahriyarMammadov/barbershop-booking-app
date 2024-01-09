@@ -27,7 +27,7 @@ export default function HomeScreen(props) {
   const [selectedCategory, setSelectedCategory] = useState("Tövsiyə Edilənlər");
   const [date, setDate] = useState("");
   const [userData, setUserData] = useState({});
-  const [categories, setCategories] = useState({});
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   let currentDate = new Date().toString();
   let currentHour = +currentDate.slice(16, 18);
@@ -117,9 +117,13 @@ export default function HomeScreen(props) {
         padding: 5,
         borderRadius: 5,
       }}
-      // onPress={() => {
-      //   categoryChange(item.name);
-      // }}
+      onPress={() => {
+        navigation.navigate("AllSaloon", {
+          categoryID: item?.id,
+          categoryName: item?.name,
+          subCategory: categories,
+        });
+      }}
     >
       <View style={{ alignItems: "center" }}>
         <View
@@ -149,7 +153,6 @@ export default function HomeScreen(props) {
       </View>
     </TouchableOpacity>
   );
-
   // recommended barbershop
   const [data, setData] = useState(dataCategories);
 
@@ -158,8 +161,9 @@ export default function HomeScreen(props) {
       style={{
         marginTop: 10,
         marginRight: 10,
-        backgroundColor: "grey",
+        backgroundColor: "#665135",
         width: width - 40,
+        height: width,
         borderRadius: 10,
         overflow: "hidden",
       }}
@@ -172,8 +176,8 @@ export default function HomeScreen(props) {
         <Image
           source={{ uri: item.photo_url }}
           style={{
-            width: 353,
-            height: 230,
+            width: "100%",
+            height: width - 80,
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
           }}
@@ -237,32 +241,18 @@ export default function HomeScreen(props) {
 
   const renderNearbyYourLocation = ({ item }) => (
     <TouchableHighlight
-      style={
-        item.id === activeClassId
-          ? {
-              paddingVertical: 8,
-              paddingHorizontal: 15,
-              backgroundColor: "#FDA62B",
-              marginRight: 10,
-              borderRadius: 16,
-              marginTop: 10,
-              marginBottom: 10,
-              borderColor: "#FDA62B",
-              borderStyle: "solid",
-              borderWidth: 1,
-            }
-          : {
-              paddingVertical: 8,
-              paddingHorizontal: 15,
-              marginRight: 10,
-              borderRadius: 16,
-              marginTop: 10,
-              marginBottom: 10,
-              borderColor: "#FDA62B",
-              borderStyle: "solid",
-              borderWidth: 1,
-            }
-      }
+      style={{
+        paddingVertical: 8,
+        paddingHorizontal: 15,
+        backgroundColor: item.id === activeClassId ? "#FDA62B" : "transparent",
+        marginRight: 10,
+        borderRadius: 16,
+        marginTop: 10,
+        marginBottom: 10,
+        borderColor: "#FDA62B",
+        borderStyle: "solid",
+        borderWidth: 1,
+      }}
       onPress={() => {
         activeClassAdd(item.id);
       }}
@@ -420,7 +410,11 @@ export default function HomeScreen(props) {
                 fontSize: 18,
               }}
               onPress={() => {
-                navigation.navigate("Search");
+                navigation.navigate("AllSaloon", {
+                  categoryID: 1,
+                  categoryName: "Hamısı",
+                  subCategory: categories,
+                });
               }}
             >
               Hamısına bax
@@ -438,7 +432,10 @@ export default function HomeScreen(props) {
           </View>
 
           {/* Saloon & BrberShop*/}
-          <SaloonCardComponent navigation={navigation} />
+          <SaloonCardComponent
+            renderData={dataCategories}
+            navigation={navigation}
+          />
         </View>
 
         <View>
@@ -462,7 +459,11 @@ export default function HomeScreen(props) {
                 fontSize: 18,
               }}
               onPress={() => {
-                navigation.navigate("Search");
+                navigation.navigate("AllSaloon", {
+                  categoryID: 1,
+                  categoryName: "Hamısı",
+                  subCategory: categories,
+                });
               }}
             >
               Hamısına bax
@@ -479,8 +480,11 @@ export default function HomeScreen(props) {
             />
           </View>
 
-          {/* Saloon & BrberShop*/}
-          <SaloonCardComponent navigation={navigation} />
+          {/* Saloon & BarberShop*/}
+          <SaloonCardComponent
+            renderData={dataCategories}
+            navigation={navigation}
+          />
         </View>
 
         <LastVisitedPlaces />

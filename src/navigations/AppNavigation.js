@@ -19,10 +19,11 @@ import SecurityScreen from "../screens/security";
 import LoginWithEmail from "../screens/loginWithEmail";
 import FillYourProfile from "../screens/fillYourProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import LoginLoaderScreen from "../screens/loginLoader";
 import OtpScreen from "../screens/otp";
 import ForgotPasswordScreen from "../screens/forgotPassword";
 import ResetPasswordScreen from "../screens/resetPassword";
+import AnimatedSkeletonComponent from "../components/skeleton";
+import AllSaloonScreen from "../screens/allSaloon";
 
 const Stack = createStackNavigator();
 
@@ -66,6 +67,7 @@ function MainNavigator({ updateLoginStatus, ID }) {
       <Stack.Screen name="Qaychi.az" component={HomeScreen} />
       <Stack.Screen name="Explore" component={ExploreScreen} />
       <Stack.Screen name="Bildirişlər" component={NotificationScreen} />
+      <Stack.Screen name="AllSaloon" component={AllSaloonScreen} />
       <Stack.Screen name="Profil">
         {(props) => (
           <ProfileScreen
@@ -140,7 +142,7 @@ export default function AppContainer() {
           <Footer />
         </>
       ) : loading ? (
-        <LoginLoaderScreen />
+        <AnimatedSkeletonComponent isLoading={true} screenName={"home"} />
       ) : (
         <WelcomeNavigator updateLoginStatus={updateLoginStatus} />
       )}

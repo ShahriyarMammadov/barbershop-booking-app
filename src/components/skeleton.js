@@ -1,8 +1,16 @@
 import React, { useEffect, useRef } from "react";
-import { View, Text, Animated, Easing, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Animated,
+  Easing,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 
 const AnimatedSkeletonComponent = ({ isLoading, screenName }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
+  const { width, height } = Dimensions.get("window");
 
   useEffect(() => {
     if (isLoading) {
@@ -29,7 +37,7 @@ const AnimatedSkeletonComponent = ({ isLoading, screenName }) => {
   const skeletonStyle = {
     opacity: opacityInterpolate,
     backgroundColor: "lightgray",
-    marginBottom: 15,
+    marginBottom: screenName === "allSaloon" ? 8 : 15,
   };
 
   return (
@@ -102,6 +110,47 @@ const AnimatedSkeletonComponent = ({ isLoading, screenName }) => {
             style={[styles.recommendentItemImage, skeletonStyle]}
           />
         </>
+      ) : screenName === "mexfilikVeSiyaset" ? (
+        <>
+          <Animated.View style={[styles.skeletonRow, skeletonStyle]} />
+          <Animated.View style={[styles.privacyDescription, skeletonStyle]} />
+          <Animated.View style={[styles.skeletonRow, skeletonStyle]} />
+          <Animated.View style={[styles.privacyDescription, skeletonStyle]} />
+          <Animated.View style={[styles.skeletonRow, skeletonStyle]} />
+          <Animated.View style={[styles.privacyDescription, skeletonStyle]} />
+        </>
+      ) : screenName === "allSaloon" ? (
+        <>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, i) => {
+            return (
+              <View
+                key={e}
+                style={{
+                  paddingHorizontal: 10,
+                  flexDirection: "row",
+                  gap: 15,
+                }}
+              >
+                <Animated.View
+                  style={[styles.saloonImageSkeleton, skeletonStyle]}
+                />
+                <View>
+                  <Animated.View style={[styles.saloonName, skeletonStyle]} />
+                  <Animated.View
+                    style={[
+                      styles.saloonDescription,
+                      skeletonStyle,
+                      { width: width - 140 },
+                    ]}
+                  />
+                  <Animated.View
+                    style={[styles.saloonDescription, skeletonStyle]}
+                  />
+                </View>
+              </View>
+            );
+          })}
+        </>
       ) : (
         <>
           <Animated.View style={[styles.imageSkeleton, skeletonStyle]} />
@@ -161,6 +210,27 @@ const styles = StyleSheet.create({
   },
   recommendentItemImage: {
     height: 230,
+    borderRadius: 10,
+  },
+
+  // PRIVACY AND POLICY
+  privacyDescription: {
+    height: 180,
+  },
+
+  // ALL SALOON
+  saloonImageSkeleton: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+  },
+  saloonDescription: {
+    height: 20,
+    margin: 0,
+    borderRadius: 10,
+  },
+  saloonName: {
+    height: 20,
     borderRadius: 10,
   },
 });

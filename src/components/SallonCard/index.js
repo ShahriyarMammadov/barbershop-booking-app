@@ -1,9 +1,8 @@
 import React from "react";
-import { dataCategories } from "../../data/dataArrays";
 import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 
-export default function SaloonCardComponent({ navigation }) {
-  return dataCategories.map((e, i) => {
+export default function SaloonCardComponent({ navigation, renderData }) {
+  return renderData?.map((e, i) => {
     return (
       <TouchableOpacity
         key={i}

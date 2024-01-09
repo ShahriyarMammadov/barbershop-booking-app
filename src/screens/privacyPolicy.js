@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, Text } from "react-native";
+import AnimatedSkeletonComponent from "../components/skeleton";
 
 export default function PrivacyPolicyScreen(props) {
   const navigation = props;
+  const [loading, setLoading] = useState(false);
 
-  return (
+  return loading ? (
+    <AnimatedSkeletonComponent isLoading={true} screenName={"mexfilikVeSiyaset"} />
+  ) : (
     <ScrollView style={{ paddingHorizontal: 10, paddingBottom: 80 }}>
       <Text style={{ fontWeight: 700, fontSize: 18, paddingVertical: 10 }}>
         1. Types of Data We Collect
