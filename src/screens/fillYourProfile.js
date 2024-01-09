@@ -151,7 +151,7 @@ export default function FillYourProfile(props) {
         );
 
         if (data) {
-          await AsyncStorage.setItem("userID", data?.id);
+          // await AsyncStorage.setItem("userID", data?.id);
           navigation.navigate("OTP", {
             mail: mail,
             data: data,

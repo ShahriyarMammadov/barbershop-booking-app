@@ -29,7 +29,7 @@ export default function TodaysSpecialCarousel() {
     return (
       <ImageBackground
         source={{
-          uri: "https://static.vecteezy.com/system/resources/thumbnails/008/110/386/small/abstract-color-graphic-geometric-elements-abstract-backgrounds-free-vector.jpg",
+          uri: item?.backgrooundImage,
         }}
         style={{
           width: width - 20,
@@ -70,7 +70,7 @@ export default function TodaysSpecialCarousel() {
             ) : null}
           </View>
 
-          <Text style={{ fontSize: 16, paddingTop: 10, color: "white" }}>
+          <Text style={{ fontSize: 14, paddingTop: 10, color: "white" }}>
             {item?.description}
           </Text>
         </View>

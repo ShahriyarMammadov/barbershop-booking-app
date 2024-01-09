@@ -153,7 +153,7 @@ export default function ProfileScreen(props) {
 
   const categoryChange = async (routeName) => {
     if (routeName === "Çıxış") {
-      await updateLoginStatus(false);
+      await updateLoginStatus("");
       navigation.navigate("Welcome");
     } else if (routeName === "Profil Ayarları") {
       navigation.navigate("Profil Ayarları", { userData: userData });
@@ -230,6 +230,8 @@ export default function ProfileScreen(props) {
         await deleteObject(deleteImageRef);
         console.log("Old image deleted successfully");
         setChangedImage(false);
+      } else {
+        console.log("Köhnə Şəkil Tapılmadı");
       }
 
       setLoading(true);

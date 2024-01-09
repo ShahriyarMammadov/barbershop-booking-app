@@ -29,9 +29,9 @@ const Stack = createStackNavigator();
 function WelcomeNavigator({ updateLoginStatus }) {
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
+    // screenOptions={{
+    //   headerShown: false,
+    // }}
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />

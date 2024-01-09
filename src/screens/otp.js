@@ -74,7 +74,7 @@ export default function OtpScreen({ route, navigation, updateLoginStatus }) {
 
       console.log(data);
 
-      updateLoginStatus(userID);
+      await updateLoginStatus(userID);
 
       navigation.navigate("Qaychi.az");
 
